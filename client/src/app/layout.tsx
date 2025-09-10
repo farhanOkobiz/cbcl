@@ -1,22 +1,16 @@
-import type { Metadata } from "next";
 import "./globals.css";
-import { lato } from "./font";
-import NextTopLoader from "nextjs-toploader";
+import { banglaFont } from "@/fonts/bangla";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "NOHASAN",
+  title: "CBCL",
   description: "Best E-commerce platform in BD",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${lato.className} antialiased`}>
-        <NextTopLoader showSpinner={false} color="#D4A373" />
+      <body className={`${banglaFont.className} antialiased`}>
         {children}
       </body>
     </html>

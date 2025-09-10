@@ -4,10 +4,9 @@ const Schema = mongoose.Schema;
 
 const Blogschema = new Schema(
   {
-    image:
-      {
-        type: String,
-      },
+    image: {
+      type: String,
+    },
     title: {
       type: String,
       trim: true,
@@ -25,7 +24,7 @@ const Blogschema = new Schema(
     },
     tags: [
       {
-         type: String,
+        type: String,
       },
     ],
     status: {
@@ -37,7 +36,12 @@ const Blogschema = new Schema(
 );
 
 Blogschema.pre("save", function (next) {
-  this.slug = slugify(this.title, { lower: true });
+  this.slug = slugify(this.title, {
+    lower: true,
+    locale: "bn",
+    strict: false,
+    remove: /[*+~.()'"!:@]/g,
+  });
   next();
 });
 

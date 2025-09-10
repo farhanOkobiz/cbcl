@@ -5,6 +5,7 @@ import { getSingleBlogBySlug } from "@/services/blogs";
 import { getCartProducts } from "@/services/cart";
 
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { FaRegUser } from "react-icons/fa";
 

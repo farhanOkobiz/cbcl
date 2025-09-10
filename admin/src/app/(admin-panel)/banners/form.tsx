@@ -78,7 +78,6 @@ export const CreateBannerForm: React.FC = () => {
   const onSubmit = async (values: z.infer<typeof bannerFormSchema>) => {
     setLoading(true);
     const formData = makeFormData(values);
-    // console.log(values, "values from form++++++++++++++++++++++++++");
     try {
       await createFormAction(formData);
       form.reset();

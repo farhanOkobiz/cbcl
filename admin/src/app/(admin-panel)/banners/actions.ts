@@ -12,7 +12,6 @@ import { revalidatePath } from "next/cache";
 export async function createFormAction(data: FormData) {
   try {
     await createBanner(data);
-
     revalidatePath("/");
     return true;
   } catch (error: any) {
@@ -32,7 +31,6 @@ export async function updateFormAction(id: string, data: any) {
 
 export async function deleteBannerAction(id: string) {
   const banner = await getBannerById(id);
-
   try {
     await deleteBanner(id);
     revalidatePath("/");

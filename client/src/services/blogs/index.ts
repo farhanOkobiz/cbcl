@@ -3,7 +3,6 @@ import { apiBaseUrl } from "@/config/config";
 
 export const getAllBlogs = async () => {
   const res = await fetch(`${apiBaseUrl}/blog`);
-
   return res.json();
 };
 

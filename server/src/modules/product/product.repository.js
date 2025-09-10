@@ -26,10 +26,13 @@ class ProductRepository extends BaseRepository {
     return newProduct;
   }
 
-  async updateProduct(id, payload) {
-    const updatedProduct = await this.#model.findByIdAndUpdate(id, payload);
+  async updateProduct(id, payload, session = null) {
+    // Return the updated document (new: true) and run validators
+    const options = { new: true, runValidators: true };
+    if (session) options.session = session;
+    const updatedProduct = await this.#model.findByIdAndUpdate(id, payload, options);
     if (!updatedProduct) {
-      throw new Error("About Us not found");
+      throw new Error("Product not found");
     }
     return updatedProduct;
   }

@@ -15,7 +15,6 @@ class BlogService extends BaseService {
 
   async createBlog(payload, payloadFiles, session) {
     const { files } = payloadFiles;
-    const { title, details, tagRef, author, status } = payload;
     if (!files) throw new Error("image is required");
 
     const images = await ImgUploader(files);

@@ -16,10 +16,7 @@ export default async function Layout({
   const userId = user?.id;
   const coupon = "";
   const products = await getCartProducts(userId, coupon);
-  console.log(
-    "---------------------------layout call products ---------------------",
-    products
-  );
+ 
   return (
     <div className="">
       <ToastContainer

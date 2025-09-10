@@ -36,7 +36,7 @@ class ProductController {
         : [],
       slug: req.body.slug,
       barcode: req.body.barcode,
-      featured: req.body.featured === 'true' || req.body.featured === true,
+      featured: req.body.featured === "true" || req.body.featured === true,
     };
     // console.log("$#%$#%#$ payload from controller:", payload);
     const productResult = await ProductService.createProduct(
@@ -57,8 +57,8 @@ class ProductController {
     //   warehouseRef: req?.query?.warehouseRef,
     // };
     // console.log(payload);
-    
-    const productResult = await ProductService.getAllProduct();   
+
+    const productResult = await ProductService.getAllProduct();
 
     const resDoc = responseHandler(200, "Get All Products", productResult);
     res.status(resDoc.statusCode).json(resDoc);
@@ -165,7 +165,12 @@ class ProductController {
       level: req.query.level,
       popular: req.query.popular,
       bestSell: req.query.bestSell,
-      featured: req.query.featured,
+      featured:
+        req.query.featured === "true"
+          ? true
+          : req.query.featured === "false"
+          ? false
+          : undefined,
       gender: req.query.gender,
     };
 
@@ -205,7 +210,7 @@ class ProductController {
     const slug = req.params.slug;
     const productResult = await ProductService.getSingleProduct(slug);
     const resDoc = responseHandler(
-      201,
+      200,
       "Single Product successfully",
       productResult
     );
@@ -243,15 +248,30 @@ class ProductController {
         ),
         inventoryType: req.body.inventoryType,
         inventory: req?.body?.inventory,
-        inventoryArray: req?.body?.inventoryArray
-          ? JSON.parse(req?.body?.inventoryArray)
-          : [],
+        inventoryArray: [],
+        featured: req.body.featured === "true" || req.body.featured === true,
         slug: req.body.slug,
         barcode: req.body.barcode,
       };
 
-      await ProductService.updateProduct(id, payloadFiles, payload, session);
-      const resDoc = responseHandler(201, "Product Update successfully");
+      // Safe parse inventoryArray
+      if (req?.body?.inventoryArray) {
+        try {
+          payload.inventoryArray = JSON.parse(req.body.inventoryArray);
+        } catch (_err) {
+          return res
+            .status(400)
+            .json({ message: "Invalid inventoryArray JSON" });
+        }
+      }
+
+      const updated = await ProductService.updateProduct(
+        id,
+        payloadFiles,
+        payload,
+        session
+      );
+      const resDoc = responseHandler(200, "Product updated successfully", updated);
       res.status(resDoc.statusCode).json(resDoc);
     } catch (error) {
       if (error.code === 11000) {

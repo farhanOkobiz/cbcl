@@ -14,12 +14,14 @@ type Blog = {
 };
 
 const Blogs = async () => {
-      const allBlogs = await getAllBlogs();
+
+  const allBlogs = await getAllBlogs();
+  
   return (
     <div className="Container py-12">
       <div className="flex md:items-center md:flex-row flex-col md:justify-between md:gap-0 gap-2">
         <div className="flex flex-col gap-2">
-          <h2 className="lg:text-2xl text-xl font-semibold">
+          <h2 className="lg:text-2xl text-xl font-semibold uppercase">
             Our Latest Blogs
           </h2>
           <p className="text-[#262626]/60 text-lg">
@@ -32,11 +34,11 @@ const Blogs = async () => {
           </div>
         </Link>
       </div>
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-4 mt-6">
-         {
-            Array.isArray(allBlogs?.data) &&
-            allBlogs.data.slice(0, 4).map((blog: Blog) => (
-              <BlogCard
+      <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-6">
+        {
+          Array.isArray(allBlogs?.data) &&
+          allBlogs.data.slice(0, 4).map((blog: Blog) => (
+            <BlogCard
               key={blog.id}
               title={blog.title}
               details={blog.details}
@@ -45,9 +47,9 @@ const Blogs = async () => {
               date={blog.createdAt}
               author={blog.author}
               slug={blog.slug}
-              />
-            ))
-            }
+            />
+          ))
+        }
       </div>
     </div>
   );

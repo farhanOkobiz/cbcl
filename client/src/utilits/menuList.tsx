@@ -4,7 +4,7 @@ export const menuList = [
     link: "/",
   },
   {
-    title: "Shop",
+    title: "Products",
     link: "/shop",
     subMenu: true,
   },

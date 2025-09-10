@@ -307,10 +307,8 @@ class ProductService extends BaseService {
     return productData;
   }
 
-  async getAllProduct(payload) {
-    const query = { featured: true };
-
-    console.log("Get all featured products");
+  async getAllProduct() {
+    const query = { featured: true }
 
     return await this.#repository.findAll(query, [
       "brandRef",
@@ -795,6 +793,12 @@ class ProductService extends BaseService {
         }
       }
       payload.maxPrice = maxPrice;
+
+      // Ensure featured is a boolean if provided (handles 'true'/'false' strings from form-data)
+      if (Object.prototype.hasOwnProperty.call(payload, "featured")) {
+        payload.featured =
+          payload.featured === true || payload.featured === "true" || payload.featured === "1" || payload.featured === 1;
+      }
 
       const productData = await this.#repository.updateProduct(
         id,

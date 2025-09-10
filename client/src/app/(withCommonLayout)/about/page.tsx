@@ -1,6 +1,6 @@
 "use server";
 import React from "react";
-import aboutImage from "@/assets/logo/Noha.png";
+import aboutImage from "@/assets/logo/CBCL.png";
 import Image from "next/image";
 import NavBar from "@/components/pages/header/NavBar/NavBar";
 import { getCartProducts } from "@/services/cart";
@@ -28,14 +28,16 @@ const page = async () => {
         </div>
         <div className="flex flex-col gap-2 lg:gap-4">
           <div className="md:text-xl text-lg  font-semibold text-[#262626] mt-8 ">
-            Welcome to <span className="uppercase text-[#D4A373]">Nohasan</span>{" "}
+            Welcome to <span className="uppercase text-[#D4A373]">
+              Community Business Company Ltd</span>{" "}
             – a name born from the union of Noha and Hasan, and a brand built on
             trust, elegance, and authenticity.
           </div>
 
           <div>
             <p className="policy-page-text ">
-              At <span className="uppercase text-[#D4A373]">Nohasan</span>, we
+              At <span className="uppercase text-[#D4A373]">
+                Community Business Company Ltd</span>, we
               are passionate about the art of fragrance. Our mission is to bring
               you 100% authentic perfumes sourced from globally renowned brands
               and trusted suppliers. Each scent in our collection is carefully
@@ -61,7 +63,8 @@ const page = async () => {
 
           <div>
             <p className="policy-page-text ">
-              <span className="uppercase text-[#D4A373]">Nohasan</span> –
+              <span className="uppercase text-[#D4A373]">
+                Community Business Company Ltd</span> –
               Authentic Scents. Honest Commitment.
             </p>
           </div>
