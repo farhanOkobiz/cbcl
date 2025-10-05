@@ -21,7 +21,7 @@ import { loginUser } from "./action";
 // import { useStore } from "@/hooks/store/use-store";
 // import { useBranch } from "@/hooks/store/use-branch";
 import Image from "next/image";
-import logo from "@/assets/logo/main.png";
+import logo from "@/assets/logo/CBCL.png";
 import { Eye, EyeOff } from "lucide-react";
 import { saveAuthData } from "@/utils/auth";
 import Link from "next/link";
@@ -79,7 +79,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="w-full h-screen grid grid-cols-2 p-10 relative bg-secondary">
+    <div className="w-full h-screen grid grid-cols-2 p-10 relative bg-green-100">
       <div className="m-auto grid w-[400px] h-[500px] gap-6 bg-white/30 backdrop-blur-lg shadow-xl p-8 rounded-xl">
         <div className="grid gap-2 text-center">
           <h1 className="text-3xl font-bold">Login</h1>
@@ -157,7 +157,7 @@ export default function LoginPage() {
       <div className="max-h-screen flex justify-center items-center">
         <Image
           src={logo}
-          alt="Login to NoHasan"
+          alt="Login to CBCL"
           // height={1600}
           // width={800}
           quality={100}

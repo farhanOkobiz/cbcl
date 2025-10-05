@@ -50,14 +50,14 @@ const BlogAndProductCard: React.FC<Product> = ({ product }) => {
         </div>
 
         <div className="flex justify-center mt-6">
-          <Link
+          {/* <Link
             href="/checkout"
             className="inline-block w-full sm:w-3/4 md:w-1/2 lg:w-2/5 text-center font-semibold text-white bg-gradient-to-r from-[#D4A373] to-[#A67C52] 
                rounded-lg shadow-lg hover:shadow-xl hover:from-[#CCD5AE] hover:to-[#B5A37D] transition-all duration-300 px-4 py-3"
           >
             Order Now
-          </Link>
-          <div className=" hidden">
+          </Link> */}
+         <div className="w-full sm:w-3/4 md:w-1/2 lg:w-2/5">
             <ProductDialog
               name={name}
               productRef={_id}
@@ -66,6 +66,7 @@ const BlogAndProductCard: React.FC<Product> = ({ product }) => {
                 Array.isArray(inventoryRef) ? inventoryRef : [inventoryRef]
               }
               inventoryType={inventoryType}
+              showOrderNow={true} 
             />
           </div>
         </div>

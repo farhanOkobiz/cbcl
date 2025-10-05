@@ -12,7 +12,7 @@ import Image from "next/image";
 // import { getSetting } from "@/services/settings";
 import React from "react";
 import { fileUrlGenerator } from "@/utils/helpers";
-import logo from "@/assets/logo/main.png";
+import logo from "@/assets/logo/CBCL.png";
 
 export function Sidebar() {
   const sidebar = useStore(useSidebarToggle, (state) => state);

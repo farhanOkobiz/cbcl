@@ -137,7 +137,7 @@ export const columns: ColumnDef<TOrder>[] = [
         shippingCost = 0,
         totalPrice = 0,
       } = row.original;
-      const grandTotal = totalPrice + shippingCost - couponDiscount;
+      const grandTotal = totalPrice + shippingCost;
 
       return (
         <div className="space-y-1 min-w-[170px]">
@@ -149,10 +149,10 @@ export const columns: ColumnDef<TOrder>[] = [
             <span>Shipping Cost (+):</span>
             <span>{makeBDPrice(shippingCost)}</span>
           </div>
-          <div className="flex justify-between items-center">
+          {/* <div className="flex justify-between items-center">
             <span>Coupon Dis (-):</span>
             <span>{makeBDPrice(couponDiscount)}</span>
-          </div>
+          </div> */}
           <div className="flex justify-between items-center border-t pt-1 mt-1 border-dashed border-black font-semibold">
             <span>Grand Total:</span>
             <span>{makeBDPrice(grandTotal)}</span>

@@ -3,7 +3,6 @@
 import {
   TBrand,
   TChildCategory,
-  TGender,
   TShopSideBar,
   TShopSideBarResponsive,
   TSubCategory,
@@ -22,8 +21,7 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
   products,
 }) => {
   // const propProduct: TProduct[] = products;
-  console.log("shopSideBar", shopSideBar);
-  console.log("products", products);
+
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -36,7 +34,7 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
     string[]
   >([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
-  const [selectedGenders, setSelectedGenders] = useState<string[]>([]);
+  // const [ setSelectedGenders] = useState<string[]>([]);
 
   // const MIN = products?.priceRange?.minPrice || 0;
   const MIN = 0;
@@ -46,23 +44,19 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
 
   const [values, setValues] = useState([MIN, MAX]);
 
-  console.log("This is products form products", products);
-  // console.log("This is products form MAX", MAX);
   useEffect(() => {
     const cats = searchParams.get("category")?.split(",") || [];
     const subCats = searchParams.get("subCategory")?.split(",") || [];
     const childCats = searchParams.get("childCategory")?.split(",") || [];
     const brands = searchParams.get("brand")?.split(",") || [];
-    const genders = searchParams.get("gender")?.split(",") || [];
+    // const genders = searchParams.get("gender")?.split(",") || [];
     const minPrice = Number(searchParams.get("minPrice")) || MIN;
     const maxPrice = Number(searchParams.get("maxPrice")) || MAX;
-    console.log("for  brands", brands);
-    console.log("for  genders", genders);
     setSelectedCategories(cats);
     setSelectedSubCategories(subCats);
     setSelectedChildCategories(childCats);
     setSelectedBrands(brands);
-    setSelectedGenders(genders);
+    // setSelectedGenders(genders);
 
     setValues([minPrice, maxPrice]);
   }, [searchParams, MIN, MAX]);
@@ -100,7 +94,6 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
     router.push(`?${newParams.toString()}`);
   };
 
-  // console.log("try to find brand for filter", products);
 
   const handleInputChange = (
     index: number,
@@ -115,8 +108,6 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
       updatePriceParams(newValues[0], newValues[1]);
     }
   };
-
-  console.log("geting value", values);
 
   return (
     <div className="px-4 pt-2 sticky top-0 h-screen overflow-y-scroll custom-scroll flex flex-col gap-4 pb-12">
@@ -231,7 +222,7 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
                 />
                 {cat.name}
               </label>
-
+              
               <ul className="space-y-1 pl-6 mt-1">
                 {Array.isArray(cat.subCategories) &&
                   cat.subCategories.map((subCat: TSubCategory) => (
@@ -304,7 +295,7 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
         </div>
       </div>
 
-      <div>
+      {/* <div>
         <div className="space-y-2 border border-[#D4A373] rounded px-3 py-4 h-[160px]">
           <h2 className="pb-2 text-base font-semibold uppercase">Genders</h2>
 
@@ -327,7 +318,7 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
               ))}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

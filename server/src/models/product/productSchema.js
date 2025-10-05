@@ -126,7 +126,12 @@ const Productschema = new Schema(
 );
 
 Productschema.pre("save", function (next) {
-  this.slug = slugify(this.name, { lower: true });
+ this.slug = slugify(this.name, {
+    lower: true,
+    locale: "bn",
+    strict: false,
+    remove: /[*+~.()'"!:@]/g,
+  });
   next();
 });
 

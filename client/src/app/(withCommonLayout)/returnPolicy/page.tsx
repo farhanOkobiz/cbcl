@@ -119,7 +119,7 @@ const ReturnPolicy = async () => {
                     Call: +880 1735 775 093 (Sunday to Friday, 9:30 AM - 6:30
                     PM)
                   </li>
-                  <li>Email: support@nohasan.com</li>
+                  <li>Email: support@CBCL.com</li>
                 </ul>
               </section>
 

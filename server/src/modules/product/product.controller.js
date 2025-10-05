@@ -14,7 +14,6 @@ class ProductController {
       name: req.body.name,
       description: req.body.description,
       gender: req.body.gender,
-
       warehousePrice: req.body.warehousePrice,
       warehouseProfit: req.body.warehouseProfit,
       wholesalePrice: req.body.wholesalePrice,
@@ -38,6 +37,7 @@ class ProductController {
       barcode: req.body.barcode,
       featured: req.body.featured === "true" || req.body.featured === true,
     };
+    
     // console.log("$#%$#%#$ payload from controller:", payload);
     const productResult = await ProductService.createProduct(
       payloadFiles,

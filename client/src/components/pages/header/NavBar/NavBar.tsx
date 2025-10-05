@@ -125,7 +125,7 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
                   <Link href="/">
                     <Image
                       src={logo || null}
-                      alt="NoHasan | Best E-commerce platform in BD"
+                      alt="CBCL | Best E-commerce platform in BD"
                       width={100}
                       height={80}
                       className="w-full h-full"
@@ -236,7 +236,7 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
                 <Link href="/">
                   <Image
                     src={logo || null}
-                    alt="NoHasan"
+                    alt="CBCL"
                     width={100}
                     height={80}
                     className="w-full h-full"

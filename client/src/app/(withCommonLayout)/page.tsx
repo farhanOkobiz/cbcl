@@ -29,7 +29,7 @@ import BlogAndProduct from "@/components/pages/landing_pages/BlogAndProduct/Blog
 export const metadata: Metadata = {
   title: "CBCL",
   description:
-    "Shop online at CBCL – Bangladesh's best perfumes e-commerce platform. Discover premium perfumes for men and women unisex at NOHASAN. Shop 100% authentic branded fragrances in Bangladesh with fast delivery and great prices.",
+    "Shop online at CBCL – Bangladesh's best perfumes e-commerce platform. Discover premium perfumes for men and women unisex at CBCL. Shop 100% authentic branded fragrances in Bangladesh with fast delivery and great prices.",
 };
 
 const page = async () => {

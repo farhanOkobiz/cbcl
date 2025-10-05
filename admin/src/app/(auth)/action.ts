@@ -7,7 +7,6 @@ import { TUser } from "@/types/shared";
 
 export const loginUser = async (values: TUser) => {
   const { email, password } = values;
-  console.log(email, password, ":user from login form action");
 
   try {
     const res = await SignInUser(values);

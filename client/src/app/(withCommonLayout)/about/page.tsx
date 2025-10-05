@@ -30,34 +30,26 @@ const page = async () => {
           <div className="md:text-xl text-lg  font-semibold text-[#262626] mt-8 ">
             Welcome to <span className="uppercase text-[#D4A373]">
               Community Business Company Ltd</span>{" "}
-            – a name born from the union of Noha and Hasan, and a brand built on
-            trust, elegance, and authenticity.
+            – a brand built on trust, elegance, and authenticity.
           </div>
 
           <div>
             <p className="policy-page-text ">
               At <span className="uppercase text-[#D4A373]">
-                Community Business Company Ltd</span>, we
-              are passionate about the art of fragrance. Our mission is to bring
-              you 100% authentic perfumes sourced from globally renowned brands
-              and trusted suppliers. Each scent in our collection is carefully
-              curated to ensure quality, originality, and a lasting impression.
+                Community Business Company Ltd</span>,
+              we are passionate about the art of fragrance. Our mission is to bring you 100% authentic perfumes sourced from globally renowned brands and trusted suppliers. Each scent in our collection is carefully curated to ensure quality, originality, and a lasting impression.
             </p>
           </div>
 
           <div>
             <p className="policy-page-text ">
-              What began as a shared vision between husband and wife has grown
-              into a commitment to provide our customers with a premium
-              fragrance experience. We believe that a great perfume does more
-              than smell good – it speaks of identity, mood, and memory.
+              What began as a shared vision between husband and wife has grown into a commitment to provide our customers with a premium fragrance experience. We believe that a great perfume does more than smell good – it reflects identity, mood, and memory.
             </p>
           </div>
 
           <div>
             <p className="policy-page-text ">
-              We invite you to explore our selection and find your signature
-              scent with confidence and ease.
+              We invite you to explore our selection and discover your signature scent with confidence and ease.
             </p>
           </div>
 

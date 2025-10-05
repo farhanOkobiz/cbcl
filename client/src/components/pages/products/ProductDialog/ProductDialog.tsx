@@ -44,6 +44,7 @@ interface Product {
   inventoryRef: InventoryItem[];
   inventoryType: string;
   productRef: string;
+  showOrderNow?: boolean;
 }
 const ProductDialog: React.FC<Product> = ({
   name,
@@ -51,6 +52,7 @@ const ProductDialog: React.FC<Product> = ({
   inventoryRef,
   inventoryType,
   productRef,
+  showOrderNow = false,
 }) => {
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
   const [level, setLevel] = useState<string | null>(null);
@@ -175,7 +177,7 @@ const ProductDialog: React.FC<Product> = ({
             transition={{ duration: 0.3 }}
             className="capitalize"
           >
-            {isHovered ? "click to add" : "add to cart"}
+             {showOrderNow ? "Order Now" : isHovered ? "click to add" : "Add to Cart"}
           </motion.span>
         </motion.button>
       </DialogTrigger>
