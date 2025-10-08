@@ -13,11 +13,12 @@ import { toast } from "react-toastify";
 import { getUser } from "@/services/auth";
 import { useRouter } from "next/navigation";
 import { useAnimation } from "framer-motion";
+
 interface Props {
   product: TProduct;
 }
 
-const ProductDetails: React.FC<Props> = ({ product }) => {
+const ProductDetails: React.FC<Props> = ({ product }: Props) => {
   const [count, setCount] = useState(1);
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
   const [level, setLevel] = useState<string | null>(null);
@@ -27,13 +28,14 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
   const [colorError, setColorError] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const controls = useAnimation();
+  const controls = useAnimation(); // Move this inside the component
+  
   const handleIncrement = () => {
-    setCount((prev) => prev + 1);
+    setCount((prev: any) => prev + 1);
   };
 
   const handleDecrement = () => {
-    setCount((prev) => (prev > 0 ? prev - 1 : 0));
+    setCount((prev: any) => (prev > 0 ? prev - 1 : 0));
   };
 
   const {
@@ -47,8 +49,6 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
     images,
     _id,
   } = product;
-
-  // const userId = "67f4c99c11813048a36a2496";
 
   const handleAddToCart = async () => {
     const user = await getUser();
@@ -65,6 +65,7 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
       !selectedLevel
     ) {
       setLevelError(true);
+      setLoading(false);
       return;
     }
 
@@ -74,6 +75,7 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
       !selectedColor
     ) {
       setColorError(true);
+      setLoading(false);
       return;
     }
     try {
@@ -102,7 +104,6 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
       }
 
       await addToCart(product);
-      // router.push("/cart");
       toast.success("Product added to cart!");
       setLevelError(false);
       setColorError(false);
@@ -125,10 +126,9 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
   };
 
   return (
-    <div className="Container  py-8 min-h-100 lg:mt-0 mt-22">
-      <div className="grid lg:grid-cols-2 gap-8 ">
+    <div className="Container py-8 min-h-100 lg:mt-0 mt-22">
+      <div className="grid lg:grid-cols-2 gap-8">
         <ProductDetailsSlide
-          controls={controls}
           thumbnailImage={thumbnailImage}
           backViewImage={backViewImage}
           images={images}
@@ -159,7 +159,6 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
                       : undefined;
                   }
 
-                  // Fall back to index 0 if no valid selection
                   const fallbackItem = Array.isArray(inventoryRef)
                     ? inventoryRef[0]
                     : undefined;
@@ -188,7 +187,6 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
                       : undefined;
                   }
 
-                  // Fall back to index 0 if no valid selection
                   const fallbackItem = Array.isArray(inventoryRef)
                     ? inventoryRef[0]
                     : undefined;
@@ -275,7 +273,7 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
           </div>
 
           <div className="border-b pb-4">
-            <div className="mt-4 flex items-center gap-2 ">
+            <div className="mt-4 flex items-center gap-2">
               <div className="flex items-center justify-between border rounded px-3 py-[7px] md:w-[25%] w-[30%]">
                 <p onClick={handleDecrement} className="cursor-pointer">
                   <FiMinus />
@@ -288,12 +286,12 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
               <div className="w-full cursor-pointer">
                 <button
                   onClick={handleAddToCart}
-                  className="bg-[#D4A373] hover:bg-[#CCD5AE] duration-300 flex items-center gap-1 px-6 py-2.5 font-semibold text-sm  rounded text-[#fff] cursor-pointer"
+                  disabled={loading}
+                  className="bg-[#D4A373] hover:bg-[#CCD5AE] duration-300 flex items-center gap-1 px-6 py-2.5 font-semibold text-sm rounded text-[#fff] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span>
                     <FiPlus />
                   </span>
-
                   <span>{loading ? "Sending..." : "Add To Cart"}</span>
                 </button>
               </div>

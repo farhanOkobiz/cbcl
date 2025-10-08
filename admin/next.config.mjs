@@ -10,7 +10,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "cbcl-production.up.railway.app",
+        hostname: "server.cbcl-bd.com",
         pathname: "/**",
       },
     ],

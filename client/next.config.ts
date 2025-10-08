@@ -1,12 +1,17 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
-    domains: ["localhost","cbcl-production.up.railway.app"],
     remotePatterns: [
       {
+        protocol: "http",
+        hostname: "localhost",
+        port: "8001",
+        pathname: "/**",
+      },
+      {
         protocol: "https",
-        hostname: "**",
+        hostname: "server.cbcl-bd.com",
+        pathname: "/**",
       },
     ],
   },

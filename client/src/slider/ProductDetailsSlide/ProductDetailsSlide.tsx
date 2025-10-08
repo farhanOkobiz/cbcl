@@ -8,7 +8,6 @@ import "swiper/css/navigation";
 import Image from "next/image";
 import { apiBaseUrl } from "@/config/config";
 import { Swiper as SwiperClass } from "swiper";
-import { AnimationControls } from "framer-motion";
 
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 interface Props {
@@ -16,9 +15,7 @@ interface Props {
   backViewImage: string;
   images: string[];
   name: string;
-  controls: AnimationControls;
 }
-
 const ProductDetailsSlide: React.FC<Props> = ({
   images,
   thumbnailImage,

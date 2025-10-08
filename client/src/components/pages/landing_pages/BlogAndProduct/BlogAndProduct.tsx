@@ -36,7 +36,7 @@ const BlogAndProduct: React.FC<ProductsProps> = ({ products }) => {
 
       {/* Grid container */}
       <div className=" grid gap-6 grid-cols-1 mt-6">
-        {products?.data?.map((product: TProduct) => (
+        {products?.data?.slice(0, 6).map((product: TProduct) => (
           <BlogAndProductCard key={product._id} product={product} />
         ))}
       </div>
