@@ -179,12 +179,12 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
               </div>
             </div>
             <div className="flex items-center justify-center xl:gap-4 gap-2">
-              <div
+              {/* <div
                 onClick={() => setShowSearch(true)}
                 className="px-2 py-2 border rounded lg:hidden"
               >
                 <IoSearchOutline />
-              </div>
+              </div> */}
               <Link href="/cart">
                 <div className="px-2 py-2 border rounded relative">
                   <BsCart2 />
@@ -247,12 +247,12 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
 
             <div className="flex items-center justify-center 2xl:gap-16 xl:gap-8 lg:gap-4 gap-2 xl:relative">
               <div className="flex items-center justify-center xl:gap-4 gap-2">
-                <div
+                {/* <div
                   onClick={() => setShowSearch(true)}
                   className="px-2 py-2 border rounded cursor-pointer"
                 >
                   <IoSearchOutline />
-                </div>
+                </div> */}
                 <Link href="/cart">
                   <div className="px-2 py-2 border rounded relative">
                     <BsCart2 />
@@ -282,11 +282,11 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
         </div>
       </div>
 
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {showSearch && (
           <ResponsiveSearchForm onClose={() => setShowSearch(false)} />
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       <AnimatePresence>
         {showSideMenu && (

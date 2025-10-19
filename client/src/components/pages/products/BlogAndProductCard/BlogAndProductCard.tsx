@@ -57,7 +57,7 @@ const BlogAndProductCard: React.FC<Product> = ({ product }) => {
           >
             Order Now
           </Link> */}
-         <div className="w-full sm:w-3/4 md:w-1/2 lg:w-2/5">
+         {/* <div className="w-full sm:w-3/4 md:w-1/2 lg:w-2/5">
             <ProductDialog
               name={name}
               productRef={_id}
@@ -68,7 +68,7 @@ const BlogAndProductCard: React.FC<Product> = ({ product }) => {
               inventoryType={inventoryType}
               showOrderNow={true} 
             />
-          </div>
+          </div> */}
         </div>
       </div>
 

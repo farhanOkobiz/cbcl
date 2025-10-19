@@ -95,18 +95,26 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
   };
 
 
-  const handleInputChange = (
+const handleInputChange = (
     index: number,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const newValues = [...values];
-    newValues[index] = Number(event.target.value);
+    let newValue = Number(event.target.value);
 
-    // Ensure min is always <= max
-    if (newValues[0] <= newValues[1]) {
-      setValues(newValues);
-      updatePriceParams(newValues[0], newValues[1]);
+
+    if (index === 0) {
+
+      newValue = Math.max(MIN, Math.min(newValue, values[1]));
+    } else {
+
+      newValue = Math.min(MAX, Math.max(newValue, values[0]));
     }
+
+    const newValues = [...values];
+    newValues[index] = newValue;
+
+    setValues(newValues);
+    updatePriceParams(newValues[0], newValues[1]);
   };
 
   return (
@@ -154,7 +162,7 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
           </div>
 
           {/* Slider */}
-          <div className="py-2">
+          {/* <div className="py-2">
             <Range
               step={10}
               min={MIN}
@@ -199,7 +207,7 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
                 />
               )}
             />
-          </div>
+          </div> */}
 
           <div className="flex justify-between text-sm text-gray-500 pb-2">
             <span>৳{values[0]}</span>

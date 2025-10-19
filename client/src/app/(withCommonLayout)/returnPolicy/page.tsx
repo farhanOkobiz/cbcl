@@ -115,11 +115,11 @@ const ReturnPolicy = async () => {
                   5. Contact Us for Returns & Exchanges:
                 </h2>
                 <ul className="list-disc list-inside text-gray-700 space-y-1">
-                  <li>
+                  {/* <li>
                     Call: +880 1735 775 093 (Sunday to Friday, 9:30 AM - 6:30
                     PM)
                   </li>
-                  <li>Email: support@CBCL.com</li>
+                  <li>Email: support@CBCL.com</li> */}
                 </ul>
               </section>
 

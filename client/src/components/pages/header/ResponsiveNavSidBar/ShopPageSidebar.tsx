@@ -111,17 +111,24 @@ const ShopPageSidebar: React.FC<ShopProductsCategoriesProps> = ({
     index: number,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const newValues = [...values];
-    newValues[index] = Number(event.target.value);
+    let newValue = Number(event.target.value);
 
-    // Ensure min is always <= max
-    if (newValues[0] <= newValues[1]) {
-      setValues(newValues);
-      updatePriceParams(newValues[0], newValues[1]);
+
+    if (index === 0) {
+
+      newValue = Math.max(MIN, Math.min(newValue, values[1]));
+    } else {
+
+      newValue = Math.min(MAX, Math.max(newValue, values[0]));
     }
+
+    const newValues = [...values];
+    newValues[index] = newValue;
+
+    setValues(newValues);
+    updatePriceParams(newValues[0], newValues[1]);
   };
 
-  console.log("geting value", values);
 
   return (
     <div className=" px-4 pt-2 sticky top-0 h-screen overflow-y-scroll custom-scroll flex flex-col gap-4 pb-72">
@@ -130,7 +137,6 @@ const ShopPageSidebar: React.FC<ShopProductsCategoriesProps> = ({
           <h2 className="pb-2 text-base font-semibold uppercase">
             Price range
           </h2>
-
           <div className="flex items-center gap-4 mb-6">
             <div className="w-1/2">
               <label className="block text-sm font-semibold mb-1">
@@ -168,7 +174,7 @@ const ShopPageSidebar: React.FC<ShopProductsCategoriesProps> = ({
           </div>
 
           {/* Slider */}
-          <div className="py-2">
+          {/* <div className="py-2">
             <Range
               step={10}
               min={MIN}
@@ -213,7 +219,7 @@ const ShopPageSidebar: React.FC<ShopProductsCategoriesProps> = ({
                 />
               )}
             />
-          </div>
+          </div> */}
 
           <div className="flex justify-between text-sm text-gray-500 pb-2">
             <span>৳{values[0]}</span>

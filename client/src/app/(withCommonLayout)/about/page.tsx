@@ -34,10 +34,11 @@ const page = async () => {
           </div>
 
           <div>
-            <p className="policy-page-text ">
-              At <span className="uppercase text-[#D4A373]">
-                Community Business Company Ltd</span>,
-              we are passionate about the art of fragrance. Our mission is to bring you 100% authentic perfumes sourced from globally renowned brands and trusted suppliers. Each scent in our collection is carefully curated to ensure quality, originality, and a lasting impression.
+            <p className="text-base md:text-lg leading-relaxed text-gray-700">
+              At <span className="uppercase text-[#D4A373]">Community Business Company Ltd</span>,
+              we are passionate about delivering the finest products. Our mission is to bring you 100% authentic items
+              sourced from globally renowned brands and trusted suppliers. Each product in our collection is carefully curated
+              to ensure exceptional quality, true originality, and a lasting impression.
             </p>
           </div>
 
@@ -48,16 +49,17 @@ const page = async () => {
           </div>
 
           <div>
-            <p className="policy-page-text ">
-              We invite you to explore our selection and discover your signature scent with confidence and ease.
+            <p className="policy-page-text">
+              We invite you to explore our collection and find your perfect product with confidence and ease.
             </p>
+
           </div>
 
           <div>
             <p className="policy-page-text ">
               <span className="uppercase text-[#D4A373]">
                 Community Business Company Ltd</span> –
-              Authentic Scents. Honest Commitment.
+              Authenticity. Honesty. Commitment to Excellence.
             </p>
           </div>
         </div>

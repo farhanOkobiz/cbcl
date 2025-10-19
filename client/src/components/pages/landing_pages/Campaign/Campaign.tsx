@@ -109,7 +109,7 @@ const Campaign: React.FC<Props> = ({ campaign }) => {
             alt="Countdown Timer"
             width={800}
             height={800}
-            className="w-full h-full object-cover md:rounded-r md:rounded-b-none rounded-b opacity-65"
+            className="w-full h-full object-cover md:rounded-r md:rounded-b-none rounded-b"
           />
         </div>
       </div>

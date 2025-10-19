@@ -69,7 +69,7 @@ const CategoryCardSlider: React.FC<CategoryProps> = ({ categoriesList }) => {
         {categoriesList.map((category) => (
           <SwiperSlide key={category._id}>
             <Link href={`/shop?category=${category.slug || category._id}`}>
-              <div className="text-center w-full max-w-[250px] mx-auto aspect-square bg-red-100 rounded-lg overflow-hidden">
+              <div className="text-center w-full max-w-[250px] mx-auto aspect-square bg-white rounded-lg overflow-hidden">
                 <Image
                   src={apiBaseUrl + category.vectorImage || ""}
                   alt={category.name}
@@ -78,6 +78,9 @@ const CategoryCardSlider: React.FC<CategoryProps> = ({ categoriesList }) => {
                   className="w-full h-full object-contain"
                 />
               </div>
+              <p className="text-center md:text-lg lg:text-xl mt-3 font-semibold text-gray-700 hover:text-gray-900 transition-colors">
+                {category.name}
+              </p>
             </Link>
           </SwiperSlide>
         ))}

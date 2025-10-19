@@ -4,11 +4,6 @@ export const menuList = [
     link: "/",
   },
   {
-    title: "Products",
-    link: "/shop",
-    subMenu: true,
-  },
-  {
     title: "About",
     link: "/about",
   },
@@ -17,11 +12,12 @@ export const menuList = [
     link: "/blogs",
   },
   {
+    title: "Products",
+    link: "/shop",
+    subMenu: true,
+  },
+  {
     title: "Contact",
     link: "/contact",
   },
-  // {
-  //   title: "Whole Sale",
-  //   link: "/bulkOrder",
-  // },
 ];

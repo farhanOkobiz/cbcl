@@ -65,7 +65,7 @@ const page = async () => {
         {/* <Newest products={allproducts} /> */}
         {/* <DiscountProduct products={productWithDiscount} /> */}
         <Brand brands={brands} />
-        <Campaign campaign={campaign[0]} />
+        {/* <Campaign campaign={campaign[0]} /> */}
         <BestSelling products={bestSelling} />
       </div>
       <CartSideBar cartProducts={products?.data} />

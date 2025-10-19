@@ -37,6 +37,8 @@ import "react-quill/dist/quill.snow.css";
 
 import { Select } from "antd";
 import { getBlogFormSchema } from "./form-schema";
+import { SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { getBlogCategoryWithPagination } from "@/services/blogcategory";
 const defaultValues = {
   name: "",
   title: "",
@@ -46,13 +48,29 @@ const defaultValues = {
   tags: [],
 };
 
-export const CreateBlogForm: React.FC = () => {
+type CreateBlogFormProps = {
+  blogCategory: {
+    result: TCategory[];
+    pagination: any;
+  };
+  blogSubCategory: {
+    result: TSubCategory[];
+    pagination: any;
+  };
+};
+
+export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategory, blgoSubCategory }) => {
+  console.log(blogCategory, blgoSubCategory);
+
   const { toast } = useToast();
 
   const [thumbnailFileList, setThumbnailFileList] = React.useState([]);
 
   const [loading, setLoading] = React.useState(false);
-const blogFormSchema = getBlogFormSchema(false);
+  const [categories, setCategories] = useState<any[]>([]);
+  const [subCategories, setSubCategories] = useState<any[]>([]);
+
+  const blogFormSchema = getBlogFormSchema(false);
 
   const form = useForm<z.infer<typeof blogFormSchema>>({
     resolver: zodResolver(blogFormSchema),
@@ -72,19 +90,16 @@ const blogFormSchema = getBlogFormSchema(false);
     form.setValue("image", rawFiles);
   };
 
-  console.log(
-    "fileList................................",
-    form.formState.errors
-  );
+
 
   const onSubmit = async (values: z.infer<typeof blogFormSchema>) => {
-    console.log("sdfkgjfoigjdfoigjdfoigj");
+
     setLoading(true);
     const formData = makeFormData(values);
-    console.log(values, "values from form++++++++++++++++++++++++++");
+
     try {
       await createFormAction(formData);
-      console.log("sdfkgjfoigjdfoigjdfoigj");
+
       form.reset();
       toast({
         title: "Success",
@@ -147,6 +162,71 @@ const blogFormSchema = getBlogFormSchema(false);
                     {form.formState.errors.details?.message}
                   </FormDescription>
                 </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="categoryRef"
+              render={({ field }) => (
+                <div className="flex items-end gap-2 w-full">
+                  <FormItem className="flex-1">
+                    <FormLabel>
+                      Category<b className="text-red-500">*</b>
+                    </FormLabel>
+                    <FormControl>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select category" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {categories.map((item, index) => (
+                            <SelectItem key={index} value={String(item._id)}>
+                              {item.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormDescription className="text-red-400 text-xs min-h-4">
+                      {form.formState.errors.categoryRef?.message}
+                    </FormDescription>
+                  </FormItem>
+                </div>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="subCategoryRef"
+              render={({ field }) => (
+                <div className="flex items-end gap-2 w-full">
+                  <FormItem className="flex-1">
+                    <FormLabel>Subcategory</FormLabel>
+                    <FormControl>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select subcategory" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {filteredSubCategories.map((item, index) => (
+                            <SelectItem key={index} value={String(item._id)}>
+                              {item.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormDescription className="text-red-400 text-xs min-h-4">
+                      {form.formState.errors.subCategoryRef?.message}
+                    </FormDescription>
+                  </FormItem>
+                </div>
               )}
             />
 

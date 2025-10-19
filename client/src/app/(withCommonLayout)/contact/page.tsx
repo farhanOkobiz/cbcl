@@ -25,12 +25,12 @@ const Contact = async () => {
               <div className="font-bold">Address:</div>
               <div>Dhaka, Bangladesh</div>
             </div>
-            <div className="mt-2">
+            {/* <div className="mt-2">
               <span className="font-bold">Hotline: </span> +8801735775093
             </div>
             <div className="mt-2">
               <span className="font-bold">Email: </span> info@CBCL.com
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

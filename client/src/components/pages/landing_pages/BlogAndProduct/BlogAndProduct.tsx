@@ -25,12 +25,12 @@ const BlogAndProduct: React.FC<ProductsProps> = ({ products }) => {
     products
   );
 
-  
+
 
   return (
     <div className="Container relative">
       <h2 className=" uppercase md:text-2xl text-xl font-semibold md:text-center mt-2 flex items-center justify-center md:justify-center gap-2">
-        Our Signature Scents
+        Our Signature Collections
         <Image src={icon} width={35} height={35} alt="icon" className="inline-block" />
       </h2>
 

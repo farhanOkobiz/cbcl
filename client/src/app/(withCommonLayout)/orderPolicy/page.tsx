@@ -112,10 +112,10 @@ const orderPolicy = async () => {
                     within 12 hours of delivery. After this period, no returns
                     or exchanges are allowed.
                   </li>
-                  <li>
+                  {/* <li>
                     Customer Service Contact: +880 1735 775 093 (Sunday –
                     Thursday, 10:00 AM – 06:30 PM)
-                  </li>
+                  </li> */}
                   <li>
                     More Information: Visit{" "}
                     <Link

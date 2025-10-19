@@ -112,8 +112,8 @@ const Footer: React.FC<FooterProps> = ({ userCartProducts }) => {
               Contact Info
             </div>
             <div className="text-black text-md lg:text-lg flex flex-col space-y-1">
-              <div>Contact: +880 1735 775 093</div>
-              <div>Whats app: +880 1735 775 093</div>
+              {/* <div>Contact: +880 1735 775 093</div>
+              <div>Whats app: +880 1735 775 093</div> */}
               <div>Address: Dhaka, Bangladesh</div>
             </div>
           </div>

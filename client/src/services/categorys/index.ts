@@ -2,7 +2,7 @@
 import { apiBaseUrl } from "@/config/config";
 
 export const getAllCategorys = async () => {
-  const res = await fetch(`${apiBaseUrl}/category`);
+  const res = await fetch(`${apiBaseUrl}/blog-category`);
 
   return res.json();
 };

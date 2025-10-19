@@ -47,13 +47,6 @@ export function getMenuList(pathname: string): Group[] {
           icon: ShoppingCart,
           submenus: [],
         },
-        // {
-        //   href: "/bulk-order-list",
-        //   label: "Bulk Orders",
-        //   active: pathname.includes("/bulk-order-list"),
-        //   icon: ShoppingBasket,
-        //   submenus: [],
-        // },
         {
           href: "/brand",
           label: "Brand",
@@ -62,8 +55,33 @@ export function getMenuList(pathname: string): Group[] {
           submenus: [],
         },
         {
+          href: "/blog-category",
+          label: "Blog Category",
+          active: pathname.includes("/blog-category"),
+          icon: Shapes,
+          submenus: [
+            {
+              href: "/blog-category/category",
+              label: "Blog Category",
+              active: pathname === "/blog-category/category",
+            },
+            {
+              href: "/blog-category/subcategory",
+              label: "Blog Subcategory",
+              active: pathname === "/blog-category/subcategory",
+            },
+          ],
+        },
+        {
+          href: "/blogs",
+          label: "Blogs",
+          active: pathname.includes("/blogs"),
+          icon: Images,
+          submenus: [],
+        },
+        {
           href: "/category",
-          label: "Category",
+          label: "Product Category",
           active: pathname.includes("/category"),
           icon: Shapes,
           submenus: [
@@ -91,20 +109,20 @@ export function getMenuList(pathname: string): Group[] {
           icon: Package2,
           submenus: [],
         },
-        {
-          href: "/coupon",
-          label: "Coupon",
-          active: pathname.includes("/coupon"),
-          icon: TicketPercent,
-          submenus: [],
-        },
-        {
-          href: "/campaign",
-          label: "Campaign",
-          active: pathname.includes("/campaign"),
-          icon: FlameKindling,
-          submenus: [],
-        },
+        // {
+        //   href: "/coupon",
+        //   label: "Coupon",
+        //   active: pathname.includes("/coupon"),
+        //   icon: TicketPercent,
+        //   submenus: [],
+        // },
+        // {
+        //   href: "/campaign",
+        //   label: "Campaign",
+        //   active: pathname.includes("/campaign"),
+        //   icon: FlameKindling,
+        //   submenus: [],
+        // },
       ],
     },
     {
@@ -118,13 +136,6 @@ export function getMenuList(pathname: string): Group[] {
           submenus: [],
         },
         {
-          href: "/blogs",
-          label: "Blogs",
-          active: pathname.includes("/blogs"),
-          icon: Images,
-          submenus: [],
-        },
-        {
           href: "/contact",
           label: "Contacts",
           active: pathname.includes("/contact"),
@@ -133,17 +144,5 @@ export function getMenuList(pathname: string): Group[] {
         },
       ],
     },
-    // {
-    //   groupLabel: "Configuration",
-    //   menus: [
-    //     {
-    //       href: "/staffs",
-    //       label: "Staffs",
-    //       active: pathname.includes("/staffs"),
-    //       icon: UserCog,
-    //       submenus: [],
-    //     },
-    //   ],
-    // },
   ];
 }
