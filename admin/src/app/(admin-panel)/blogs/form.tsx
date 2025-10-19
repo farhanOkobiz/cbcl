@@ -48,6 +48,9 @@ const defaultValues = {
   tags: [],
 };
 
+type TCategory = any;
+type TSubCategory = any;
+
 type CreateBlogFormProps = {
   blogCategory: {
     result: TCategory[];
@@ -59,8 +62,9 @@ type CreateBlogFormProps = {
   };
 };
 
-export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategory, blgoSubCategory }) => {
-  console.log(blogCategory, blgoSubCategory);
+export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategory, blogSubCategory }) => {
+
+  console.log(blogCategory, blogSubCategory);
 
   const { toast } = useToast();
 
