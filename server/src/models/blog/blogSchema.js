@@ -14,6 +14,16 @@ const Blogschema = new Schema(
     slug: {
       type: String,
     },
+    blogCategoryRef: {
+      type: Schema.Types.ObjectId,
+      ref: "BlogCategory",
+      required: true,
+    },
+    blogSubCategoryRef: {
+      type: Schema.Types.ObjectId,
+      ref: "BlogSubCategory",
+      required: false,
+    },
     author: {
       type: String,
       trim: true,

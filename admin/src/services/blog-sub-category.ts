@@ -25,6 +25,8 @@ export async function createBlogSubCategory(data: any) {
 
 export async function getAllBlogSubCategory(): Promise<AllSubCategoryResponse> {
   const response = await fetch(`${BASE_URL}/blog-subcategory`);
+  console.log(response, "ok");
+  
   if (!response.ok) {
     throw new Error(`Error: ${response.status} - ${response.statusText}`);
   }

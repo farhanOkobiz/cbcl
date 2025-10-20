@@ -11,7 +11,6 @@ import { revalidatePath } from "next/cache";
 export async function createFormAction(data: FormData) {
   try {
     await createBlog(data);
-
     revalidatePath("/");
     return true;
   } catch (error: any) {

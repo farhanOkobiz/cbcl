@@ -31,7 +31,7 @@ class BlogSubCategoryService extends BaseService {
   }
 
   async getAllBlogSubCategory() {
-    return await this.#repository.findAll({}, ["blogCategoryRef"]);
+    return await this.#repository.findAll({}, ["categoryRef"]);
   }
 
   async getBlogSubCategoryWithPagination(payload) {

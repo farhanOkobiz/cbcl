@@ -22,6 +22,8 @@ import { useForm, Controller } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
+import { Select as AntSelect } from "antd";
+
 
 import { z } from "zod";
 
@@ -34,11 +36,8 @@ import { Label } from "@/components/ui/label";
 
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
-import { Select } from "antd";
 import { getBlogFormSchema } from "./form-schema";
-import { SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { getBlogCategoryWithPagination } from "@/services/blogcategory";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 const defaultValues = {
   name: "",
   title: "",
@@ -48,32 +47,39 @@ const defaultValues = {
   tags: [],
 };
 
-type TCategory = any;
-type TSubCategory = any;
+type TBlogCategory = {
+  _id: string;
+  name: string;
+  image: string;
+  vectorImage: string;
+  slug: string;
+  status: boolean
+};
+
+type TBlogSubCategory = {
+  _id: string;
+  name: string;
+  slug: string;
+  blogCategoryRef: string;
+};
 
 type CreateBlogFormProps = {
-  blogCategory: {
-    result: TCategory[];
+  blogCategoryData: {
+    result: TBlogCategory[];
     pagination: any;
   };
-  blogSubCategory: {
-    result: TSubCategory[];
+  blogSubCategoryData: {
+    result: TBlogSubCategory[];
     pagination: any;
   };
 };
 
-export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategory, blogSubCategory }) => {
-
-  console.log(blogCategory, blogSubCategory);
-
+export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData, blogSubCategoryData }) => {
   const { toast } = useToast();
 
   const [thumbnailFileList, setThumbnailFileList] = React.useState([]);
 
   const [loading, setLoading] = React.useState(false);
-  const [categories, setCategories] = useState<any[]>([]);
-  const [subCategories, setSubCategories] = useState<any[]>([]);
-
   const blogFormSchema = getBlogFormSchema(false);
 
   const form = useForm<z.infer<typeof blogFormSchema>>({
@@ -82,6 +88,7 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategory, bl
   });
 
   const { control, register, watch, formState } = form;
+  const selectedCategoryId = watch("categoryRef");
 
   const handleThumbnailFileChange = ({ fileList }: any) => {
     setThumbnailFileList(fileList);
@@ -94,11 +101,18 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategory, bl
     form.setValue("image", rawFiles);
   };
 
+  // filtered subcategories 
+  const filteredSubCategories = React.useMemo(() => {
+    if (!selectedCategoryId) return [];
+    return blogSubCategoryData?.result.filter(
+      (subCat) => subCat.categoryRef?._id === selectedCategoryId
+    );
 
+  }, [selectedCategoryId, blogSubCategoryData]);
 
   const onSubmit = async (values: z.infer<typeof blogFormSchema>) => {
-
     setLoading(true);
+
     const formData = makeFormData(values);
 
     try {
@@ -121,7 +135,6 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategory, bl
       setLoading(false);
     }
   };
-
 
   const [options, setOptions] = useState<{ value: string }[]>([]);
 
@@ -152,6 +165,70 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategory, bl
                 </FormItem>
               )}
             />
+
+            <div className="flex items-center gap-4 w-full">
+              <FormField
+                control={form.control}
+                name="categoryRef"
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormLabel>
+                      Category<b className="text-red-500">*</b>
+                    </FormLabel>
+                    <FormControl>
+                      <Select
+                        value={field.value || ""}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select category" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {blogCategoryData?.result.map((item) => (
+                            <SelectItem key={item._id} value={item._id}>
+                              {item.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormDescription className="text-red-400 text-xs min-h-4">
+                      {form.formState.errors.categoryRef?.message}
+                    </FormDescription>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="subCategoryRef"
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormLabel>Subcategory</FormLabel>
+                    <FormControl>
+                      <Select
+                        value={field.value || ""}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select subcategory" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {filteredSubCategories.map((item) => (
+                            <SelectItem key={item._id} value={item._id}>
+                              {item.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormDescription className="text-red-400 text-xs min-h-4">
+                      {form.formState.errors.subCategoryRef?.message}
+                    </FormDescription>
+                  </FormItem>
+                )}
+              />
+            </div>
+
             <FormField
               control={form.control}
               name="details"
@@ -169,71 +246,6 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategory, bl
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="categoryRef"
-              render={({ field }) => (
-                <div className="flex items-end gap-2 w-full">
-                  <FormItem className="flex-1">
-                    <FormLabel>
-                      Category<b className="text-red-500">*</b>
-                    </FormLabel>
-                    <FormControl>
-                      <Select
-                        onValueChange={field.onChange}
-                        value={field.value}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select category" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {categories.map((item, index) => (
-                            <SelectItem key={index} value={String(item._id)}>
-                              {item.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormDescription className="text-red-400 text-xs min-h-4">
-                      {form.formState.errors.categoryRef?.message}
-                    </FormDescription>
-                  </FormItem>
-                </div>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="subCategoryRef"
-              render={({ field }) => (
-                <div className="flex items-end gap-2 w-full">
-                  <FormItem className="flex-1">
-                    <FormLabel>Subcategory</FormLabel>
-                    <FormControl>
-                      <Select
-                        onValueChange={field.onChange}
-                        value={field.value}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select subcategory" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {filteredSubCategories.map((item, index) => (
-                            <SelectItem key={index} value={String(item._id)}>
-                              {item.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormDescription className="text-red-400 text-xs min-h-4">
-                      {form.formState.errors.subCategoryRef?.message}
-                    </FormDescription>
-                  </FormItem>
-                </div>
-              )}
-            />
-
             <Controller
               control={form.control}
               name="tags"
@@ -243,21 +255,18 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategory, bl
                     Add tags <b className="text-red-500">*</b>
                   </FormLabel>
                   <FormControl>
-                    <Select
+                    <AntSelect
                       mode="tags"
                       style={{ width: "100%" }}
                       placeholder="Enter or select tags"
                       value={value || []}
                       onChange={(newTags) => {
                         const newOptions = newTags
-                          .filter(
-                            (tag) => !options.some((opt) => opt.value === tag)
-                          )
+                          .filter((tag) => !options.some((opt) => opt.value === tag))
                           .map((tag) => ({ value: tag }));
                         setOptions((prev) => [...prev, ...newOptions]);
                         onChange(newTags);
                       }}
-                      options={options}
                     />
                   </FormControl>
                   <FormDescription className="text-red-400 text-xs min-h-4">
@@ -266,6 +275,7 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategory, bl
                 </FormItem>
               )}
             />
+
 
             <FormField
               control={form.control}

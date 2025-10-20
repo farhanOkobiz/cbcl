@@ -5,17 +5,20 @@ const BlogService = require("./blog.service.js");
 
 class BlogController {
   createBlog = withTransaction(async (req, res, next, session) => {
+    console.log(req.body, "body");
+
     const payloadFiles = {
       files: req.files,
     };
     const payload = {
       title: req?.body?.title,
+      blogCategoryRef: req.body.categoryRef,
+      blogSubCategoryRef: req.body.subCategoryRef,
       details: req?.body?.details,
       author: req?.body?.author,
       tags: req?.body?.tags,
       status: req?.body?.status,
     };
-
     const blogResult = await BlogService.createBlog(
       payload,
       payloadFiles,
@@ -50,20 +53,21 @@ class BlogController {
   });
 
   getSingleBlog = catchError(async (req, res, next) => {
-    const slug = req.params.slug;
-    const blogResult = await BlogService.getSingleBlog(slug);
+    const slug = req.params.slug;    
+    const blogResult = await BlogService.getSingleBlog(slug)
     const resDoc = responseHandler(201, "Single Blog successfully", blogResult);
     res.status(resDoc.statusCode).json(resDoc);
   });
 
   updateBlog = catchError(async (req, res, next) => {
     const id = req.params.id;
-    console.log("id", id);
     const payloadFiles = {
       files: req.files,
     };
     const payload = {
       title: req?.body?.title,
+      blogCategoryRef: req.body.categoryRef,
+      blogSubCategoryRef: req.body.subCategoryRef,
       details: req?.body?.details,
       author: req?.body?.author,
       tags: req?.body?.tags,

@@ -203,7 +203,6 @@ export const CreateProductForm: React.FC = () => {
   const onSubmit = async (values: z.infer<typeof productFormSchema>) => {
     setLoading(true);
     const formData = makeFormData(values);
-    // console.log(values, "values from form++++++++++++++++++++++++++");
     try {
       await createFormAction(formData);
       form.reset();

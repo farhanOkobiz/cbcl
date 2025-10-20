@@ -9,7 +9,6 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
-import { Select } from "antd";
 import { Input } from "@/components/ui/input";
 import {
   SheetTitle,
@@ -21,26 +20,27 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FileUp, MoreHorizontal, Paperclip } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-// import { deleteblogAction, updateFormAction } from "./actions";
 import { TBlog } from "@/types/shared";
 import { confirmation } from "@/components/modals/confirm-modal";
-
-import {
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Upload, UploadFile } from "antd";
-import { fileUrlGenerator, humanFileSize, makeFormData } from "@/utils/helpers";
+import { Select as AntSelect, Upload, UploadFile } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import ReactQuill from "react-quill";
 import { deleteBlogAction, updateFormAction } from "./actions";
 import { getBlogFormSchema } from "./form-schema";
+import { getAllBlogCategory } from "@/services/blogcategory";
+import { fileUrlGenerator, humanFileSize, makeFormData } from "@/utils/helpers";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { getAllBlogSubCategory } from "@/services/blog-sub-category";
 
 interface Props {
   blog: TBlog;
@@ -48,11 +48,10 @@ interface Props {
 
 export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
   const { toast } = useToast();
-console.log("---------------blog-", blog)
-  const [sheetOpen, setSheetOpen] = React.useState(false);
-  const [updating, setUpdating] = React.useState(false);
-  const [deleting, setDeleting] = React.useState(false);
-  const [fileList, setFileList] = React.useState<UploadFile<any>[]>([
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [updating, setUpdating] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [fileList, setFileList] = useState<UploadFile[]>([
     {
       uid: "-1",
       name: String(blog.image).split("/").pop() || "",
@@ -60,27 +59,22 @@ console.log("---------------blog-", blog)
       url: fileUrlGenerator(blog.image || ""),
     },
   ]);
-  const [selectedImageUrl, setSelectedImageUrl] = React.useState(
+  const [selectedImageUrl, setSelectedImageUrl] = useState(
     fileUrlGenerator(blog.image || "")
   );
+  const [blogCategories, setBlogCategories] = useState<any[]>([]);
+  const [blogSubCategories, setBlogSubCategories] = useState<any[]>([]);
+  const [filteredSubCategories, setFilteredSubCategories] = useState<any[]>([]);
+  const [options, setOptions] = useState<{ value: string }[]>([]);
+  const [categoriesLoaded, setCategoriesLoaded] = useState(false);
 
-  const handleFileChange = ({ fileList }: any) => {
-    setFileList(fileList);
-
-    const rawFiles = fileList
-      .map((file: any) => file.originFileObj)
-      .filter(Boolean);
-
-    // Sync with react-hook-form
-    form.setValue("image", rawFiles);
-  };
-
-  // console.log(blog, "blog from colum detail");
   const blogFormSchema = getBlogFormSchema(true);
   const form = useForm<z.infer<typeof blogFormSchema>>({
     resolver: zodResolver(blogFormSchema),
     defaultValues: {
       title: blog.title,
+      categoryRef: String(blog.blogCategoryRef) || "",
+      subCategoryRef: String(blog.blogSubCategoryRef) || "",
       details: blog.details,
       author: blog.author,
       tags: blog.tags,
@@ -88,17 +82,95 @@ console.log("---------------blog-", blog)
     },
   });
 
+  const { control, watch, setValue, formState } = form;
+  const selectedCategoryId = watch("categoryRef");
 
-  const [options, setOptions] = useState<{ value: string }[]>([]);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data: categories } = await getAllBlogCategory();
+        setBlogCategories(categories);
+
+        const { data: subCategories } = await getAllBlogSubCategory();
+  
+        setBlogSubCategories(subCategories);
+
+        setCategoriesLoaded(true);
+      } catch (err) {
+        console.error(err);
+        setCategoriesLoaded(true);
+      }
+    };
+    fetchCategories();
+  }, []);
+
+
+  useEffect(() => {
+    if (categoriesLoaded && blog.blogCategoryRef && blogSubCategories && blogSubCategories.length > 0) {
+      const categoryId = String(blog.blogCategoryRef);
+
+      const filtered = blogSubCategories.filter((sc: any) => {
+        const catId =
+          typeof sc.categoryRef === "string"
+            ? sc.categoryRef
+            : sc.categoryRef?._id;
+        console.log("Comparing:", catId, "===", categoryId);
+        return catId === categoryId;
+      });
+
+      console.log("Filtered subcategories:", filtered);
+      setFilteredSubCategories(filtered);
+
+      setValue("categoryRef", categoryId);
+      if (blog.blogSubCategoryRef) {
+        setValue("subCategoryRef", String(blog.blogSubCategoryRef));
+      }
+    }
+  }, [categoriesLoaded, blogSubCategories, blog.blogCategoryRef, blog.blogSubCategoryRef, setValue]);
+
+
+  useEffect(() => {
+    if (!selectedCategoryId) {
+      setFilteredSubCategories([]);
+      setValue("subCategoryRef", "");
+      return;
+    }
+
+    
+    const filtered = blogSubCategories.filter((sc: any) => {
+      let catId = sc.categoryRef;
+      
+      if (typeof catId === "object" && catId !== null) {
+        catId = catId._id || catId.id || String(catId);
+      }
+      
+      catId = String(catId);
+      const selectedId = String(selectedCategoryId);
+      
+      console.log(`Comparing: "${catId}" === "${selectedId}"`, catId === selectedId);
+      return catId === selectedId;
+    });
+
+    console.log("Final filtered subcategories:", filtered);
+    setFilteredSubCategories(filtered);
+
+    if (!filtered.some((sc: any) => sc._id === watch("subCategoryRef"))) {
+      setValue("subCategoryRef", "");
+    }
+  }, [selectedCategoryId, blogSubCategories, setValue, watch]);
+
+  const handleFileChange = ({ fileList }: any) => {
+    setFileList(fileList);
+    const rawFiles = fileList.map((file: any) => file.originFileObj).filter(Boolean);
+    setValue("image", rawFiles);
+  };
 
   const onSubmitUpdate = async (values: z.infer<typeof blogFormSchema>) => {
     setUpdating(true);
     const data = await makeFormData(values);
     try {
       await updateFormAction(String(blog._id), data);
-      toast({
-        title: "blog updated successfully",
-      });
+      toast({ title: "Blog updated successfully" });
       setSheetOpen(false);
     } catch (error: any) {
       toast({
@@ -111,21 +183,18 @@ console.log("---------------blog-", blog)
     }
   };
 
-
   const handleDeleteClick = async () => {
     if (await confirmation("Are you sure you want to delete this blog?")) {
       setDeleting(true);
       const deleted = await deleteBlogAction(String(blog._id));
       if (deleted) {
-        toast({
-          title: "blog deleted successfully",
-        });
+        toast({ title: "Blog deleted successfully" });
         setSheetOpen(false);
       }
+      setDeleting(false);
     }
-    setDeleting(false);
   };
-  console.log("-------------", form.formState.errors);
+
   return (
     <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
       <SheetTrigger asChild>
@@ -134,12 +203,13 @@ console.log("---------------blog-", blog)
           <MoreHorizontal className="h-4 w-4" />
         </Button>
       </SheetTrigger>
+
       <SheetContent
         className="sm:max-w-[750px] overflow-y-auto"
         onOpenAutoFocus={(e) => e.preventDefault()}
       >
         <SheetHeader>
-          <SheetTitle>blog Details</SheetTitle>
+          <SheetTitle>Blog Details</SheetTitle>
         </SheetHeader>
 
         <Form {...form}>
@@ -148,8 +218,9 @@ console.log("---------------blog-", blog)
             className="grid grid-cols-2 gap-2 items-end py-2"
           >
             <div className="col-span-2">
+              {/* Blog Title */}
               <FormField
-                control={form.control}
+                control={control}
                 name="title"
                 render={({ field }) => (
                   <FormItem>
@@ -160,31 +231,97 @@ console.log("---------------blog-", blog)
                       <Input placeholder="Enter blog Title" {...field} />
                     </FormControl>
                     <FormDescription className="text-red-400 text-xs min-h-4">
-                      {form.formState.errors.title?.message}
+                      {formState.errors.title?.message}
                     </FormDescription>
                   </FormItem>
                 )}
               />
 
+              {/* Category & Subcategory */}
+              <div className="flex items-center gap-4 w-full">
+                <FormField
+                  control={control}
+                  name="categoryRef"
+                  render={({ field }) => (
+                    <FormItem className="flex-1">
+                      <FormLabel>
+                        Category <b className="text-red-500">*</b>
+                      </FormLabel>
+                      <FormControl>
+                        <Select
+                          value={field.value || ""}
+                          onValueChange={field.onChange}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select category" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {blogCategories.map((cat) => (
+                              <SelectItem key={cat._id} value={cat._id}>
+                                {cat.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      <FormDescription className="text-red-400 text-xs min-h-4">
+                        {formState.errors.categoryRef?.message}
+                      </FormDescription>
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={control}
+                  name="subCategoryRef"
+                  render={({ field }) => (
+                    <FormItem className="flex-1">
+                      <FormLabel>Subcategory</FormLabel>
+                      <FormControl>
+                        <Select
+                          value={field.value || ""}
+                          onValueChange={field.onChange}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select subcategory" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {filteredSubCategories.map((sub) => (
+                              <SelectItem key={sub._id} value={sub._id}>
+                                {sub.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      <FormDescription className="text-red-400 text-xs min-h-4">
+                        {formState.errors.subCategoryRef?.message}
+                      </FormDescription>
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              {/* Blog Description */}
               <FormField
-                control={form.control}
+                control={control}
                 name="details"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Blog Description</FormLabel>
                     <FormControl>
-                      {/* <Input placeholder="Enter product description" {...field} /> */}
                       <ReactQuill {...field} />
                     </FormControl>
                     <FormDescription className="text-red-400 text-xs min-h-4">
-                      {form.formState.errors.details?.message}
+                      {formState.errors.details?.message}
                     </FormDescription>
                   </FormItem>
                 )}
               />
 
+              {/* Tags */}
               <Controller
-                control={form.control}
+                control={control}
                 name="tags"
                 render={({ field: { value, onChange } }) => (
                   <FormItem>
@@ -192,16 +329,14 @@ console.log("---------------blog-", blog)
                       Add tags <b className="text-red-500">*</b>
                     </FormLabel>
                     <FormControl>
-                      <Select
+                      <AntSelect
                         mode="tags"
                         style={{ width: "100%" }}
                         placeholder="Enter or select tags"
                         value={value || []}
                         onChange={(newTags) => {
                           const newOptions = newTags
-                            .filter(
-                              (tag) => !options.some((opt) => opt.value === tag)
-                            )
+                            .filter((tag) => !options.some((opt) => opt.value === tag))
                             .map((tag) => ({ value: tag }));
                           setOptions((prev) => [...prev, ...newOptions]);
                           onChange(newTags);
@@ -210,14 +345,15 @@ console.log("---------------blog-", blog)
                       />
                     </FormControl>
                     <FormDescription className="text-red-400 text-xs min-h-4">
-                      {form.formState.errors.tags?.message}
+                      {formState.errors.tags?.message}
                     </FormDescription>
                   </FormItem>
                 )}
               />
 
+              {/* Author */}
               <FormField
-                control={form.control}
+                control={control}
                 name="author"
                 render={({ field }) => (
                   <FormItem>
@@ -225,18 +361,17 @@ console.log("---------------blog-", blog)
                     <FormControl>
                       <Input placeholder="Enter author name" {...field} />
                     </FormControl>
-                    {/* <FormDescription className="text-red-400 text-xs min-h-4">
-                                  {form.formState.errors.name?.message}
-                                </FormDescription> */}
                   </FormItem>
                 )}
               />
             </div>
+
+            {/* Image Upload */}
             <div className="">
               <FormField
-                control={form.control}
+                control={control}
                 name="image"
-                render={({ field }) => (
+                render={() => (
                   <div>
                     <FormLabel>
                       Image <b className="text-red-500">*</b>
@@ -255,33 +390,28 @@ console.log("---------------blog-", blog)
                   </div>
                 )}
               />
-
               <div className="mt-4">
-                {form.getValues("image") &&
-                  (form.getValues("image") ?? []).length > 0 &&
-                  (form.getValues("image") ?? []).map((file, i) => (
-                    <div className="border-dashed border-2 rounded-lg p-2 px-3">
-                      <div
-                        key={i}
-                        className="flex flex-col gap-2 text-xs text-gray-500 justify-center h-full"
-                      >
-                        <div className="flex items-center gap-2">
-                          <Paperclip className="h-4 w-4 stroke-current" />
-                          <span>{file.name}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <FileUp className="h-4 w-4 stroke-current" />
-                          <span>{humanFileSize(file.size)}</span>
-                        </div>
+                {(form.getValues("image") || []).map((file, i) => (
+                  <div key={i} className="border-dashed border-2 rounded-lg p-2 px-3">
+                    <div className="flex flex-col gap-2 text-xs text-gray-500 justify-center h-full">
+                      <div className="flex items-center gap-2">
+                        <Paperclip className="h-4 w-4 stroke-current" />
+                        <span>{file.name}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <FileUp className="h-4 w-4 stroke-current" />
+                        <span>{humanFileSize(file.size)}</span>
                       </div>
                     </div>
-                  ))}
+                  </div>
+                ))}
               </div>
-
               <div className="text-red-400 text-xs min-h-4">
-                {form.formState.errors.image?.message}
+                {formState.errors.image?.message}
               </div>
             </div>
+
+            {/* Image Preview */}
             {selectedImageUrl ? (
               <Image
                 src={selectedImageUrl}
@@ -294,7 +424,8 @@ console.log("---------------blog-", blog)
               <p>No Image</p>
             )}
 
-            <div className="m-4 flex gap-2">
+            {/* Buttons */}
+            <div className="m-4 flex gap-2 col-span-2">
               <Button type="submit" variant="default" loading={updating}>
                 Update
               </Button>

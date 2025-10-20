@@ -31,7 +31,6 @@ class BlogSubCategoryController {
   });
 
   getAllBlogSubCategory = catchError(async (req, res, next) => {
-    
     const blogSubCategoryResult = await BlogSubCategoryService.getAllBlogSubCategory();
     const resDoc = responseHandler(
       200,

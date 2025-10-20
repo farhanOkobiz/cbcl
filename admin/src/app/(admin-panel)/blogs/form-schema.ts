@@ -22,6 +22,8 @@ export const getBlogFormSchema = (isUpdate = false) =>
   z.object({
     title: z.string().min(1),
     details: z.string().optional(),
+    categoryRef: z.string(),
+    subCategoryRef: z.string(),
     author: z.string().optional(),
     tags: z.array(z.string()).min(1, "Please add at least one tag"),
     image: z
@@ -33,7 +35,6 @@ export const getBlogFormSchema = (isUpdate = false) =>
       .max(1, { message: "Maximum 1 file is allowed" })
       [isUpdate ? "optional" : "min"](1, { message: "Image is required" }),
   });
-
 
 export const dropZoneConfig = {
   accept: {

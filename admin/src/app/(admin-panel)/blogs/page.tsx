@@ -23,13 +23,13 @@ export default async function page({ searchParams }: Props) {
     ? searchParams.limit[0]
     : searchParams.limit || "10";
 
-  const { data } = await getBlogCategoryWithPagination(page, limit);
-  const { data } = await getBlogSubCategoryWithPagination(page, limit);
+  const { data: blogCategoryData } = await getBlogCategoryWithPagination(page, limit);
+  const { data: blogSubCategoryData } = await getBlogSubCategoryWithPagination(page, limit);
   const { data } = await getBlogWithPagination(page, limit);
 
   return (
     <ContentLayout title="Blogs">
-      <CreateBlogForm blogCategory={data} blgoSubCategory={data} />
+      <CreateBlogForm blogCategoryData={blogCategoryData} blogSubCategoryData={blogSubCategoryData} />
       <BlogTable
         data={data.result.map((item) => item)}
         pagination={{

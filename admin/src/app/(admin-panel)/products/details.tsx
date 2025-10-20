@@ -64,10 +64,7 @@ interface Props {
 }
 
 export const ProductDetailsSheet: React.FC<Props> = ({ product }) => {
-  console.log(
-    "product from props 1111111111111111111111111111111111111111111",
-    product
-  );
+
   const { toast } = useToast();
 
   const [sheetOpen, setSheetOpen] = React.useState(false);
@@ -83,12 +80,7 @@ export const ProductDetailsSheet: React.FC<Props> = ({ product }) => {
   );
 
   const imagesDemo = product.images?.map((data) => { });
-  // console.log(
-  //   imagesDemo,
-  //   "mapped images from product details 22222222222222222222222222222"
-  // );
 
-  // console.log(imageFileList, "image filelist from details 3333333333333333333");
 
   const [thumbnailFileList, setThumbnailFileList] = React.useState<
     UploadFile<any>[]
@@ -100,10 +92,7 @@ export const ProductDetailsSheet: React.FC<Props> = ({ product }) => {
       url: fileUrlGenerator(product.thumbnailImage || ""),
     },
   ]);
-  // console.log(
-  //   thumbnailFileList,
-  //   "thumbnail file list from details 44444444444444444444444"
-  // );
+
 
   const [backViewFileList, setBackViewFileList] = React.useState<
     UploadFile<any>[]
@@ -133,42 +122,8 @@ export const ProductDetailsSheet: React.FC<Props> = ({ product }) => {
   const [childCategories, setChildCategories] = React.useState<
     TChildCategory[]
   >([]);
-  console.log(
-    "product from props 3333333333333333333333333333333333333333333333333333",
-    product
-  );
-  // const form = useForm<z.infer<typeof productFormSchema>>({
-  //   resolver: zodResolver(productFormSchema),
-  //   defaultValues: {
-  //     name: product.name,
-  //     description: product.description,
-  //     gender: product.gender,
-  //     discountType: product.discountType || "",
-  //     discount: String(product.discount) || "",
-  //     // mrpPrice: String(product.mrpPrice),
-  //     freeShipping: String(product.freeShipping),
-  //     brandRef: product.brandRef?._id,
-  //     categoryRef: product.categoryRef?._id,
-  //     subCategoryRef: product.subCategoryRef?._id,
-  //     childCategoryRef: product.childCategoryRef?._id,
-  //     inventoryType: product.inventoryType,
-  //     images: [],
-  //     thumbnailImage: [],
-  //     backViewImage: [],
-  //     sizeChartImage: [],
-  //     inventories: product.inventoryRef?.length
-  //       ? product.inventoryRef.map((item: any) => ({
-  //           quantity: String(item.quantity),
-  //           ...(item._id && { id: item._id || '' }),
-  //           ...(item.color && { color: item.color }),
-  //           ...(item.name && { colorName: upperFirst(item.name) }),
-  //           ...(item.level && { size: upperCase(item.level) }),
-  //           ...(item.price && { price: upperCase(item.price) }),
-  //           ...(item.mrpPrice && { mrpPrice: upperCase(item.mrpPrice) }),
-  //         }))
-  //       : [{ quantity: product.mainInventory }],
-  //   },
-  // });
+
+
 
   // ✅ Step 1: Top-level এ useForm call করুন
   const form = useForm<z.infer<typeof productFormSchema>>({
@@ -228,7 +183,7 @@ export const ProductDetailsSheet: React.FC<Props> = ({ product }) => {
     }
   }, [product]);
 
-  console.log("form values from product details 55555555555555555555555", form.getValues());
+
 
   const selectedCategoryId = form.watch("categoryRef");
   const selectedSubCategoryId = form.watch("subCategoryRef");
