@@ -28,6 +28,7 @@ const BlogCategoryRoute = require("./routes/blogcategory.route.js");
 const BlogSubCategoryRoute = require("./routes/blogsubCategory.route.js");
 const BlogRoute = require("./routes/blog.route.js");
 const BlogTagRoute = require("./routes/blogTag.route.js"); 
+const SubscriptionRoute = require("./routes/subscription.route.js"); 
 
 const { Router } = require("express");
 const CampaignRoute = require("./routes/campaign.route.js");
@@ -66,5 +67,6 @@ rootRouter.use("/blog-category", BlogCategoryRoute);
 rootRouter.use("/blog-subcategory", BlogSubCategoryRoute);
 rootRouter.use("/blog", BlogRoute);
 rootRouter.use("/blog-tag", BlogTagRoute);
+rootRouter.use("/subcription", SubscriptionRoute);
 
 module.exports = rootRouter;
