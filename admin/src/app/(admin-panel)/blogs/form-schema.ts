@@ -21,9 +21,10 @@ import { z } from "zod";
 export const getBlogFormSchema = (isUpdate = false) =>
   z.object({
     title: z.string().min(1),
-    details: z.string().optional(),
     categoryRef: z.string(),
     subCategoryRef: z.string(),
+    details: z.string().optional(),
+    youtubeUrl: z.string().optional(),
     author: z.string().optional(),
     tags: z.array(z.string()).min(1, "Please add at least one tag"),
     image: z

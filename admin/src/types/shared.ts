@@ -673,8 +673,11 @@ export type TBlog = {
   _id?: string;
   image?: string;
   title?: string;
+  blogCategoryRef?: { _id: string; name: string } | string;
+  blogSubCategoryRef?: { _id: string; name: string } | string;
   author?: string;
   details?: string;
+  youtubeUrl?: string;
   slug?: string;
   tags: [];
   createdAt?: string;

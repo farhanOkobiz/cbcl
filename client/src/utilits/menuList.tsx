@@ -1,23 +1,24 @@
 export const menuList = [
   {
-    title: "Home",
+    title: "হোম",
     link: "/",
   },
   {
-    title: "About",
-    link: "/about",
-  },
-  {
-    title: "Blogs",
+    title: "ব্লগ",
     link: "/blogs",
   },
   {
-    title: "Products",
+    title: "আমাদের সম্পর্কে",
+    link: "/about",
+  },
+  {
+    title: "প্রোডাক্ট",
     link: "/shop",
     subMenu: true,
   },
   {
-    title: "Contact",
+    title: "যোগাযোগ",
     link: "/contact",
   },
 ];
+

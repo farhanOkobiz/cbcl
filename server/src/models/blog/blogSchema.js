@@ -24,19 +24,23 @@ const Blogschema = new Schema(
       ref: "BlogSubCategory",
       required: false,
     },
-    author: {
-      type: String,
-      trim: true,
-    },
     details: {
       type: String,
       trim: true,
+    },
+    youtubeUrl: {
+      type: String,
+     required: false,
     },
     tags: [
       {
         type: String,
       },
     ],
+    author: {
+      type: String,
+      trim: true,
+    },
     status: {
       type: Boolean,
       default: true,

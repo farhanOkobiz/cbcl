@@ -41,4 +41,5 @@ module.exports = {
   BlogSubCategorySchema: require("./blogsubCategory/blogSubCategorySchema.js").BlogSubCategorySchema,
   BlogSchema: require("./blog/blogSchema.js").BlogSchema,
   BlogTagSchema: require("./blogTag/blogTagSchema.js").BlogTagSchema,
+  SubscriptionSchema: require("./subscripton/subscriptionSchema.js").SubscriptionSchema,
 };

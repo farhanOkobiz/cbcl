@@ -38,13 +38,15 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { getBlogFormSchema } from "./form-schema";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
 const defaultValues = {
   name: "",
   title: "",
   details: "",
-  author: "",
+  youtubeUrl: "",
   image: [],
   tags: [],
+  author: "",
 };
 
 type TBlogCategory = {
@@ -246,52 +248,72 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData
               )}
             />
 
-            <Controller
+            <FormField
               control={form.control}
-              name="tags"
-              render={({ field: { value, onChange } }) => (
+              name="youtubeUrl"
+              render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    Add tags <b className="text-red-500">*</b>
-                  </FormLabel>
+                  <FormLabel>YouTube Video Link</FormLabel>
                   <FormControl>
-                    <AntSelect
-                      mode="tags"
-                      style={{ width: "100%" }}
-                      placeholder="Enter or select tags"
-                      value={value || []}
-                      onChange={(newTags) => {
-                        const newOptions = newTags
-                          .filter((tag) => !options.some((opt) => opt.value === tag))
-                          .map((tag) => ({ value: tag }));
-                        setOptions((prev) => [...prev, ...newOptions]);
-                        onChange(newTags);
-                      }}
+                    <Input
+                      placeholder="Enter YouTube video URL"
+                      {...field}
                     />
                   </FormControl>
                   <FormDescription className="text-red-400 text-xs min-h-4">
-                    {form.formState.errors.tags?.message}
+                    {form.formState.errors.youtubeUrl?.message}
                   </FormDescription>
                 </FormItem>
               )}
             />
 
-
-            <FormField
-              control={form.control}
-              name="author"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Author Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Enter author name" {...field} />
-                  </FormControl>
-                  {/* <FormDescription className="text-red-400 text-xs min-h-4">
+            <div className="flex gap-4 w-full">
+              <Controller
+                control={form.control}
+                name="tags"
+                render={({ field: { value, onChange } }) => (
+                  <FormItem className="flex-1">
+                    <FormLabel>
+                      Add tags <b className="text-red-500">*</b>
+                    </FormLabel>
+                    <FormControl>
+                      <AntSelect
+                      className="h-10"
+                        mode="tags"
+                        style={{ width: "100%" }}
+                        placeholder="Enter or select tags"
+                        value={value || []}
+                        onChange={(newTags) => {
+                          const newOptions = newTags
+                            .filter((tag) => !options.some((opt) => opt.value === tag))
+                            .map((tag) => ({ value: tag }));
+                          setOptions((prev) => [...prev, ...newOptions]);
+                          onChange(newTags);
+                        }}
+                      />
+                    </FormControl>
+                    <FormDescription className="text-red-400 text-xs min-h-4">
+                      {form.formState.errors.tags?.message}
+                    </FormDescription>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="author"
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormLabel>Author Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter author name" {...field} />
+                    </FormControl>
+                    {/* <FormDescription className="text-red-400 text-xs min-h-4">
                     {form.formState.errors.name?.message}
                   </FormDescription> */}
-                </FormItem>
-              )}
-            />
+                  </FormItem>
+                )}
+              />
+            </div>
 
             <Button type="submit" loading={loading} className="my-6">
               Create

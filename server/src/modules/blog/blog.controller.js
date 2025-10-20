@@ -15,6 +15,7 @@ class BlogController {
       blogCategoryRef: req.body.categoryRef,
       blogSubCategoryRef: req.body.subCategoryRef,
       details: req?.body?.details,
+      youtubeUrl: req?.body?.youtubeUrl,
       author: req?.body?.author,
       tags: req?.body?.tags,
       status: req?.body?.status,

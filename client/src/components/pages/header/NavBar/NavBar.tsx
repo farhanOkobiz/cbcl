@@ -89,20 +89,7 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
 
   // const userId = usersId?.id;
   const userName = usersId?.name;
-  // const coupon = "";
-  // useEffect(() => {
-  //   const userProducts = async () => {
-  //     try {
-  //       const { data: products } = await getCartProducts(userId, coupon);
-  //       setProductsByUser(products || []);
-  //       // doneRefresh();
-  //     } catch (error) {
-  //       console.error("user by products:", error);
-  //     }
-  //   };
 
-  //   userProducts();
-  // }, []);
 
   useEffect(() => {
     const setCorrelationAsync = async () => {
@@ -151,10 +138,9 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
                         {menu.title}
                       </li>
                     </Link> */}
-
                     <Link href={menu.link}>
                       <li
-                        className={`list-none absolute hover:text-[#1E3E96] tracking-wider duration-300 menuTitle xl:px-6 px-4 ${index === menuList.length - 1 ? "" : ""
+                        className={`list-none text-xl lg:text-xl xl:text-2xl absolute hover:text-[#1E3E96] tracking-wider duration-300 menuTitle xl:px-6 px-4 ${index === menuList.length - 1 ? "" : ""
                           }`}
                       >
                         {menu.title}
