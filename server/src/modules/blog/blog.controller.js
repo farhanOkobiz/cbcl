@@ -34,11 +34,28 @@ class BlogController {
   });
 
   getAllBlog = catchError(async (req, res, next) => {
-    let payload = {
-      tags: req.query.tags,
+    const { tags, category, subCategory } = req.query;
+
+    console.log("Filters =>", category, subCategory);
+
+    const payload = {
+      tags,
+      category,
+      subCategory,
     };
+
     const blogResult = await BlogService.getAllBlog(payload);
     const resDoc = responseHandler(200, "Get All Blogs", blogResult);
+    res.status(resDoc.statusCode).json(resDoc);
+  });
+
+  getAllVideoBlog = catchError(async (req, res, next) => {
+    const payload = {
+      tags: req.query.tags,
+    };
+
+    const blogResult = await BlogService.getAllVideoBlog(payload);
+    const resDoc = responseHandler(200, "Get All Video Blogs", blogResult);
     res.status(resDoc.statusCode).json(resDoc);
   });
 
@@ -54,8 +71,8 @@ class BlogController {
   });
 
   getSingleBlog = catchError(async (req, res, next) => {
-    const slug = req.params.slug;    
-    const blogResult = await BlogService.getSingleBlog(slug)
+    const slug = req.params.slug;
+    const blogResult = await BlogService.getSingleBlog(slug);
     const resDoc = responseHandler(201, "Single Blog successfully", blogResult);
     res.status(resDoc.statusCode).json(resDoc);
   });

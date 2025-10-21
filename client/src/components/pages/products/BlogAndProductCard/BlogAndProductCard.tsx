@@ -7,21 +7,34 @@ import ProductDialog from "../ProductDialog/ProductDialog";
 
 
 
-interface Product {
-  product: TProduct;
-}
+type Blog = {
+  _id: string;
+  title: string;
+  author: string;
+  createdAt: string;
+  details: string;
+  tags: string[];
+  image: string;
+};
 
-const BlogAndProductCard: React.FC<Product> = ({ product }) => {
+type Props = {
+  blog: Blog;
+};
+
+
+const BlogAndProductCard: React.FC<Props> = ({ blog }) => {
   const {
     _id,
-    inventoryRef,
-    inventoryType,
-    name,
-    description,
-    thumbnailImage,
-    slug,
-  } = product;
+    title,
+    details,
+    image,
+  } = blog;
 
+  const formattedDate = new Date(blog.createdAt).toLocaleDateString("bn-BD", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
 
   return (
@@ -29,46 +42,46 @@ const BlogAndProductCard: React.FC<Product> = ({ product }) => {
       <div className="overflow-hidden">
         {/* Image */}
         <div className="w-full max-h-[40vh] lg:max-h-[50vh] xl:max-h-[50vh] md:w-1/2 float-left md:mr-4 mb-4 md:mb-0 relative aspect-square">
-          <Link href={`product/${slug}`}>
-            <Image
-              src={apiBaseUrl + thumbnailImage}
-              alt={name}
-              fill
-              className="object-cover rounded"
-            />
-          </Link>
+          <Image
+            src={apiBaseUrl + image
+            }
+            alt={title}
+            fill
+            className="object-cover rounded"
+          />
         </div>
-
         {/* Text */}
         <div className="text-justify">
-          <h2 className="font-bold text-xl md:text-3xl lg:text-4xl py-4 text-gray-900 hover:text-[#A67C52]">{name}</h2>
+          <h2 className="font-bold text-xl md:text-3xl lg:text-4xl py-4 text-gray-900 hover:text-[#A67C52]">{title}</h2>
+          <div className="flex flex-wrap items-center text-gray-500 text-sm mb-4 gap-2">
+            {blog.author && (
+              <span className=" text-lg font-semibold">
+                <span className="hidden sm:inline">Author:</span> {blog.author}
+              </span>
+            )}
+            <span className="before:content-['•'] px-2 text-lg font-semibold">
+              {formattedDate}
+            </span>
+          </div>
+
           <div className="text-lg text-gray-600 leading-relaxed">
             <div className="">
-              <div dangerouslySetInnerHTML={{ __html: description }} />
+              <div dangerouslySetInnerHTML={{ __html: details }} />
             </div>
           </div>
         </div>
 
-        <div className="flex justify-center mt-6">
-          {/* <Link
-            href="/checkout"
-            className="inline-block w-full sm:w-3/4 md:w-1/2 lg:w-2/5 text-center font-semibold text-white bg-gradient-to-r from-[#D4A373] to-[#A67C52] 
-               rounded-lg shadow-lg hover:shadow-xl hover:from-[#CCD5AE] hover:to-[#B5A37D] transition-all duration-300 px-4 py-3"
-          >
-            Order Now
-          </Link> */}
-         {/* <div className="w-full sm:w-3/4 md:w-1/2 lg:w-2/5">
-            <ProductDialog
-              name={name}
-              productRef={_id}
-              thumbnailImage={thumbnailImage}
-              inventoryRef={
-                Array.isArray(inventoryRef) ? inventoryRef : [inventoryRef]
-              }
-              inventoryType={inventoryType}
-              showOrderNow={true} 
-            />
-          </div> */}
+        <div className="flex justify-start">
+          <div className="flex gap-2 mb-4">
+            {blog.tags.map((tag) => (
+              <span
+                key={tag}
+                className="bg-[#D4A373] text-white text-xs px-2 py-1 rounded"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 

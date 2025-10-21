@@ -18,4 +18,6 @@ BlogRoute.route("/:id")
   .put(upload.any(), controller.updateBlog)
   .delete(controller.deleteBlog);
 
+  BlogRoute.get("/videoblog", controller.getAllVideoBlog)
+
 module.exports = BlogRoute;

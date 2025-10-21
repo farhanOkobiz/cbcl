@@ -22,6 +22,8 @@ import { Metadata } from "next";
 import CartSideBar from "@/components/pages/cartSideBar/CartSideBar";
 import Blogs from "@/components/pages/landing_pages/Blogs/Blogs";
 import BlogAndProduct from "@/components/pages/landing_pages/BlogAndProduct/BlogAndProduct";
+import VideoBlogs from "@/components/pages/landing_pages/VideoBlogs/VideoBlogs";
+import { getAllBlogs } from "@/services/blogs";
 
 
 
@@ -43,9 +45,12 @@ const page = async () => {
   const products = await getCartProducts(userId, coupon);
 
 
-  const allproducts = await getAllProducts();
+  // const allproducts = await getAllProducts();
 
-  // const allBlogs = await getAllBlogs();
+  const allBlogs = await getAllBlogs();
+
+
+  
 
 
 
@@ -60,13 +65,14 @@ const page = async () => {
         <Banner banners={[]} />
         <Category />
         <Blogs />
-        <BlogAndProduct products={allproducts} />
+        <BlogAndProduct blogs={allBlogs} />
         {/* <BestSelling products={bestSelling} /> */}
         {/* <Newest products={allproducts} /> */}
         {/* <DiscountProduct products={productWithDiscount} /> */}
-        <Brand brands={brands} />
+        {/* <Brand brands={brands} /> */}
         {/* <Campaign campaign={campaign[0]} /> */}
-        <BestSelling products={bestSelling} />
+        <VideoBlogs/>
+        {/* <BestSelling products={bestSelling} /> */}
       </div>
       <CartSideBar cartProducts={products?.data} />
     </>

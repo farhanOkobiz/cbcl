@@ -47,6 +47,7 @@ interface Props {
 }
 
 export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
+
   const { toast } = useToast();
   const [sheetOpen, setSheetOpen] = useState(false);
   const [updating, setUpdating] = useState(false);
@@ -73,8 +74,8 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
     resolver: zodResolver(blogFormSchema),
     defaultValues: {
       title: blog.title,
-      categoryRef: String(blog.blogCategoryRef) || "",
-      subCategoryRef: String(blog.blogSubCategoryRef) || "",
+      categoryRef: blog.blogCategoryRef?._id ,
+      subCategoryRef: blog.blogSubCategoryRef?._id,
       details: blog.details,
       author: blog.author,
       tags: blog.tags,
@@ -107,7 +108,7 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
 
   useEffect(() => {
     if (categoriesLoaded && blog.blogCategoryRef && blogSubCategories && blogSubCategories.length > 0) {
-      const categoryId = String(blog.blogCategoryRef);
+      const categoryId = blog.blogCategoryRef?._id;
 
       const filtered = blogSubCategories.filter((sc: any) => {
         const catId =
@@ -123,7 +124,7 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
 
       setValue("categoryRef", categoryId);
       if (blog.blogSubCategoryRef) {
-        setValue("subCategoryRef", String(blog.blogSubCategoryRef));
+        setValue("subCategoryRef", blog.blogSubCategoryRef?._id);
       }
     }
   }, [categoriesLoaded, blogSubCategories, blog.blogCategoryRef, blog.blogSubCategoryRef, setValue]);
@@ -139,6 +140,9 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
     
     const filtered = blogSubCategories.filter((sc: any) => {
       let catId = sc.categoryRef;
+
+      console.log(catId);
+      
       
       if (typeof catId === "object" && catId !== null) {
         catId = catId._id || catId.id || String(catId);

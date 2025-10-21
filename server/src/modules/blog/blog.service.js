@@ -39,6 +39,19 @@ class BlogService extends BaseService {
     return await this.#repository.findAll(filter);
   }
 
+  async getAllVideoBlog(payload) {
+    const { tagRef } = payload;
+
+    const filter = {
+      status: true,
+      youtubeUrl: { $exists: true, $ne: "" }, 
+    };
+
+    if (tagRef) filter.tagRef = tagRef;
+
+    return await this.#repository.findAll(filter);
+  }
+
   async getBlogWithPagination(payload) {
     const blog = await this.#repository.getBlogWithPagination(payload);
     return blog;

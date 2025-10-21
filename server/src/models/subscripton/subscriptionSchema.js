@@ -1,15 +1,13 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
 
-
-const subscriptionSchemaDef = new Schema({
+const subscriptionSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
   },
 });
 
-
-const Subscription = mongoose.model("Subscription", subscriptionSchemaDef);
+const Subscription = mongoose.model("Subscription", subscriptionSchema);
 
 module.exports = Subscription;
+
