@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import {  TProduct } from "@/types";
+import { TProduct } from "@/types";
 
 import React, { useRef } from "react";
 import "swiper/css";
@@ -15,14 +15,11 @@ const BlogAndProduct: React.FC<ProductsProps> = ({ blogs }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
-  console.log(
-    "products?.data?.result?.products?",
-    blogs
-  );
+  console.log("products?.data?.result?.products?", blogs);
 
   return (
     <div className="Container relative">
-      <h2 className=" uppercase md:text-2xl text-xl font-semibold md:text-center mt-2 flex items-center justify-center md:justify-center gap-2">
+      <h2 className=" uppercase text-blue-950 md:text-2xl text-xl font-semibold md:text-center mt-2 flex items-center justify-center md:justify-center gap-2">
         Our Featured Blogs
       </h2>
       {/* Grid container */}
@@ -32,7 +29,6 @@ const BlogAndProduct: React.FC<ProductsProps> = ({ blogs }) => {
         ))}
       </div>
     </div>
-
   );
 };
 

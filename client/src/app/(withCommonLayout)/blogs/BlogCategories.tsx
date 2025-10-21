@@ -13,7 +13,9 @@ const BlogCategories: React.FC<BlogCategoriesProps> = ({ shopSideBar }) => {
   const searchParams = useSearchParams();
 
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedSubCategories, setSelectedSubCategories] = useState<string[]>([]);
+  const [selectedSubCategories, setSelectedSubCategories] = useState<string[]>(
+    []
+  );
 
   useEffect(() => {
     const cats = searchParams.get("category")?.split(",") || [];
@@ -22,10 +24,7 @@ const BlogCategories: React.FC<BlogCategoriesProps> = ({ shopSideBar }) => {
     setSelectedSubCategories(subCats);
   }, [searchParams]);
 
-  const updateParams = (
-    type: "category" | "subCategory",
-    value: string
-  ) => {
+  const updateParams = (type: "category" | "subCategory", value: string) => {
     const newParams = new URLSearchParams(searchParams.toString());
     const currentValues = new Set(
       (searchParams.get(type)?.split(",") || []).filter(Boolean)
@@ -49,7 +48,7 @@ const BlogCategories: React.FC<BlogCategoriesProps> = ({ shopSideBar }) => {
   return (
     <div className="px-4 pt-2 sticky top-0 h-screen overflow-y-scroll custom-scroll flex flex-col gap-4 pb-12">
       <div>
-        <ul className="space-y-2 border border-[#D4A373] rounded px-3 py-4 h-[500px] overflow-y-scroll">
+        <ul className="space-y-2 border border-[#52687f] rounded px-3 py-4 h-[500px] overflow-y-scroll">
           <h2 className="pb-2 text-base font-semibold uppercase">CATEGORY</h2>
 
           {shopSideBar?.map((cat) => (
@@ -72,7 +71,9 @@ const BlogCategories: React.FC<BlogCategoriesProps> = ({ shopSideBar }) => {
                         <input
                           type="checkbox"
                           checked={selectedSubCategories.includes(subCat.slug)}
-                          onChange={() => updateParams("subCategory", subCat.slug)}
+                          onChange={() =>
+                            updateParams("subCategory", subCat.slug)
+                          }
                           className="accent-[#495588]"
                         />
                         {subCat.name}

@@ -27,22 +27,28 @@ const BestSelling: React.FC<ProductsProps> = ({ products }) => {
 
   return (
     <div className="Container py-12 relative">
-        <h2 className=" uppercase md:text-2xl text-xl font-semibold md:text-center mt-2 flex items-center justify-center md:justify-center gap-2">
-          BEST SELLING FRAGRANCES
-        <Image src={icon} width={35} height={35} alt="icon" className="inline-block" />
+      <h2 className=" uppercase md:text-2xl text-xl font-semibold md:text-center mt-2 flex items-center justify-center md:justify-center gap-2">
+        BEST SELLING FRAGRANCES
+        <Image
+          src={icon}
+          width={35}
+          height={35}
+          alt="icon"
+          className="inline-block"
+        />
       </h2>
       <div className="flex justify-between items-center">
         <p className="here using this p for arrow right site hidden md:block"></p>
-        <div className="flex gap-2 pb-2" ref={(el) => { }}>
+        <div className="flex gap-2 pb-2" ref={(el) => {}}>
           <button
             ref={prevRef}
-            className="p-2 bg-[#D4A373] rounded hover:bg-[#CCD5AE] cursor-pointer text-[#fff] duration-300"
+            className="p-2 bg-[#52687f] rounded hover:bg-[#CCD5AE] cursor-pointer text-[#fff] duration-300"
           >
             <ChevronLeft size={20} />
           </button>
           <button
             ref={nextRef}
-            className="p-2 bg-[#D4A373] rounded hover:bg-[#CCD5AE] cursor-pointer text-[#fff] duration-300"
+            className="p-2 bg-[#52687f] rounded hover:bg-[#CCD5AE] cursor-pointer text-[#fff] duration-300"
           >
             <ChevronRight size={20} />
           </button>

@@ -29,7 +29,7 @@ const ProductDetails: React.FC<Props> = ({ product }: Props) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const controls = useAnimation(); // Move this inside the component
-  
+
   const handleIncrement = () => {
     setCount((prev: any) => prev + 1);
   };
@@ -217,8 +217,8 @@ const ProductDetails: React.FC<Props> = ({ product }: Props) => {
                           setSelectedColor(null);
                           setLevelError(false);
                         }}
-                        className={`p-1 border border-[#262626]/60 hover:bg-[#D4A373] hover:text-[#fff] duration-300 cursor-pointer rounded text-center flex items-center justify-center uppercase ${
-                          level === size.level ? "bg-[#D4A373] text-white" : ""
+                        className={`p-1 border border-[#262626]/60 hover:bg-[#52687f] hover:text-[#fff] duration-300 cursor-pointer rounded text-center flex items-center justify-center uppercase ${
+                          level === size.level ? "bg-[#52687f] text-white" : ""
                         }`}
                       >
                         {size.level}
@@ -255,7 +255,7 @@ const ProductDetails: React.FC<Props> = ({ product }: Props) => {
                           }}
                           className={`border ${
                             selectedColor === colorItem._id
-                              ? "border-[#D4A373] border-2 w-[20px] h-[20px]"
+                              ? "border-[#52687f] border-2 w-[20px] h-[20px]"
                               : "border-[#262626] w-[25px] h-[25px]"
                           } rounded-full cursor-pointer`}
                           style={{ backgroundColor: colorItem.color }}
@@ -287,7 +287,7 @@ const ProductDetails: React.FC<Props> = ({ product }: Props) => {
                 <button
                   onClick={handleAddToCart}
                   disabled={loading}
-                  className="bg-[#D4A373] hover:bg-[#CCD5AE] duration-300 flex items-center gap-1 px-6 py-2.5 font-semibold text-sm rounded text-[#fff] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-[#52687f] hover:bg-[#CCD5AE] duration-300 flex items-center gap-1 px-6 py-2.5 font-semibold text-sm rounded text-[#fff] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span>
                     <FiPlus />

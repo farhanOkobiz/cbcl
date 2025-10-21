@@ -13,6 +13,11 @@ const nextConfig = {
         hostname: "server.cbcl-bd.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.pixabay.com",
+        pathname: "/**",
+      },
     ],
   },
 };

@@ -22,7 +22,6 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
 }) => {
   // const propProduct: TProduct[] = products;
 
-
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -94,19 +93,15 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
     router.push(`?${newParams.toString()}`);
   };
 
-
-const handleInputChange = (
+  const handleInputChange = (
     index: number,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     let newValue = Number(event.target.value);
 
-
     if (index === 0) {
-
       newValue = Math.max(MIN, Math.min(newValue, values[1]));
     } else {
-
       newValue = Math.min(MAX, Math.max(newValue, values[0]));
     }
 
@@ -120,7 +115,7 @@ const handleInputChange = (
   return (
     <div className="px-4 pt-2 sticky top-0 h-screen overflow-y-scroll custom-scroll flex flex-col gap-4 pb-12">
       <div>
-        <div className="space-y-2 border border-[#D4A373] rounded px-3 py-4 h-[220px]">
+        <div className="space-y-2 border border-[#52687f] rounded px-3 py-4 h-[220px]">
           <h2 className="pb-2 text-base font-semibold uppercase">
             Price range
           </h2>
@@ -181,11 +176,11 @@ const handleInputChange = (
                     ...props.style,
                     height: "6px",
                     background:
-                      "linear-gradient(to right, #D4A373 0%, #D4A373 " +
+                      "linear-gradient(to right, #52687f 0%, #52687f " +
                       (values[0] / MAX) * 100 +
                       "%, #CCD5AE " +
                       (values[1] / MAX) * 100 +
-                      "%, #D4A373 100%)",
+                      "%, #52687f 100%)",
                     borderRadius: "4px",
                   }}
                 >
@@ -199,7 +194,7 @@ const handleInputChange = (
                     ...props.style,
                     height: "20px",
                     width: "20px",
-                    backgroundColor: "#D4A373",
+                    backgroundColor: "#52687f",
                     borderRadius: "50%",
                     border: "2px solid white",
                     boxShadow: "0 0 3px rgba(0, 0, 0, 0.3)",
@@ -217,7 +212,7 @@ const handleInputChange = (
       </div>
 
       <div>
-        <ul className="space-y-2 border border-[#D4A373] rounded px-3 py-4 h-[258px] overflow-y-scroll">
+        <ul className="space-y-2 border border-[#52687f] rounded px-3 py-4 h-[258px] overflow-y-scroll">
           <h2 className="pb-2 text-base font-semibold">CATEGORY</h2>
           {shopSideBar?.map((cat) => (
             <li key={cat._id}>
@@ -230,7 +225,7 @@ const handleInputChange = (
                 />
                 {cat.name}
               </label>
-              
+
               <ul className="space-y-1 pl-6 mt-1">
                 {Array.isArray(cat.subCategories) &&
                   cat.subCategories.map((subCat: TSubCategory) => (
@@ -281,7 +276,7 @@ const handleInputChange = (
       </div>
 
       <div>
-        <div className="space-y-2 border border-[#D4A373] rounded px-3 py-4 h-[250px] overflow-y-scroll">
+        <div className="space-y-2 border border-[#52687f] rounded px-3 py-4 h-[250px] overflow-y-scroll">
           <h2 className="pb-2 text-base font-semibold uppercase">Brands</h2>
           <div>
             {products?.brands?.map((brand: TBrand) => (
@@ -304,7 +299,7 @@ const handleInputChange = (
       </div>
 
       {/* <div>
-        <div className="space-y-2 border border-[#D4A373] rounded px-3 py-4 h-[160px]">
+        <div className="space-y-2 border border-[#52687f] rounded px-3 py-4 h-[160px]">
           <h2 className="pb-2 text-base font-semibold uppercase">Genders</h2>
 
           <div>

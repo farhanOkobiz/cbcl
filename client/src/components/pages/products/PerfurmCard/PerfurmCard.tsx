@@ -25,7 +25,6 @@ const PerfurmCard: React.FC<Product> = ({ product }) => {
     brandRef,
   } = product;
 
-
   const controls = useAnimation();
   const [imageLoaded, setImageLoaded] = useState({
     back: false,
@@ -120,7 +119,7 @@ const PerfurmCard: React.FC<Product> = ({ product }) => {
               )}
 
               {brandRef?.name && (
-                <p className="text-[#fff] text-[12px] absolute top-2 right-2 z-10 bg-[#D4A373] rounded p-1 lowercase">
+                <p className="text-[#fff] text-[12px] absolute top-2 right-2 z-10 bg-[#52687f] rounded p-1 lowercase">
                   {brandRef?.name}
                 </p>
               )}
@@ -134,7 +133,7 @@ const PerfurmCard: React.FC<Product> = ({ product }) => {
               <h2 className="text-base font-medium line-clamp-1 capitalize">
                 {name}
               </h2>
-              {/* <div className="flex items-center gap-1 lowercase text-[#D4A373]">
+              {/* <div className="flex items-center gap-1 lowercase text-[#52687f]">
                 <p>{gender}</p>
               </div> */}
               <div className="relative pt-1">

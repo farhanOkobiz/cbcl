@@ -20,7 +20,7 @@ interface BannerProps {
 const BannerSlider: React.FC<BannerProps> = ({ banners }) => {
   const swiperRef = useRef<SwiperClass | null>(null);
   return (
-    <div className="relative Container rounded">
+    <div className="relative rounded">
       <Swiper
         spaceBetween={50}
         slidesPerView={1}
@@ -32,7 +32,7 @@ const BannerSlider: React.FC<BannerProps> = ({ banners }) => {
       >
         {banners?.map((banner: TBanner) => (
           <SwiperSlide key={banner._id}>
-            <div className="2xl:h-[700px] xl:h-[500px] lg:h-[400px] h-[250px] rounded  relative">
+            <div className="2xl:h-[700px] xl:h-[500px] lg:h-[400px] md:h-[300px] h-[250px] rounded  relative">
               <Image
                 src={apiBaseUrl + banner.image || ""}
                 alt="Banner"

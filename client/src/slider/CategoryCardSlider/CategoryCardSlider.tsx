@@ -26,13 +26,13 @@ const CategoryCardSlider: React.FC<CategoryProps> = ({ categoriesList }) => {
         <>
           <button
             ref={prevRef}
-            className="absolute left-0 sm:left-4 md:left-8 lg:left-20 xl:left-26 2xl:left-76 top-1/2 -translate-y-1/2 z-10 p-2 bg-[#D4A373] rounded-full hover:bg-[#CCD5AE] text-white duration-300 cursor-pointer"
+            className="absolute left-0 sm:left-4 md:left-8 lg:left-20 xl:left-26 2xl:left-76 top-1/2 -translate-y-1/2 z-10 p-2 bg-[#52687f] rounded-full hover:bg-[#CCD5AE] text-white duration-300 cursor-pointer"
           >
             <ChevronLeft size={20} />
           </button>
           <button
             ref={nextRef}
-            className="absolute right-0 sm:right-4 md:right-8 lg:right-20 xl:right-26 2xl:right-76 top-1/2 -translate-y-1/2 z-10 p-2 bg-[#D4A373] rounded-full hover:bg-[#CCD5AE] text-white duration-300 cursor-pointer"
+            className="absolute right-0 sm:right-4 md:right-8 lg:right-20 xl:right-26 2xl:right-76 top-1/2 -translate-y-1/2 z-10 p-2 bg-[#52687f] rounded-full hover:bg-[#CCD5AE] text-white duration-300 cursor-pointer"
           >
             <ChevronRight size={20} />
           </button>
@@ -69,7 +69,7 @@ const CategoryCardSlider: React.FC<CategoryProps> = ({ categoriesList }) => {
         {categoriesList.map((category) => (
           <SwiperSlide key={category._id}>
             {/* href={`/shop?category=${category.slug || category._id}`} */}
-            <div >
+            <div>
               <div className="text-center w-full max-w-[150px] mx-auto aspect-square bg-white rounded-lg overflow-hidden">
                 <Image
                   src={apiBaseUrl + category.vectorImage || ""}
@@ -79,7 +79,7 @@ const CategoryCardSlider: React.FC<CategoryProps> = ({ categoriesList }) => {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <p className="text-center md:text-lg lg:text-xl mt-3 font-semibold text-gray-700 hover:text-gray-900 transition-colors">
+              <p className="text-center md:text-lg lg:text-xl mt-3 font-semibold text-blue-950 hover:text-gray-900 transition-colors">
                 {category.name}
               </p>
             </div>

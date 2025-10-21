@@ -3,10 +3,7 @@ import Category from "@/components/pages/landing_pages/Category/Category";
 
 import React from "react";
 
-import {
-  getAllBestSellProduct,
-  getAllProducts,
-} from "@/services/products";
+import { getAllBestSellProduct, getAllProducts } from "@/services/products";
 
 import { getCartProducts } from "@/services/cart";
 import NavBar from "@/components/pages/header/NavBar/NavBar";
@@ -24,9 +21,7 @@ import Blogs from "@/components/pages/landing_pages/Blogs/Blogs";
 import BlogAndProduct from "@/components/pages/landing_pages/BlogAndProduct/BlogAndProduct";
 import VideoBlogs from "@/components/pages/landing_pages/VideoBlogs/VideoBlogs";
 import { getAllBlogs } from "@/services/blogs";
-
-
-
+import BlogAndProductTwo from "@/components/pages/landing_pages/BlogAndProduct copy/BlogAndProduct";
 
 export const metadata: Metadata = {
   title: "CBCL",
@@ -44,38 +39,32 @@ const page = async () => {
   const coupon = "";
   const products = await getCartProducts(userId, coupon);
 
-
   // const allproducts = await getAllProducts();
 
   const allBlogs = await getAllBlogs();
 
-
-  
-
-
-
   const bestSelling = await getAllBestSellProduct();
   const brands = await getAllBrands();
 
-
   return (
-    <>
+    <div className="bg-[#f4f7fa]">
       <NavBar userCartProducts={products?.data} />
       <div className="">
         <Banner banners={[]} />
-        <Category />
-        <Blogs />
-        <BlogAndProduct blogs={allBlogs} />
+        {/* <Category /> */}
+        {/* <Blogs /> */}
+        {/* <BlogAndProduct blogs={allBlogs} /> */}
         {/* <BestSelling products={bestSelling} /> */}
         {/* <Newest products={allproducts} /> */}
         {/* <DiscountProduct products={productWithDiscount} /> */}
         {/* <Brand brands={brands} /> */}
         {/* <Campaign campaign={campaign[0]} /> */}
-        <VideoBlogs/>
+        {/* <VideoBlogs /> */}
+        <BlogAndProductTwo blogs={allBlogs} />
         {/* <BestSelling products={bestSelling} /> */}
       </div>
       <CartSideBar cartProducts={products?.data} />
-    </>
+    </div>
   );
 };
 

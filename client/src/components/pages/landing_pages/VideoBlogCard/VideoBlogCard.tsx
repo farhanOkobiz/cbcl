@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { YouTubeModal } from "../../youtubevideo/YouTubeModal ";
 
-
 export type VideoBlogCardProps = {
   title: string;
   youtubeUrl?: string;
@@ -38,7 +37,9 @@ const VideoBlogCard: React.FC<VideoBlogCardProps> = ({ title, youtubeUrl }) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               ></iframe>
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                <span className="text-white text-lg font-semibold">▶ Watch</span>
+                <span className="text-white text-lg font-semibold">
+                  ▶ Watch
+                </span>
               </div>
             </>
           ) : (
@@ -49,7 +50,7 @@ const VideoBlogCard: React.FC<VideoBlogCardProps> = ({ title, youtubeUrl }) => {
         </div>
 
         <div className="px-2 py-2">
-          <h2 className="lg:text-lg text-base font-semibold line-clamp-1 text-[#D4A373]">
+          <h2 className="lg:text-lg text-base font-semibold line-clamp-1 text-[#52687f]">
             {title}
           </h2>
         </div>

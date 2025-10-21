@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <NextTopLoader showSpinner={false} color="#D4A373" />
+          <NextTopLoader showSpinner={false} color="#52687f" />
           <AdminPanelLayout>{children}</AdminPanelLayout>
           <Toaster />
         </ThemeProvider>

@@ -90,7 +90,6 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
   // const userId = usersId?.id;
   const userName = usersId?.name;
 
-
   useEffect(() => {
     const setCorrelationAsync = async () => {
       await setCorrelation();
@@ -101,14 +100,15 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
   return (
     <>
       <div
-        className={`hidden lg:block w-full py-4 z-40  bg-white transition-all duration-300 fixed top-0 ${isScrolled ? "shadow" : " relative "
-          }`}
+        className={`hidden lg:block w-full py-4 z-40  text-blue-950 bg-white transition-all duration-300 fixed top-0 ${
+          isScrolled ? "shadow" : " relative "
+        }`}
       >
         <div className="Container">
           <div className="flex items-center justify-between relative">
             <div>
               <div className="flex items-center lg:gap-0 gap-2">
-                <div className="w-[80px]">
+                <div className="lg:w-[50px] ">
                   <Link href="/">
                     <Image
                       src={logo || null}
@@ -119,7 +119,7 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
                     />
                   </Link>
                 </div>
-                <p className="text-gray-900 font-medium">
+                <p className="text-white font-medium">
                   Community Business Company Ltd
                 </p>
               </div>
@@ -140,8 +140,9 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
                     </Link> */}
                     <Link href={menu.link}>
                       <li
-                        className={`list-none text-xl lg:text-xl xl:text-2xl absolute hover:text-[#1E3E96] tracking-wider duration-300 menuTitle xl:px-6 px-4 ${index === menuList.length - 1 ? "" : ""
-                          }`}
+                        className={`list-none text-xl lg:text-xl xl:text-2xl absolute hover:text-[#1E3E96] tracking-wider duration-300 menuTitle xl:px-6 px-4 ${
+                          index === menuList.length - 1 ? "" : ""
+                        }`}
                       >
                         {menu.title}
                       </li>
@@ -175,7 +176,7 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
                 <div className="px-2 py-2 border rounded relative">
                   <BsCart2 />
 
-                  <p className="top-[-12px] right-[-8px] absolute w-[20px] h-[20px] text-sm text-[#fff] text-center rounded-full bg-[#D4A373]">
+                  <p className="top-[-12px] right-[-8px] absolute w-[20px] h-[20px] text-sm text-[#fff] text-center rounded-full bg-[#52687f]">
                     {userCartProducts?.cartDetails?.length || 0}
                   </p>
                 </div>
@@ -208,8 +209,9 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
             <div className="flex space-x-3 lg:gap-0 gap-2">
               <div
                 onClick={() => setShowSideMenu(!showSideMenu)}
-                className={`pr-3  border-gray-300 cursor-pointer mt-6 ${isShopPage ? "lg:hidden" : "lg:block"
-                  }`}
+                className={`pr-3  border-gray-300 cursor-pointer mt-6 ${
+                  isShopPage ? "lg:hidden" : "lg:block"
+                }`}
               >
                 {showSideMenu ? (
                   <RiCloseFill className="text-2xl" />
@@ -218,7 +220,7 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
                 )}
               </div>
 
-              <div className="w-[80px]">
+              <div className="w-[50px]">
                 <Link href="/">
                   <Image
                     src={logo || null}
@@ -243,7 +245,7 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
                   <div className="px-2 py-2 border rounded relative">
                     <BsCart2 />
 
-                    <p className="top-[-12px] right-[-8px] absolute w-[20px] h-[20px] text-sm text-[#fff] text-center rounded-full bg-[#D4A373]">
+                    <p className="top-[-12px] right-[-8px] absolute w-[20px] h-[20px] text-sm text-[#fff] text-center rounded-full bg-[#52687f]">
                       {userCartProducts?.cartDetails?.length || 0}
                     </p>
                   </div>

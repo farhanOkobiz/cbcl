@@ -14,7 +14,7 @@ const Banner: React.FC<BannerProps> = async () => {
   );
 
   return (
-    <div className="mt-[120px] lg:mt-0">
+    <div className="mt-[85px] lg:mt-0">
       <BannerSlider banners={mainBanner} />
     </div>
   );

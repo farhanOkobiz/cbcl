@@ -18,7 +18,6 @@ const DownFooter: React.FC<FooterProps> = ({ userCartProducts }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [usersId, setUsersId] = useState<TUser | null>(null);
 
-
   const router = useRouter();
 
   useEffect(() => {
@@ -41,7 +40,6 @@ const DownFooter: React.FC<FooterProps> = ({ userCartProducts }) => {
       router.push("/login");
     }
   };
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,7 +85,7 @@ const DownFooter: React.FC<FooterProps> = ({ userCartProducts }) => {
             <p>
               <LiaHomeSolid className="text-lg text-[#262626]" />
             </p>
-            <p className="text-[#D4A373]">Home</p>
+            <p className="text-[#52687f]">Home</p>
           </div>
         </Link>
 
@@ -96,7 +94,7 @@ const DownFooter: React.FC<FooterProps> = ({ userCartProducts }) => {
             <p>
               <AiOutlineShopping className="text-lg text-[#262626]" />
             </p>
-            <p className="text-[#D4A373]"> Shop</p>
+            <p className="text-[#52687f]"> Shop</p>
           </div>
         </Link>
 
@@ -104,11 +102,11 @@ const DownFooter: React.FC<FooterProps> = ({ userCartProducts }) => {
           <div className="flex flex-col items-center justify-between capitalize text-sm font-semibold">
             <p className="relative">
               <BsCart2 className="text-lg text-[#262626]" />
-              <span className="top-[-12px] right-[-14px] absolute w-[20px] h-[20px] text-sm text-[#fff] text-center rounded-full bg-[#D4A373]">
+              <span className="top-[-12px] right-[-14px] absolute w-[20px] h-[20px] text-sm text-[#fff] text-center rounded-full bg-[#52687f]">
                 {userCartProducts?.cartDetails?.length || 0}
               </span>
             </p>
-            <p className="text-[#D4A373]">Cart</p>
+            <p className="text-[#52687f]">Cart</p>
           </div>
         </Link>
 
@@ -119,7 +117,7 @@ const DownFooter: React.FC<FooterProps> = ({ userCartProducts }) => {
           <p>
             <FaRegUser className="text-lg text-[#262626]" />
           </p>
-          <p className="text-[#D4A373]">My Account</p>
+          <p className="text-[#52687f]">My Account</p>
         </div>
       </div>
     </div>

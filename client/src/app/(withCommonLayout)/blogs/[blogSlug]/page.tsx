@@ -44,7 +44,7 @@ const page: React.FC<PageProps> = async ({ params }) => {
           <div className="py-4">
             {singleBlog?.data?.author && (
               <div className="flex items-center gap-2">
-                <span className="p-1 rounded border border-[#D4A373] text-[#D4A373]">
+                <span className="p-1 rounded border border-[#52687f] text-[#52687f]">
                   <FaRegUser className="text-[12px]" />
                 </span>
 
@@ -66,7 +66,7 @@ const page: React.FC<PageProps> = async ({ params }) => {
                 {singleBlog?.data?.tags.map((tag: string, index: number) => (
                   <p
                     key={index}
-                    className="px-2 py-1 border border-[#D4A373] text-[#D4A373] text-sm font-semibold rounded"
+                    className="px-2 py-1 border border-[#52687f] text-[#52687f] text-sm font-semibold rounded"
                   >
                     {tag}
                   </p>
