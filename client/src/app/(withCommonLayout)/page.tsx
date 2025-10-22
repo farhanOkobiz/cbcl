@@ -53,14 +53,14 @@ const page = async () => {
         <Banner banners={[]} />
         {/* <Category /> */}
         {/* <Blogs /> */}
-        {/* <BlogAndProduct blogs={allBlogs} /> */}
+        <BlogAndProduct blogs={allBlogs} />
         {/* <BestSelling products={bestSelling} /> */}
         {/* <Newest products={allproducts} /> */}
         {/* <DiscountProduct products={productWithDiscount} /> */}
         {/* <Brand brands={brands} /> */}
         {/* <Campaign campaign={campaign[0]} /> */}
         {/* <VideoBlogs /> */}
-        <BlogAndProductTwo blogs={allBlogs} />
+        {/* <BlogAndProductTwo blogs={allBlogs} /> */}
         {/* <BestSelling products={bestSelling} /> */}
       </div>
       <CartSideBar cartProducts={products?.data} />

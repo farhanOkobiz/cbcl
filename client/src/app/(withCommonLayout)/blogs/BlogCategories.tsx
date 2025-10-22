@@ -17,12 +17,14 @@ const BlogCategories: React.FC<BlogCategoriesProps> = ({ shopSideBar }) => {
     []
   );
 
+
   useEffect(() => {
-    const cats = searchParams.get("category")?.split(",") || [];
-    const subCats = searchParams.get("subCategory")?.split(",") || [];
+    const cats = searchParams.get("category")?.split(",").map(c => c.trim().toLowerCase()) || [];
+    const subCats = searchParams.get("subCategory")?.split(",").map(c => c.trim().toLowerCase()) || [];
     setSelectedCategories(cats);
     setSelectedSubCategories(subCats);
-  }, [searchParams]);
+  }, [searchParams.toString()]);
+
 
   const updateParams = (type: "category" | "subCategory", value: string) => {
     const newParams = new URLSearchParams(searchParams.toString());
@@ -46,7 +48,7 @@ const BlogCategories: React.FC<BlogCategoriesProps> = ({ shopSideBar }) => {
   };
 
   return (
-    <div className="px-4 pt-2 sticky top-0 h-screen overflow-y-scroll custom-scroll flex flex-col gap-4 pb-12">
+    <div className="px-4 pb-2 sticky top-0 h-screen overflow-y-scroll custom-scroll flex flex-col gap-4 pb-12">
       <div>
         <ul className="space-y-2 border border-[#52687f] rounded px-3 py-4 h-[500px] overflow-y-scroll">
           <h2 className="pb-2 text-base font-semibold uppercase">CATEGORY</h2>

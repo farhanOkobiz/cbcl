@@ -153,7 +153,7 @@ const Footer: React.FC<FooterProps> = ({ userCartProducts }) => {
             </div>
           </div>
         </div>
-        <div className=" text-center py-4 border-t">
+        <div className=" text-center py-4 border-t mt-4 md:mt-0">
           Copyright © 2025 CBCL. All Right Reserved. Developed by{" "}
           <a target="_blank" href="https://okobiz.com/">
             okobiz

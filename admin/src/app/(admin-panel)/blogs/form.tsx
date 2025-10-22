@@ -11,13 +11,6 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-// import {
-//   Select,
-//   SelectContent,
-//   SelectItem,
-//   SelectTrigger,
-//   SelectValue,
-// } from "@/components/ui/select";
 import { useForm, Controller } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -324,7 +317,7 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData
           <div className="col-span-1 min-h-[500px] grid grid-cols-2">
             <div className="">
               <Label>
-                Blog Image(1 File) <b className="text-red-500">*</b>
+                Blog Image(1 File)
               </Label>
               <FormField
                 control={form.control}

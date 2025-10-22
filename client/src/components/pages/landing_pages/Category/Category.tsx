@@ -1,17 +1,18 @@
-import { getAllCategorys } from "@/services/categorys";
-import CategoryCardSlider from "@/slider/CategoryCardSlider/CategoryCardSlider";
+
+import { getAllBlogCategorys } from "@/services/categorys";
+import CategoryCardSlider from "@/slider/BlogCategoryCardSlider/CategoryCardSlider";
 import React from "react";
 
 const Category = async () => {
-  const { data: categoriesList } = await getAllCategorys();
+  const { data: blogCategoriesList } = await getAllBlogCategorys();
   return (
-    <div className="Container py-4 mt-6">
+    <div className="">
       <div className="text-center pb-5">
         <h2 className="md:text-2xl text-xl font-semibold text-blue-950">
-          OUR BLOG CATEGORY
+           BLOG CATEGORY
         </h2>
       </div>
-      <CategoryCardSlider categoriesList={categoriesList} />
+      <CategoryCardSlider blogCategoriesList={blogCategoriesList} />
     </div>
   );
 };

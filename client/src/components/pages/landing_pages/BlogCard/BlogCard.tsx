@@ -19,33 +19,33 @@ export type BlogCardProps = {
 
 const BlogCard: React.FC<BlogCardProps> = ({ title, details, image, slug }) => {
   return (
-    <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg border border-[#E2E8CF] duration-300">
-      {/* Image */}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.6, ease: "easeOut" }} className="group bg-white rounded overflow-hidden shadow-sm hover:shadow-lg border border-[#E2E8CF] duration-300">
+      {/* Top Section: Image + Title */}
       <Link href={`blogs/${slug}`}>
-        <div className="overflow-hidden rounded-t-2xl">
-          <div>
-            <Image
-              src={apiBaseUrl + image}
-              alt={title}
-              width={400}
-              height={400}
-              className="w-full h-[240px] object-cover cursor-pointer"
-            />
-          </div>
+        <div className="flex p-4 cursor-pointer gap-4">
+          <Image
+            src={apiBaseUrl + image}
+            alt={title}
+            width={100}
+            height={100}
+            className="h-[100px] w-[100px] object-cover rounded"
+          />
+
+          <motion.h2
+            whileHover={{ color: "#2F855A" }}
+            className="text-lg font-semibold  text-[#1A202C]"
+          >
+            {title}
+          </motion.h2>
         </div>
       </Link>
 
       {/* Text Section */}
-      <div className="px-4 py-4">
-        <Link href={`blogs/${slug}`}>
-          <motion.h2
-            whileHover={{ color: "#2F855A" }}
-            className="text-lg font-semibold line-clamp-1 text-[#1A202C] cursor-pointer"
-          >
-            {title}
-          </motion.h2>
-        </Link>
-
+      <div className="px-4 pb-4">
         <Link href={`blogs/${slug}`}>
           <p className="mt-2 text-[#2D3748] text-sm line-clamp-2 cursor-pointer">
             <span dangerouslySetInnerHTML={{ __html: details }} />
@@ -54,7 +54,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, details, image, slug }) => {
 
         {/* Read More */}
         <Link href={`blogs/${slug}`}>
-          <div className="flex items-center gap-1 mt-3 font-semibold text-blue-950 cursor-pointer">
+          <div className="flex items-center gap-1 mt-3 font-semibold text-[#2F855A] cursor-pointer group-hover:underline">
             <span>Read More</span>
             <span className="mt-1">
               <BsArrowRight />
@@ -62,7 +62,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, details, image, slug }) => {
           </div>
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

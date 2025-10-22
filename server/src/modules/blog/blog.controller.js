@@ -5,7 +5,6 @@ const BlogService = require("./blog.service.js");
 
 class BlogController {
   createBlog = withTransaction(async (req, res, next, session) => {
-    console.log(req.body, "body");
 
     const payloadFiles = {
       files: req.files,
@@ -35,8 +34,6 @@ class BlogController {
 
   getAllBlog = catchError(async (req, res, next) => {
     const { tags, category, subCategory } = req.query;
-
-    console.log("Filters =>", category, subCategory);
 
     const payload = {
       tags,

@@ -4,12 +4,12 @@ export const menuList = [
     link: "/",
   },
   {
-    title: "ব্লগ",
-    link: "/blogs",
+    title: "আমাদের সম্পর্কে জানুন",
+    link: "/about",
   },
   {
-    title: "আমাদের সম্পর্কে",
-    link: "/about",
+    title: "ব্লগ",
+    link: "/blogs",
   },
   {
     title: "প্রোডাক্ট",

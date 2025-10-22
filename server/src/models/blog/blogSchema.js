@@ -6,6 +6,7 @@ const Blogschema = new Schema(
   {
     image: {
       type: String,
+      required: false,
     },
     title: {
       type: String,
@@ -30,7 +31,7 @@ const Blogschema = new Schema(
     },
     youtubeUrl: {
       type: String,
-     required: false,
+      required: false,
     },
     tags: [
       {

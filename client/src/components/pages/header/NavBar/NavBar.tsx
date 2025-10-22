@@ -108,7 +108,7 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
           <div className="flex items-center justify-between relative">
             <div>
               <div className="flex items-center lg:gap-0 gap-2">
-                <div className="lg:w-[50px] ">
+                <div className="lg:w-[50px] xl:lg:w-[70px]">
                   <Link href="/">
                     <Image
                       src={logo || null}

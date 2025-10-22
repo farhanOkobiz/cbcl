@@ -33,8 +33,9 @@ export const getBlogFormSchema = (isUpdate = false) =>
           message: "File size must be less than 8 MB",
         })
       )
-      .max(1, { message: "Maximum 1 file is allowed" })
-      [isUpdate ? "optional" : "min"](1, { message: "Image is required" }),
+      .optional(),
+    // .max(1, { message: "Maximum 1 file is allowed" })
+    // [isUpdate ? "optional" : "min"](1, { message: "Image is required" }),
   });
 
 export const dropZoneConfig = {

@@ -43,7 +43,7 @@ export function Sidebar() {
           >
             <span
               className={cn(
-                "font-bold uppercase text-lg whitespace-nowrap transition-[transform,opacity,display] ease-in-out duration-300 w-[100px] h-[100px] mt-8",
+                "font-bold uppercase text-lg whitespace-nowrap transition-[transform,opacity,display] ease-in-out duration-300 w-[70px] h-[70px] mt-8",
                 sidebar?.isOpen === false
                   ? "-translate-x-96 opacity-0 hidden"
                   : "translate-x-0 opacity-100"
@@ -52,8 +52,8 @@ export function Sidebar() {
               <Image
                 src={logo}
                 alt={String(brandName)}
-                height={150}
-                width={150}
+                height={100}
+                width={100}
                 className="w-full h-full"
               />
             </span>

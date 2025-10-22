@@ -1,7 +1,7 @@
 "use server";
 import { apiBaseUrl } from "@/config/config";
 
-export const getAllCategorys = async () => {
+export const getAllBlogCategorys = async () => {
   const res = await fetch(`${apiBaseUrl}/blog-category`);
 
   return res.json();

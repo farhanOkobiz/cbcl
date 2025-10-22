@@ -15,12 +15,12 @@ class BlogService extends BaseService {
 
   async createBlog(payload, payloadFiles, session) {
     const { files } = payloadFiles;
-    if (!files) throw new Error("image is required");
 
-    const images = await ImgUploader(files);
-    for (const key in images) {
-      payload[key] = images[key];
-      // console.log(payload, ":payload ", key, ":key");
+    if (files && files.length > 0) {
+      const images = await ImgUploader(files);
+      for (const key in images) {
+        payload[key] = images[key];
+      }
     }
 
     const blogData = await this.#repository.createBlog(payload);
@@ -28,13 +28,20 @@ class BlogService extends BaseService {
   }
 
   async getAllBlog(payload) {
-    const { tagRef } = payload;
+    const { tagRef, category, subCategory } = payload;
 
     const filter = {
       status: true,
+      $or: [
+        { youtubeUrl: { $exists: false } },
+        { youtubeUrl: null },
+        { youtubeUrl: "" },
+      ],
     };
 
     if (tagRef) filter.tagRef = tagRef;
+    if (category) filter["blogCategoryRef"] = category;
+    if (subCategory) filter["blogSubCategoryRef"] = subCategory;
 
     return await this.#repository.findAll(filter);
   }
@@ -44,7 +51,7 @@ class BlogService extends BaseService {
 
     const filter = {
       status: true,
-      youtubeUrl: { $exists: true, $ne: "" }, 
+      youtubeUrl: { $exists: true, $ne: "" },
     };
 
     if (tagRef) filter.tagRef = tagRef;
