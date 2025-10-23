@@ -96,7 +96,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ userRef, productRef }) => {
           />
 
           {errors.rating && (
-            <span className="text-red-500 text-sm">
+            <span className="text-[#52687f] text-sm">
               {String(errors.rating.message)}
             </span>
           )}
@@ -109,7 +109,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ userRef, productRef }) => {
           placeholder="Your Name.."
         />
         {errors.name && (
-          <span className="text-red-500 text-sm">
+          <span className="text-[#52687f] text-sm">
             {String(errors.name.message)}
           </span>
         )}
@@ -122,7 +122,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ userRef, productRef }) => {
           rows={10}
         />
         {errors.comment && (
-          <span className="text-red-500 text-sm">
+          <span className="text-[#52687f] text-sm">
             {String(errors.comment.message)}
           </span>
         )}

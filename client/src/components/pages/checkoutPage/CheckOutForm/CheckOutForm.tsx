@@ -159,7 +159,7 @@ const CheckOutForm: React.FC<Props> = ({
             {...register("customerName", { required: "Name is required" })}
           />
           {errors.customerName && (
-            <span className="text-red-500">
+            <span className="text-[#52687f]">
               {String(errors.customerName.message)}
             </span>
           )}
@@ -173,7 +173,7 @@ const CheckOutForm: React.FC<Props> = ({
               {...register("customerEmail")}
             />
             {errors.customerEmail && (
-              <span className="text-red-500">
+              <span className="text-[#52687f]">
                 {String(errors.customerEmail.message)}
               </span>
             )}
@@ -188,7 +188,7 @@ const CheckOutForm: React.FC<Props> = ({
               })}
             />
             {errors.customerPhone && (
-              <span className="text-red-500">
+              <span className="text-[#52687f]">
                 {String(errors.customerPhone.message)}
               </span>
             )}
@@ -228,7 +228,7 @@ const CheckOutForm: React.FC<Props> = ({
             })}
           />
           {errors.customerAddress && (
-            <span className="text-red-500">
+            <span className="text-[#52687f]">
               {String(errors.customerAddress.message)}
             </span>
           )}
@@ -252,7 +252,7 @@ const CheckOutForm: React.FC<Props> = ({
             </select>
 
             {errors.customerCity && (
-              <span className="text-red-500">
+              <span className="text-[#52687f]">
                 {String(errors.customerCity.message)}
               </span>
             )}
@@ -265,7 +265,7 @@ const CheckOutForm: React.FC<Props> = ({
               {...register("customerAltPhone")}
             />
             {/* {errors.altPhone && (
-              <span className="text-red-500">
+              <span className="text-[#52687f]">
                 {String(errors.altPhone.message)}
               </span>
             )} */}
@@ -367,7 +367,7 @@ const CheckOutForm: React.FC<Props> = ({
             )}
           />
           {errors.paymentMethod && (
-            <p className="text-red-500 text-sm">
+            <p className="text-[#52687f] text-sm">
               {String(errors.paymentMethod?.message)}
             </p>
           )}
@@ -424,7 +424,7 @@ const CheckOutForm: React.FC<Props> = ({
           </label>
         </div>
         {errors.terms && (
-          <span className="text-red-500">{String(errors.terms.message)}</span>
+          <span className="text-[#52687f]">{String(errors.terms.message)}</span>
         )}
 
         <button

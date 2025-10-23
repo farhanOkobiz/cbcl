@@ -22,7 +22,7 @@ export const getBlogFormSchema = (isUpdate = false) =>
   z.object({
     title: z.string().min(1),
     categoryRef: z.string(),
-    subCategoryRef: z.string(),
+    subCategoryRef: z.string().optional(),
     details: z.string().optional(),
     youtubeUrl: z.string().optional(),
     author: z.string().optional(),
@@ -34,6 +34,7 @@ export const getBlogFormSchema = (isUpdate = false) =>
         })
       )
       .optional(),
+    featured: z.boolean().optional(),
     // .max(1, { message: "Maximum 1 file is allowed" })
     // [isUpdate ? "optional" : "min"](1, { message: "Image is required" }),
   });

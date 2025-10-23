@@ -5,14 +5,16 @@ const BlogService = require("./blog.service.js");
 
 class BlogController {
   createBlog = withTransaction(async (req, res, next, session) => {
-
     const payloadFiles = {
       files: req.files,
     };
     const payload = {
       title: req?.body?.title,
       blogCategoryRef: req.body.categoryRef,
-      blogSubCategoryRef: req.body.subCategoryRef,
+      blogSubCategoryRef:
+        req.body.subCategoryRef && req.body.subCategoryRef !== "undefined"
+          ? req.body.subCategoryRef
+          : undefined,
       details: req?.body?.details,
       youtubeUrl: req?.body?.youtubeUrl,
       author: req?.body?.author,

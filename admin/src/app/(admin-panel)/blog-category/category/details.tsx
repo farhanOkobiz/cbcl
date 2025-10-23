@@ -170,12 +170,12 @@ export const DetailsSheet: React.FC<Props> = ({ item }) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
-                      Blog  Category Name <b className="text-red-500">*</b>
+                      Blog Category Name <b className="text-[#52687f]">*</b>
                     </FormLabel>
                     <FormControl>
                       <Input placeholder="Enter category name" {...field} />
                     </FormControl>
-                    <FormDescription className="text-red-400 text-xs min-h-4">
+                    <FormDescription className="text-[#52687f] text-xs min-h-4">
                       {form.formState.errors.name?.message}
                     </FormDescription>
                   </FormItem>
@@ -187,7 +187,7 @@ export const DetailsSheet: React.FC<Props> = ({ item }) => {
             <div className="col-span-1 grid grid-cols-2">
               <div className="">
                 <Label>
-                  Image <b className="text-red-500">*</b>
+                  Image <b className="text-[#52687f]">*</b>
                 </Label>
                 <FormField
                   control={form.control}
@@ -231,14 +231,14 @@ export const DetailsSheet: React.FC<Props> = ({ item }) => {
                     ))}
                 </div>
 
-                <div className="text-red-400 text-xs min-h-4">
+                <div className="text-[#52687f] text-xs min-h-4">
                   {form.formState.errors.image?.message}
                 </div>
               </div>
 
               <div className="">
                 <Label>
-                  Vector Image <b className="text-red-500">*</b>
+                  Vector Image <b className="text-[#52687f]">*</b>
                 </Label>
                 <FormField
                   control={form.control}
@@ -282,7 +282,7 @@ export const DetailsSheet: React.FC<Props> = ({ item }) => {
                     ))}
                 </div>
 
-                <div className="text-red-400 text-xs min-h-4">
+                <div className="text-[#52687f] text-xs min-h-4">
                   {form.formState.errors.vectorImage?.message}
                 </div>
               </div>

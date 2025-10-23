@@ -142,12 +142,12 @@ export const BrandDetailsSheet: React.FC<Props> = ({ brand }) => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Brand Title <b className="text-red-500">*</b>
+                    Brand Title <b className="text-[#52687f]">*</b>
                   </FormLabel>
                   <FormControl>
                     <Input placeholder="Enter brand name" {...field} />
                   </FormControl>
-                  <FormDescription className="text-red-400 text-xs min-h-4">
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.name?.message}
                   </FormDescription>
                 </FormItem>
@@ -161,7 +161,7 @@ export const BrandDetailsSheet: React.FC<Props> = ({ brand }) => {
                 render={({ field }) => (
                   <div>
                     <FormLabel>
-                      Image <b className="text-red-500">*</b>
+                      Image <b className="text-[#52687f]">*</b>
                     </FormLabel>
                     <Upload
                       listType="picture-card"
@@ -200,7 +200,7 @@ export const BrandDetailsSheet: React.FC<Props> = ({ brand }) => {
                   ))}
               </div>
 
-              <div className="text-red-400 text-xs min-h-4">
+              <div className="text-[#52687f] text-xs min-h-4">
                 {form.formState.errors.image?.message}
               </div>
             </div>

@@ -35,10 +35,11 @@ module.exports = {
     require("./warehouseTransfer/warehouseTransferSchema.js")
       .WarehouseTransferSchema,
   PaymentSchema: require("./payment/paymentSchema.js").PaymentSchema,
-  OrderBulkSchema: require("./orderBulk/orderBulkSchema.js").OrderBulkSchema,
   CampaignSchema: require("./campaign/campaignSchema.js").CampaignSchema,
-  BlogCategorySchema: require("./blogcategory/blogCategorySchema.js").BlogCategorySchema,
-  BlogSubCategorySchema: require("./blogsubCategory/blogSubCategorySchema.js").BlogSubCategorySchema,
+  BlogCategorySchema: require("./blogcategory/blogCategorySchema.js")
+    .BlogCategorySchema,
+  BlogSubCategorySchema: require("./blogsubCategory/blogSubCategorySchema.js")
+    .BlogSubCategorySchema,
   BlogSchema: require("./blog/blogSchema.js").BlogSchema,
   BlogTagSchema: require("./blogTag/blogTagSchema.js").BlogTagSchema,
 };

@@ -113,7 +113,7 @@ const SignIn = () => {
                 {...register("password", { required: "Password is required" })}
               />
               {errors.password && (
-                <span className="text-red-500">
+                <span className="text-[#52687f]">
                   {String(errors.password.message)}
                 </span>
               )}

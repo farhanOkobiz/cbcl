@@ -47,7 +47,6 @@ interface Props {
 }
 
 export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
-
   const { toast } = useToast();
   const [sheetOpen, setSheetOpen] = useState(false);
   const [updating, setUpdating] = useState(false);
@@ -74,7 +73,7 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
     resolver: zodResolver(blogFormSchema),
     defaultValues: {
       title: blog.title,
-      categoryRef: blog.blogCategoryRef?._id ,
+      categoryRef: blog.blogCategoryRef?._id,
       subCategoryRef: blog.blogSubCategoryRef?._id,
       details: blog.details,
       author: blog.author,
@@ -93,7 +92,7 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
         setBlogCategories(categories);
 
         const { data: subCategories } = await getAllBlogSubCategory();
-  
+
         setBlogSubCategories(subCategories);
 
         setCategoriesLoaded(true);
@@ -105,9 +104,13 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
     fetchCategories();
   }, []);
 
-
   useEffect(() => {
-    if (categoriesLoaded && blog.blogCategoryRef && blogSubCategories && blogSubCategories.length > 0) {
+    if (
+      categoriesLoaded &&
+      blog.blogCategoryRef &&
+      blogSubCategories &&
+      blogSubCategories.length > 0
+    ) {
       const categoryId = blog.blogCategoryRef?._id;
 
       const filtered = blogSubCategories.filter((sc: any) => {
@@ -127,8 +130,13 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
         setValue("subCategoryRef", blog.blogSubCategoryRef?._id);
       }
     }
-  }, [categoriesLoaded, blogSubCategories, blog.blogCategoryRef, blog.blogSubCategoryRef, setValue]);
-
+  }, [
+    categoriesLoaded,
+    blogSubCategories,
+    blog.blogCategoryRef,
+    blog.blogSubCategoryRef,
+    setValue,
+  ]);
 
   useEffect(() => {
     if (!selectedCategoryId) {
@@ -137,21 +145,22 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
       return;
     }
 
-    
     const filtered = blogSubCategories.filter((sc: any) => {
       let catId = sc.categoryRef;
 
       console.log(catId);
-      
-      
+
       if (typeof catId === "object" && catId !== null) {
         catId = catId._id || catId.id || String(catId);
       }
-      
+
       catId = String(catId);
       const selectedId = String(selectedCategoryId);
-      
-      console.log(`Comparing: "${catId}" === "${selectedId}"`, catId === selectedId);
+
+      console.log(
+        `Comparing: "${catId}" === "${selectedId}"`,
+        catId === selectedId
+      );
       return catId === selectedId;
     });
 
@@ -165,7 +174,9 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
 
   const handleFileChange = ({ fileList }: any) => {
     setFileList(fileList);
-    const rawFiles = fileList.map((file: any) => file.originFileObj).filter(Boolean);
+    const rawFiles = fileList
+      .map((file: any) => file.originFileObj)
+      .filter(Boolean);
     setValue("image", rawFiles);
   };
 
@@ -229,12 +240,12 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
-                      Blog Title <b className="text-red-500">*</b>
+                      Blog Title <b className="text-[#52687f]">*</b>
                     </FormLabel>
                     <FormControl>
                       <Input placeholder="Enter blog Title" {...field} />
                     </FormControl>
-                    <FormDescription className="text-red-400 text-xs min-h-4">
+                    <FormDescription className="text-[#52687f] text-xs min-h-4">
                       {formState.errors.title?.message}
                     </FormDescription>
                   </FormItem>
@@ -249,7 +260,7 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
                   render={({ field }) => (
                     <FormItem className="flex-1">
                       <FormLabel>
-                        Category <b className="text-red-500">*</b>
+                        Category <b className="text-[#52687f]">*</b>
                       </FormLabel>
                       <FormControl>
                         <Select
@@ -268,7 +279,7 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormDescription className="text-red-400 text-xs min-h-4">
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
                         {formState.errors.categoryRef?.message}
                       </FormDescription>
                     </FormItem>
@@ -298,7 +309,7 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormDescription className="text-red-400 text-xs min-h-4">
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
                         {formState.errors.subCategoryRef?.message}
                       </FormDescription>
                     </FormItem>
@@ -316,7 +327,7 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
                     <FormControl>
                       <ReactQuill {...field} />
                     </FormControl>
-                    <FormDescription className="text-red-400 text-xs min-h-4">
+                    <FormDescription className="text-[#52687f] text-xs min-h-4">
                       {formState.errors.details?.message}
                     </FormDescription>
                   </FormItem>
@@ -330,7 +341,7 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
                 render={({ field: { value, onChange } }) => (
                   <FormItem>
                     <FormLabel>
-                      Add tags <b className="text-red-500">*</b>
+                      Add tags <b className="text-[#52687f]">*</b>
                     </FormLabel>
                     <FormControl>
                       <AntSelect
@@ -340,7 +351,9 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
                         value={value || []}
                         onChange={(newTags) => {
                           const newOptions = newTags
-                            .filter((tag) => !options.some((opt) => opt.value === tag))
+                            .filter(
+                              (tag) => !options.some((opt) => opt.value === tag)
+                            )
                             .map((tag) => ({ value: tag }));
                           setOptions((prev) => [...prev, ...newOptions]);
                           onChange(newTags);
@@ -348,7 +361,7 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
                         options={options}
                       />
                     </FormControl>
-                    <FormDescription className="text-red-400 text-xs min-h-4">
+                    <FormDescription className="text-[#52687f] text-xs min-h-4">
                       {formState.errors.tags?.message}
                     </FormDescription>
                   </FormItem>
@@ -378,7 +391,7 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
                 render={() => (
                   <div>
                     <FormLabel>
-                      Image <b className="text-red-500">*</b>
+                      Image <b className="text-[#52687f]">*</b>
                     </FormLabel>
                     <Upload
                       listType="picture-card"
@@ -396,7 +409,10 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
               />
               <div className="mt-4">
                 {(form.getValues("image") || []).map((file, i) => (
-                  <div key={i} className="border-dashed border-2 rounded-lg p-2 px-3">
+                  <div
+                    key={i}
+                    className="border-dashed border-2 rounded-lg p-2 px-3"
+                  >
                     <div className="flex flex-col gap-2 text-xs text-gray-500 justify-center h-full">
                       <div className="flex items-center gap-2">
                         <Paperclip className="h-4 w-4 stroke-current" />
@@ -410,7 +426,7 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
                   </div>
                 ))}
               </div>
-              <div className="text-red-400 text-xs min-h-4">
+              <div className="text-[#52687f] text-xs min-h-4">
                 {formState.errors.image?.message}
               </div>
             </div>

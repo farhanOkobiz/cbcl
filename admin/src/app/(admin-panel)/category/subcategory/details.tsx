@@ -185,12 +185,12 @@ export const SubCategoryDetailsSheet: React.FC<Props> = ({ subCategory }) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
-                      Name <b className="text-red-500">*</b>
+                      Name <b className="text-[#52687f]">*</b>
                     </FormLabel>
                     <FormControl>
                       <Input placeholder="Enter subCategory name" {...field} />
                     </FormControl>
-                    <FormDescription className="text-red-400 text-xs min-h-4">
+                    <FormDescription className="text-[#52687f] text-xs min-h-4">
                       {form.formState.errors.name?.message}
                     </FormDescription>
                   </FormItem>
@@ -203,7 +203,7 @@ export const SubCategoryDetailsSheet: React.FC<Props> = ({ subCategory }) => {
                   <div className="flex items-end gap-2 w-full">
                     <FormItem className="flex-1">
                       <FormLabel>
-                        Category <b className="text-red-500">*</b>
+                        Category <b className="text-[#52687f]">*</b>
                       </FormLabel>
                       <FormControl>
                         <Select
@@ -222,7 +222,7 @@ export const SubCategoryDetailsSheet: React.FC<Props> = ({ subCategory }) => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormDescription className="text-red-400 text-xs min-h-4">
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
                         {form.formState.errors.categoryRef?.message}
                       </FormDescription>
                     </FormItem>
@@ -257,7 +257,7 @@ export const SubCategoryDetailsSheet: React.FC<Props> = ({ subCategory }) => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormDescription className="text-red-400 text-xs min-h-4">
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
                         {form.formState.errors.viewType?.message}
                       </FormDescription>
                     </FormItem>
@@ -284,7 +284,7 @@ export const SubCategoryDetailsSheet: React.FC<Props> = ({ subCategory }) => {
             {/* <div className="col-span-1 grid grid-cols-2">
               <div className="">
                 <Label>
-                  Image <b className="text-red-500">*</b>
+                  Image <b className="text-[#52687f]">*</b>
                 </Label>
                 <FormField
                   control={form.control}
@@ -328,14 +328,14 @@ export const SubCategoryDetailsSheet: React.FC<Props> = ({ subCategory }) => {
                     ))}
                 </div>
 
-                <div className="text-red-400 text-xs min-h-4">
+                <div className="text-[#52687f] text-xs min-h-4">
                   {form.formState.errors.image?.message}
                 </div>
               </div>
 
               <div className="">
                 <Label>
-                  Banner Image <b className="text-red-500">*</b>
+                  Banner Image <b className="text-[#52687f]">*</b>
                 </Label>
                 <FormField
                   control={form.control}
@@ -379,7 +379,7 @@ export const SubCategoryDetailsSheet: React.FC<Props> = ({ subCategory }) => {
                     ))}
                 </div>
 
-                <div className="text-red-400 text-xs min-h-4">
+                <div className="text-[#52687f] text-xs min-h-4">
                   {form.formState.errors.bannerImage?.message}
                 </div>
               </div>

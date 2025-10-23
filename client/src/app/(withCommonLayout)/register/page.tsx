@@ -109,7 +109,7 @@ const Registration = () => {
                 {...register("name", { required: "Name is required" })}
               />
               {errors.name && (
-                <span className="text-red-500">{errors.name.message}</span>
+                <span className="text-[#52687f]">{errors.name.message}</span>
               )}
             </div>
 
@@ -138,7 +138,7 @@ const Registration = () => {
                 {...register("phone", { required: "Phone is required" })}
               />
               {errors.phone && (
-                <span className="text-red-500">{errors.phone.message}</span>
+                <span className="text-[#52687f]">{errors.phone.message}</span>
               )}
             </div>
 
@@ -173,7 +173,7 @@ const Registration = () => {
                 </button>
               </div>
               {errors.password && (
-                <span className="text-red-500 text-sm">
+                <span className="text-[#52687f] text-sm">
                   {errors.password.message}
                 </span>
               )}
@@ -208,7 +208,7 @@ const Registration = () => {
                 </button>
               </div>
               {errors.confirmPassword && (
-                <span className="text-red-500 text-sm">
+                <span className="text-[#52687f] text-sm">
                   {errors.confirmPassword.message}
                 </span>
               )}

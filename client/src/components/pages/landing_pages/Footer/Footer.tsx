@@ -15,56 +15,58 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ userCartProducts }) => {
   const quickLink = [
     {
-      name: "Shop",
+      name: "প্রোডাক্ট",
       link: "/shop",
     },
     {
-      name: "About Us",
+      name: "আমাদের সম্পর্কে",
       link: "/about",
     },
     {
-      name: "Blogs",
+      name: "ব্লগ",
       link: "/blogs",
     },
     {
-      name: "Contact Us",
+      name: "যোগাযোগ",
       link: "/contact",
     },
   ];
 
   const information = [
     {
-      name: "Order Policy",
+      name: "অর্ডার নীতি",
       link: "/orderPolicy",
     },
     {
-      name: "Privacy Policy",
+      name: "গোপনীয়তা নীতি",
       link: "/privacyPolicy",
     },
     {
-      name: "Return Policy",
+      name: "রিটার্ন পলিসি",
       link: "/returnPolicy",
     },
     {
-      name: "Terms & Condition",
+      name: "শর্তাবলী",
       link: "/terms-condition",
     },
   ];
 
   return (
-    <div className="relative">
-      <div className="Container bg-[#52687f] text-white pt-10 lg:pt-16">
+    <div className="relative bg-[#52687f]">
+      <div className=" container mx-auto  text-white pt-10 lg:pt-16">
         <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row justify-between space-y-5">
           <div>
-            <div className="font-semibold mb-[20px] text-xl">Contact Info</div>
+            <div className="font-semibold mb-[20px] text-xl">
+              যোগাযোগের তথ্য
+            </div>
             <div className="text-md lg:text-lg flex flex-col space-y-1">
               {/* <div>Contact: +880 1735 775 093</div>
               <div>Whats app: +880 1735 775 093</div> */}
-              <div>Address: Dhaka, Bangladesh</div>
+              <div>ঠিকানা: ঢাকা, বাংলাদেশ</div>
             </div>
           </div>
           <div>
-            <div className=" font-semibold mb-[20px] text-xl">Quick Links</div>
+            <div className=" font-semibold mb-[20px] text-xl">দ্রুত লিঙ্ক</div>
             <ul className=" text-xl">
               {quickLink.map((item, index) => (
                 <div key={index}>
@@ -80,7 +82,9 @@ const Footer: React.FC<FooterProps> = ({ userCartProducts }) => {
             </ul>
           </div>
           <div>
-            <div className=" font-semibold mb-[20px] text-xl">Infromation</div>
+            <div className=" font-semibold mb-[20px] text-xl">
+              প্রয়োজনীয় তথ্য
+            </div>
             <ul className=" text-xl">
               {information.map((item, index) => (
                 <div key={index}>
@@ -96,7 +100,7 @@ const Footer: React.FC<FooterProps> = ({ userCartProducts }) => {
             </ul>
           </div>
           <div>
-            <div className=" font-semibold mb-[20px] text-xl">Social Media</div>
+            <div className=" font-semibold mb-[20px] text-xl">সামাজিক যোগাযোগ</div>
             <div className="">
               <div className="flex lg:justify-center lg:items-center gap-2 mt-4">
                 <a
@@ -154,7 +158,7 @@ const Footer: React.FC<FooterProps> = ({ userCartProducts }) => {
           </div>
         </div>
         <div className=" text-center py-4 border-t mt-4 md:mt-0">
-          Copyright © 2025 CBCL. All Right Reserved. Developed by{" "}
+          কপিরাইট © ২০২৫ CBCL. সর্বস্বত্ব সংরক্ষিত। ডেভেলপ করেছে{" "}
           <a target="_blank" href="https://okobiz.com/">
             okobiz
           </a>

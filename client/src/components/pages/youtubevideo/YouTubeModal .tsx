@@ -27,7 +27,7 @@ export const YouTubeModal: React.FC<Props> = ({ url, title, onClose }) => {
       >
         <button
           onClick={onClose}
-          className="absolute cursor-pointer top-2 right-3 text-red-500 hover:text-red-700 p-2 rounded-full bg-white shadow-md hover:shadow-lg transition"
+          className="absolute cursor-pointer top-2 right-3 text-[#52687f] hover:text-red-700 p-2 rounded-full bg-white shadow-md hover:shadow-lg transition"
         >
           ✕
         </button>

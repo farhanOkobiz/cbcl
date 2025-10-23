@@ -42,6 +42,10 @@ const Blogschema = new Schema(
       type: String,
       trim: true,
     },
+    featured: {
+      type: Boolean,
+      default: false,
+    },
     status: {
       type: Boolean,
       default: true,

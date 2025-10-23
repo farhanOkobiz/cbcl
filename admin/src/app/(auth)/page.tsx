@@ -99,7 +99,7 @@ export default function LoginPage() {
                     <FormControl>
                       <Input placeholder="user@email.com" {...field} />
                     </FormControl>
-                    <FormDescription className="text-red-400 text-xs">
+                    <FormDescription className="text-[#52687f] text-xs">
                       {form.formState.errors.email?.message}
                     </FormDescription>
                   </FormItem>
@@ -133,7 +133,7 @@ export default function LoginPage() {
                         </button>
                       </div>
                     </FormControl>
-                    <FormDescription className="text-red-400 text-xs">
+                    <FormDescription className="text-[#52687f] text-xs">
                       {form.formState.errors.password?.message}
                     </FormDescription>
                   </FormItem>

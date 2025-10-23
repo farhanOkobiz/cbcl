@@ -92,7 +92,7 @@ const ForgetPassword = () => {
                 })}
               />
               {errors.contact && (
-                <span className="text-red-500 text-sm">
+                <span className="text-[#52687f] text-sm">
                   {errors.contact.message}
                 </span>
               )}

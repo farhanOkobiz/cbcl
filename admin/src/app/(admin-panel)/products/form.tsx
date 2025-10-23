@@ -241,12 +241,12 @@ export const CreateProductForm: React.FC = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Product Name <b className="text-red-500">*</b>
+                    Product Name <b className="text-[#52687f]">*</b>
                   </FormLabel>
                   <FormControl>
                     <Input placeholder="Enter product name" {...field} />
                   </FormControl>
-                  <FormDescription className="text-red-400 text-xs min-h-4">
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.name?.message}
                   </FormDescription>
                 </FormItem>
@@ -262,7 +262,7 @@ export const CreateProductForm: React.FC = () => {
                     {/* <Input placeholder="Enter product description" {...field} /> */}
                     <ReactQuill {...field} />
                   </FormControl>
-                  <FormDescription className="text-red-400 text-xs min-h-4">
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.description?.message}
                   </FormDescription>
                 </FormItem>
@@ -276,12 +276,12 @@ export const CreateProductForm: React.FC = () => {
                   <FormItem>
                     <FormLabel>
                       MRP (Maximum Retail Price){" "}
-                      <b className="text-red-500">*</b>
+                      <b className="text-[#52687f]">*</b>
                     </FormLabel>
                     <FormControl>
                       <Input placeholder="Enter MRP price" {...field} />
                     </FormControl>
-                    <FormDescription className="text-red-400 text-xs min-h-4">
+                    <FormDescription className="text-[#52687f] text-xs min-h-4">
                       {form.formState.errors.mrpPrice?.message}
                     </FormDescription>
                   </FormItem>
@@ -309,7 +309,7 @@ export const CreateProductForm: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormDescription className="text-red-400 text-xs min-h-4">
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
                         {form.formState.errors.freeShipping?.message}
                       </FormDescription>
                     </FormItem>
@@ -343,7 +343,7 @@ export const CreateProductForm: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormDescription className="text-red-400 text-xs min-h-4">
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
                         {form.formState.errors.discountType?.message}
                       </FormDescription>
                     </FormItem>
@@ -360,7 +360,7 @@ export const CreateProductForm: React.FC = () => {
                     <FormControl>
                       <Input placeholder="Enter discount amount" {...field} />
                     </FormControl>
-                    <FormDescription className="text-red-400 text-xs min-h-4">
+                    <FormDescription className="text-[#52687f] text-xs min-h-4">
                       {form.formState.errors.discount?.message}
                     </FormDescription>
                   </FormItem>
@@ -390,7 +390,7 @@ export const CreateProductForm: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormDescription className="text-red-400 text-xs min-h-4">
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
                         {form.formState.errors.gender?.message}
                       </FormDescription>
                     </FormItem>
@@ -404,7 +404,7 @@ export const CreateProductForm: React.FC = () => {
                   <div className="flex items-end gap-2 w-full">
                     <FormItem className="flex-1">
                       <FormLabel>
-                        Brand<b className="text-red-500">*</b>
+                        Brand<b className="text-[#52687f]">*</b>
                       </FormLabel>
                       <FormControl>
                         <Select
@@ -423,7 +423,7 @@ export const CreateProductForm: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormDescription className="text-red-400 text-xs min-h-4">
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
                         {form.formState.errors.brandRef?.message}
                       </FormDescription>
                     </FormItem>
@@ -437,7 +437,7 @@ export const CreateProductForm: React.FC = () => {
                   <div className="flex items-end gap-2 w-full">
                     <FormItem className="flex-1">
                       <FormLabel>
-                        Category<b className="text-red-500">*</b>
+                        Category<b className="text-[#52687f]">*</b>
                       </FormLabel>
                       <FormControl>
                         <Select
@@ -456,7 +456,7 @@ export const CreateProductForm: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormDescription className="text-red-400 text-xs min-h-4">
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
                         {form.formState.errors.categoryRef?.message}
                       </FormDescription>
                     </FormItem>
@@ -487,7 +487,7 @@ export const CreateProductForm: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormDescription className="text-red-400 text-xs min-h-4">
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
                         {form.formState.errors.subCategoryRef?.message}
                       </FormDescription>
                     </FormItem>
@@ -518,7 +518,7 @@ export const CreateProductForm: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormDescription className="text-red-400 text-xs min-h-4">
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
                         {form.formState.errors.childCategoryRef?.message}
                       </FormDescription>
                     </FormItem>
@@ -532,7 +532,7 @@ export const CreateProductForm: React.FC = () => {
                   <div className="flex items-end gap-2 w-full">
                     <FormItem className="flex-1">
                       <FormLabel>
-                        Inventory Type <b className="text-red-500">*</b>
+                        Inventory Type <b className="text-[#52687f]">*</b>
                       </FormLabel>
                       <FormControl>
                         <Select
@@ -554,7 +554,7 @@ export const CreateProductForm: React.FC = () => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormDescription className="text-red-400 text-xs min-h-4">
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
                         {form.formState.errors.inventoryType?.message}
                       </FormDescription>
                     </FormItem>
@@ -575,7 +575,7 @@ export const CreateProductForm: React.FC = () => {
                       />
                     </FormControl>
                     <FormLabel className="text-sm">Mark as Featured</FormLabel>
-                    <FormDescription className="text-red-400 text-xs min-h-4">
+                    <FormDescription className="text-[#52687f] text-xs min-h-4">
                       {form.formState.errors.featured?.message}
                     </FormDescription>
                   </FormItem>
@@ -591,73 +591,73 @@ export const CreateProductForm: React.FC = () => {
                 >
                   {(selectedInventoryType === "colorInventory" ||
                     selectedInventoryType === "colorLevelInventory") && (
-                      <Controller
-                        control={control}
-                        name={`inventories.${index}.color`}
-                        render={({ field }) => (
-                          <FormItem className="flex flex-col">
-                            <FormLabel>Color</FormLabel>
-                            <FormControl>
-                              <ColorPicker
-                                value={field.value || "#1677ff"}
-                                showText
-                                allowClear
-                                onChange={(color) =>
-                                  field.onChange(color.toHexString())
-                                }
-                              />
-                            </FormControl>
-                            <FormDescription className="text-red-400 text-xs min-h-4">
-                              {
-                                formState.errors?.inventories?.[index]?.color
-                                  ?.message
+                    <Controller
+                      control={control}
+                      name={`inventories.${index}.color`}
+                      render={({ field }) => (
+                        <FormItem className="flex flex-col">
+                          <FormLabel>Color</FormLabel>
+                          <FormControl>
+                            <ColorPicker
+                              value={field.value || "#1677ff"}
+                              showText
+                              allowClear
+                              onChange={(color) =>
+                                field.onChange(color.toHexString())
                               }
-                            </FormDescription>
-                          </FormItem>
-                        )}
-                      />
-                    )}
+                            />
+                          </FormControl>
+                          <FormDescription className="text-[#52687f] text-xs min-h-4">
+                            {
+                              formState.errors?.inventories?.[index]?.color
+                                ?.message
+                            }
+                          </FormDescription>
+                        </FormItem>
+                      )}
+                    />
+                  )}
 
                   {(selectedInventoryType === "colorInventory" ||
                     selectedInventoryType === "colorLevelInventory") && (
-                      <FormItem>
-                        <FormLabel>Color Name</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="Enter color name"
-                            {...register(`inventories.${index}.colorName`)}
-                          />
-                        </FormControl>
-                        <FormDescription className="text-red-400 text-xs min-h-4">
-                          {
-                            formState.errors?.inventories?.[index]?.colorName
-                              ?.message
-                          }
-                        </FormDescription>
-                      </FormItem>
-                    )}
+                    <FormItem>
+                      <FormLabel>Color Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter color name"
+                          {...register(`inventories.${index}.colorName`)}
+                        />
+                      </FormControl>
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
+                        {
+                          formState.errors?.inventories?.[index]?.colorName
+                            ?.message
+                        }
+                      </FormDescription>
+                    </FormItem>
+                  )}
 
                   {(selectedInventoryType === "levelInventory" ||
                     selectedInventoryType === "colorLevelInventory") && (
-                      <FormItem>
-                        <FormLabel>Size</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="Enter size"
-                            {...register(`inventories.${index}.size`)}
-                          />
-                        </FormControl>
-                        <FormDescription className="text-red-400 text-xs min-h-4">
-                          {formState.errors?.inventories?.[index]?.size?.message}
-                        </FormDescription>
-                      </FormItem>
-                    )}
+                    <FormItem>
+                      <FormLabel>Size</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter size"
+                          {...register(`inventories.${index}.size`)}
+                        />
+                      </FormControl>
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
+                        {formState.errors?.inventories?.[index]?.size?.message}
+                      </FormDescription>
+                    </FormItem>
+                  )}
 
                   {selectedInventoryType !== "" && (
                     <>
                       <FormItem>
                         <FormLabel>
-                          Quantity <b className="text-red-500">*</b>
+                          Quantity <b className="text-[#52687f]">*</b>
                         </FormLabel>
                         <FormControl>
                           <Input
@@ -665,7 +665,7 @@ export const CreateProductForm: React.FC = () => {
                             {...register(`inventories.${index}.quantity`)}
                           />
                         </FormControl>
-                        <FormDescription className="text-red-400 text-xs min-h-4">
+                        <FormDescription className="text-[#52687f] text-xs min-h-4">
                           {
                             formState.errors?.inventories?.[index]?.quantity
                               ?.message
@@ -675,7 +675,7 @@ export const CreateProductForm: React.FC = () => {
                       <FormItem>
                         <FormLabel>
                           MRP (Maximum Retail Price){" "}
-                          <b className="text-red-500">*</b>
+                          <b className="text-[#52687f]">*</b>
                         </FormLabel>
                         <FormControl>
                           <Input
@@ -683,7 +683,7 @@ export const CreateProductForm: React.FC = () => {
                             {...register(`inventories.${index}.mrpPrice`)}
                           />
                         </FormControl>
-                        <FormDescription className="text-red-400 text-xs min-h-4">
+                        <FormDescription className="text-[#52687f] text-xs min-h-4">
                           {
                             formState.errors?.inventories?.[index]?.mrpPrice
                               ?.message
@@ -728,7 +728,7 @@ export const CreateProductForm: React.FC = () => {
           <div className="col-span-1 min-h-[500px] grid grid-cols-2">
             <div className="">
               <Label>
-                Thumbnail Image (Max 1 File) <b className="text-red-500">*</b>
+                Thumbnail Image (Max 1 File) <b className="text-[#52687f]">*</b>
               </Label>
               <FormField
                 control={form.control}
@@ -773,7 +773,7 @@ export const CreateProductForm: React.FC = () => {
                   ))}
               </div>
 
-              <div className="text-red-400 text-xs min-h-4">
+              <div className="text-[#52687f] text-xs min-h-4">
                 {form.formState.errors.thumbnailImage?.message}
               </div>
             </div>
@@ -822,7 +822,7 @@ export const CreateProductForm: React.FC = () => {
                   ))}
               </div>
 
-              <div className="text-red-400 text-xs min-h-4">
+              <div className="text-[#52687f] text-xs min-h-4">
                 {form.formState.errors.backViewImage?.message}
               </div>
             </div>{" "}
@@ -870,7 +870,7 @@ export const CreateProductForm: React.FC = () => {
                   ))}
               </div>
 
-              <div className="text-red-400 text-xs min-h-4">
+              <div className="text-[#52687f] text-xs min-h-4">
                 {form.formState.errors.images?.message}
               </div>
             </div>
@@ -919,7 +919,7 @@ export const CreateProductForm: React.FC = () => {
                   ))}
               </div>
 
-              <div className="text-red-400 text-xs min-h-4">
+              <div className="text-[#52687f] text-xs min-h-4">
                 {form.formState.errors.sizeChartImage?.message}
               </div>
             </div> */}

@@ -40,7 +40,7 @@ const PerfurmCard: React.FC<Product> = ({ product }) => {
   };
 
   return (
-    <div className="group">
+    <div className="group bg-white">
       <div
         className="overflow-hidden shadow transition border border-[#262626]/0 group-hover:border-[#CCD5AE]/70 rounded"
         onMouseEnter={handleHoverStart}

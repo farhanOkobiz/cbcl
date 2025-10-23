@@ -68,7 +68,7 @@ export default async function ShopPage({
   // const { data: banners } = await getAllBanners();
 
   return (
-    <>
+    <div className="bg-[#f4f7fa]">
       <NavBar userCartProducts={cartProducts?.data} />
       <div className="flex min-h-screen Container">
         <div className="2xl:w-[20%] xl:xl-[25%] lg:w-[25%]  hidden lg:block">
@@ -82,7 +82,7 @@ export default async function ShopPage({
             products={products.result}
             pagination={products.pagination}
             categorySlug={categorySlug}
-            subCategorySlug={subCategorySlug} 
+            subCategorySlug={subCategorySlug}
             childCategorySlug={childCategorySlug}
             brand={brand}
             gender={gender}
@@ -91,6 +91,6 @@ export default async function ShopPage({
         <CartSideBar cartProducts={cartProducts?.data} />
         {/* <UpcomingSideBanner banners={banners} /> */}
       </div>
-    </>
+    </div>
   );
 }

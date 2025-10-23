@@ -17,7 +17,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
 import { Select as AntSelect } from "antd";
 
-
 import { z } from "zod";
 
 import { FileUp, Paperclip, Plus, Trash } from "lucide-react";
@@ -30,7 +29,13 @@ import { Label } from "@/components/ui/label";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { getBlogFormSchema } from "./form-schema";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const defaultValues = {
   name: "",
@@ -40,6 +45,7 @@ const defaultValues = {
   image: [],
   tags: [],
   author: "",
+  featured: false,
 };
 
 type TBlogCategory = {
@@ -48,7 +54,7 @@ type TBlogCategory = {
   image: string;
   vectorImage: string;
   slug: string;
-  status: boolean
+  status: boolean;
 };
 
 type TBlogSubCategory = {
@@ -69,7 +75,10 @@ type CreateBlogFormProps = {
   };
 };
 
-export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData, blogSubCategoryData }) => {
+export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({
+  blogCategoryData,
+  blogSubCategoryData,
+}) => {
   const { toast } = useToast();
 
   const [thumbnailFileList, setThumbnailFileList] = React.useState([]);
@@ -96,19 +105,22 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData
     form.setValue("image", rawFiles);
   };
 
-  // filtered subcategories 
+  // filtered subcategories
   const filteredSubCategories = React.useMemo(() => {
     if (!selectedCategoryId) return [];
     return blogSubCategoryData?.result.filter(
       (subCat) => subCat.categoryRef?._id === selectedCategoryId
     );
-
   }, [selectedCategoryId, blogSubCategoryData]);
 
   const onSubmit = async (values: z.infer<typeof blogFormSchema>) => {
     setLoading(true);
 
-    const formData = makeFormData(values);
+    const formData = makeFormData({
+      ...values,
+      subCategoryRef: values.subCategoryRef || undefined,
+      featured: values.featured ? "true" : "false",
+    });
 
     try {
       await createFormAction(formData);
@@ -149,12 +161,12 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Blog Title <b className="text-red-500">*</b>
+                    Blog Title <b className="text-[#52687f]">*</b>
                   </FormLabel>
                   <FormControl>
                     <Input placeholder="Enter blog Title" {...field} />
                   </FormControl>
-                  <FormDescription className="text-red-400 text-xs min-h-4">
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.title?.message}
                   </FormDescription>
                 </FormItem>
@@ -168,7 +180,7 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData
                 render={({ field }) => (
                   <FormItem className="flex-1">
                     <FormLabel>
-                      Category<b className="text-red-500">*</b>
+                      Category<b className="text-[#52687f]">*</b>
                     </FormLabel>
                     <FormControl>
                       <Select
@@ -187,7 +199,7 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData
                         </SelectContent>
                       </Select>
                     </FormControl>
-                    <FormDescription className="text-red-400 text-xs min-h-4">
+                    <FormDescription className="text-[#52687f] text-xs min-h-4">
                       {form.formState.errors.categoryRef?.message}
                     </FormDescription>
                   </FormItem>
@@ -205,7 +217,7 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData
                         onValueChange={field.onChange}
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder="Select subcategory" />
+                          <SelectValue placeholder="Select subcategory (Optional)" />
                         </SelectTrigger>
                         <SelectContent>
                           {filteredSubCategories.map((item) => (
@@ -216,7 +228,7 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData
                         </SelectContent>
                       </Select>
                     </FormControl>
-                    <FormDescription className="text-red-400 text-xs min-h-4">
+                    <FormDescription className="text-[#52687f] text-xs min-h-4">
                       {form.formState.errors.subCategoryRef?.message}
                     </FormDescription>
                   </FormItem>
@@ -231,10 +243,10 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData
                 <FormItem>
                   <FormLabel>Blog Description</FormLabel>
                   <FormControl>
-                    {/* <Input placeholder="Enter product description" {...field} /> */}
+                    {/* <Input placeholder="Enter Blog description" {...field} /> */}
                     <ReactQuill {...field} />
                   </FormControl>
-                  <FormDescription className="text-red-400 text-xs min-h-4">
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.details?.message}
                   </FormDescription>
                 </FormItem>
@@ -248,12 +260,9 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData
                 <FormItem>
                   <FormLabel>YouTube Video Link</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Enter YouTube video URL"
-                      {...field}
-                    />
+                    <Input placeholder="Enter YouTube video URL" {...field} />
                   </FormControl>
-                  <FormDescription className="text-red-400 text-xs min-h-4">
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.youtubeUrl?.message}
                   </FormDescription>
                 </FormItem>
@@ -267,25 +276,27 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData
                 render={({ field: { value, onChange } }) => (
                   <FormItem className="flex-1">
                     <FormLabel>
-                      Add tags <b className="text-red-500">*</b>
+                      Add tags <b className="text-[#52687f]">*</b>
                     </FormLabel>
                     <FormControl>
                       <AntSelect
-                      className="h-10"
+                        className="h-10"
                         mode="tags"
                         style={{ width: "100%" }}
                         placeholder="Enter or select tags"
                         value={value || []}
                         onChange={(newTags) => {
                           const newOptions = newTags
-                            .filter((tag) => !options.some((opt) => opt.value === tag))
+                            .filter(
+                              (tag) => !options.some((opt) => opt.value === tag)
+                            )
                             .map((tag) => ({ value: tag }));
                           setOptions((prev) => [...prev, ...newOptions]);
                           onChange(newTags);
                         }}
                       />
                     </FormControl>
-                    <FormDescription className="text-red-400 text-xs min-h-4">
+                    <FormDescription className="text-[#52687f] text-xs min-h-4">
                       {form.formState.errors.tags?.message}
                     </FormDescription>
                   </FormItem>
@@ -300,14 +311,33 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData
                     <FormControl>
                       <Input placeholder="Enter author name" {...field} />
                     </FormControl>
-                    {/* <FormDescription className="text-red-400 text-xs min-h-4">
+                    {/* <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.name?.message}
                   </FormDescription> */}
                   </FormItem>
                 )}
               />
             </div>
-
+            <FormField
+              control={form.control}
+              name="featured"
+              render={({ field }) => (
+                <FormItem className="flex items-center gap-2">
+                  <FormControl>
+                    <input
+                      type="checkbox"
+                      checked={field.value}
+                      onChange={(e) => field.onChange(e.target.checked)}
+                      className="w-4 h-4 mt-1"
+                    />
+                  </FormControl>
+                  <FormLabel className="text-sm">Mark as Featured</FormLabel>
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
+                    {form.formState.errors.featured?.message}
+                  </FormDescription>
+                </FormItem>
+              )}
+            />
             <Button type="submit" loading={loading} className="my-6">
               Create
             </Button>
@@ -316,9 +346,7 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData
           {/* Image */}
           <div className="col-span-1 min-h-[500px] grid grid-cols-2">
             <div className="">
-              <Label>
-                Blog Image(1 File)
-              </Label>
+              <Label>Blog Image(1 File)</Label>
               <FormField
                 control={form.control}
                 name="image"
@@ -362,7 +390,7 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({ blogCategoryData
                   ))}
               </div>
 
-              <div className="text-red-400 text-xs min-h-4">
+              <div className="text-[#52687f] text-xs min-h-4">
                 {form.formState.errors.image?.message}
               </div>
             </div>

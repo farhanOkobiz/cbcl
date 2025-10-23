@@ -26,14 +26,14 @@ const ContactForm = () => {
     try {
       const result = await ContactPosting(data);
       if (result) {
-        toast.success("Your message has been sent successfully!");
+        toast.success("আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে!");
         reset();
       } else {
-        toast.error("Something went wrong.");
+        toast.error("কিছু ভুল হয়েছে, অনুগ্রহ করে আবার চেষ্টা করুন।");
       }
     } catch (error) {
       console.error("Error submitting contact form:", error);
-      toast.error("An error occurred. Please try again later.");
+      toast.error("একটি ত্রুটি ঘটেছে। দয়া করে পরে আবার চেষ্টা করুন।");
     }
   };
 
@@ -46,14 +46,14 @@ const ContactForm = () => {
             className="block text-gray-700 font-medium mb-2"
             htmlFor="name"
           >
-            Name
+            নাম
           </label>
           <input
             type="text"
             id="name"
             {...register("name")}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter your name"
+            placeholder="আপনার নাম লিখুন"
           />
         </div>
 
@@ -63,14 +63,14 @@ const ContactForm = () => {
             className="block text-gray-700 font-medium mb-2"
             htmlFor="email"
           >
-            Email
+            ইমেইল
           </label>
           <input
             type="email"
             id="email"
             {...register("email")}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter your email"
+            placeholder="আপনার ইমেইল লিখুন"
           />
         </div>
 
@@ -80,17 +80,19 @@ const ContactForm = () => {
             className="block text-gray-700 font-medium mb-2"
             htmlFor="phone"
           >
-            Phone
+            মোবাইল নম্বর
           </label>
           <input
             type="tel"
             id="phone"
-            {...register("phone", { required: "Phone number is required" })}
+            {...register("phone", { required: "মোবাইল নম্বর প্রয়োজন" })}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter your phone number"
+            placeholder="আপনার মোবাইল নম্বর লিখুন"
           />
           {errors.phone && (
-            <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
+            <p className="text-[#52687f] text-sm mt-1">
+              {errors.phone.message}
+            </p>
           )}
         </div>
 
@@ -100,14 +102,14 @@ const ContactForm = () => {
             className="block text-gray-700 font-medium mb-2"
             htmlFor="subject"
           >
-            Subject
+            বিষয়
           </label>
           <input
             type="text"
             id="subject"
             {...register("subject")}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter subject"
+            placeholder="বিষয় লিখুন"
           />
         </div>
 
@@ -117,14 +119,14 @@ const ContactForm = () => {
             className="block text-gray-700 font-medium mb-2"
             htmlFor="message"
           >
-            Message
+            বার্তা
           </label>
           <textarea
             id="message"
             rows={3}
             {...register("message")}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Type your message here..."
+            placeholder="এখানে আপনার বার্তাটি লিখুন..."
           ></textarea>
         </div>
 
@@ -132,9 +134,9 @@ const ContactForm = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="bg-[#52687f] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#CCD5AE] transition duration-300 w-full lg:w-[60vh] cursor-pointer"
+          className="bg-[#52687f] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#3e546b] transition duration-300 w-full cursor-pointer"
         >
-          {isSubmitting ? "Sending..." : "Send"}
+          {isSubmitting ? "পাঠানো হচ্ছে..." : "বার্তা পাঠান"}
         </button>
       </form>
       <ToastContainer position="top-right" autoClose={3000} />

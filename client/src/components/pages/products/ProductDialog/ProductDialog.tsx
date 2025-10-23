@@ -291,7 +291,7 @@ const ProductDialog: React.FC<Product> = ({
                     </div>
                   )}
                   {levelError && (
-                    <p className="text-red-500 text-sm mt-1">
+                    <p className="text-[#52687f] text-sm mt-1">
                       Please select a size.
                     </p>
                   )}
@@ -337,7 +337,7 @@ const ProductDialog: React.FC<Product> = ({
                       ))}
                   </div>
                   {colorError && (
-                    <p className="text-red-500 text-sm mt-1">
+                    <p className="text-[#52687f] text-sm mt-1">
                       Please select color.
                     </p>
                   )}

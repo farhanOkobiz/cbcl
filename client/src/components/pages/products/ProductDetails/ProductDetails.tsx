@@ -226,7 +226,7 @@ const ProductDetails: React.FC<Props> = ({ product }: Props) => {
                     ))}
                 </div>
                 {levelError && (
-                  <p className="text-red-500 text-sm mt-1">
+                  <p className="text-[#52687f] text-sm mt-1">
                     Please select a size.
                   </p>
                 )}
@@ -264,7 +264,7 @@ const ProductDetails: React.FC<Props> = ({ product }: Props) => {
                     )}
                 </div>
                 {colorError && (
-                  <p className="text-red-500 text-sm mt-1">
+                  <p className="text-[#52687f] text-sm mt-1">
                     Please select color.
                   </p>
                 )}

@@ -90,12 +90,12 @@ export const CreateCampaignForm: React.FC = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  Campaign Title <b className="text-red-500">*</b>
+                  Campaign Title <b className="text-[#52687f]">*</b>
                 </FormLabel>
                 <FormControl>
                   <Input placeholder="Enter campaign name" {...field} />
                 </FormControl>
-                <FormDescription className="text-red-400 text-xs min-h-4">
+                <FormDescription className="text-[#52687f] text-xs min-h-4">
                   {form.formState.errors.name?.message}
                 </FormDescription>
               </FormItem>
@@ -109,7 +109,7 @@ export const CreateCampaignForm: React.FC = () => {
               <div className="flex items-end gap-2 w-full">
                 <FormItem className="flex-1">
                   <FormLabel>
-                    Coupon <b className="text-red-500">*</b>
+                    Coupon <b className="text-[#52687f]">*</b>
                   </FormLabel>
                   <FormControl>
                     <Select onValueChange={field.onChange} value={field.value}>
@@ -128,7 +128,7 @@ export const CreateCampaignForm: React.FC = () => {
                       </SelectContent>
                     </Select>
                   </FormControl>
-                  <FormDescription className="text-red-400 text-xs min-h-4">
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.couponRef?.message}
                   </FormDescription>
                 </FormItem>

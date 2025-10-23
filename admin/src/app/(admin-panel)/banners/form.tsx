@@ -105,7 +105,6 @@ export const CreateBannerForm: React.FC = () => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="grid grid-cols-4 gap-2 items-end py-2"
         >
-
           {/* <FormField
             control={form.control}
             name="details"
@@ -115,7 +114,7 @@ export const CreateBannerForm: React.FC = () => {
                 <FormControl>
                   <Input placeholder="Enter banner details" {...field} />
                 </FormControl>
-                <FormDescription className="text-red-400 text-xs min-h-4">
+                <FormDescription className="text-[#52687f] text-xs min-h-4">
                   {form.formState.errors.details?.message}
                 </FormDescription>
               </FormItem>
@@ -130,7 +129,7 @@ export const CreateBannerForm: React.FC = () => {
                 <FormControl>
                   <Input placeholder="Enter bannerCategory number" {...field} />
                 </FormControl>
-                <FormDescription className="text-red-400 text-xs min-h-4">
+                <FormDescription className="text-[#52687f] text-xs min-h-4">
                   {form.formState.errors.bannerCategory?.message}
                 </FormDescription>
               </FormItem>
@@ -144,7 +143,7 @@ export const CreateBannerForm: React.FC = () => {
               <div className="flex items-end gap-2 w-full">
                 <FormItem className="flex-1">
                   <FormLabel>
-                    Banner Type <b className="text-red-500">*</b>
+                    Banner Type <b className="text-[#52687f]">*</b>
                   </FormLabel>
                   <FormControl>
                     <Select onValueChange={field.onChange} value={field.value}>
@@ -160,7 +159,7 @@ export const CreateBannerForm: React.FC = () => {
                       </SelectContent>
                     </Select>
                   </FormControl>
-                  <FormDescription className="text-red-400 text-xs min-h-4">
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.type?.message}
                   </FormDescription>
                 </FormItem>
@@ -172,14 +171,11 @@ export const CreateBannerForm: React.FC = () => {
             name="link"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>
-                  Banner Link 
-                </FormLabel>
+                <FormLabel>Banner Link</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter banner link" {...field} />
                 </FormControl>
-                 <FormDescription className="text-red-400 text-xs min-h-4">
-                  </FormDescription>
+                <FormDescription className="text-[#52687f] text-xs min-h-4"></FormDescription>
               </FormItem>
             )}
           />
@@ -191,7 +187,7 @@ export const CreateBannerForm: React.FC = () => {
               render={({ field }) => (
                 <div>
                   <FormLabel>
-                    Image <b className="text-red-500">*</b>
+                    Image <b className="text-[#52687f]">*</b>
                   </FormLabel>
                   <Upload
                     listType="picture-card"
@@ -230,7 +226,7 @@ export const CreateBannerForm: React.FC = () => {
                 ))}
             </div>
 
-            <div className="text-red-400 text-xs min-h-4">
+            <div className="text-[#52687f] text-xs min-h-4">
               {form.formState.errors.image?.message}
             </div>
           </div>

@@ -99,12 +99,12 @@ export const CreateForm: React.FC = () => {
               render={({ field }) => (
                 <FormItem className="flex-1">
                   <FormLabel>
-                    Blog  Category Name <b className="text-red-500">*</b>
+                    Blog Category Name <b className="text-[#52687f]">*</b>
                   </FormLabel>
                   <FormControl>
                     <Input placeholder="Enter category name" {...field} />
                   </FormControl>
-                  <FormDescription className="text-red-400 text-xs min-h-4">
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.name?.message}
                   </FormDescription>
                 </FormItem>
@@ -118,7 +118,7 @@ export const CreateForm: React.FC = () => {
               render={() => (
                 <FormItem className="flex-1">
                   <FormLabel>
-                    Image <b className="text-red-500">*</b>
+                    Image <b className="text-[#52687f]">*</b>
                   </FormLabel>
                   <Upload
                     listType="picture-card"
@@ -145,7 +145,7 @@ export const CreateForm: React.FC = () => {
               render={() => (
                 <FormItem className="flex-1">
                   <FormLabel>
-                    Vector Image <b className="text-red-500">*</b>
+                    Vector Image <b className="text-[#52687f]">*</b>
                   </FormLabel>
                   <Upload
                     listType="picture-card"

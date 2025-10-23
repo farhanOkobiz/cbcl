@@ -153,12 +153,12 @@ export const CouponDetailsSheet: React.FC<Props> = ({ coupon }) => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Coupon Code <b className="text-red-500">*</b>
+                    Coupon Code <b className="text-[#52687f]">*</b>
                   </FormLabel>
                   <FormControl>
                     <Input placeholder="Enter coupon code" {...field} />
                   </FormControl>
-                  <FormDescription className="text-red-400 text-xs min-h-4">
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.code?.message}
                   </FormDescription>
                 </FormItem>
@@ -173,7 +173,7 @@ export const CouponDetailsSheet: React.FC<Props> = ({ coupon }) => {
                   <FormControl>
                     <Input placeholder="Enter coupon discount" {...field} />
                   </FormControl>
-                  <FormDescription className="text-red-400 text-xs min-h-4">
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.discount?.message}
                   </FormDescription>
                 </FormItem>
@@ -188,7 +188,7 @@ export const CouponDetailsSheet: React.FC<Props> = ({ coupon }) => {
                   <FormControl>
                     <Input placeholder="Enter useLimit number" {...field} />
                   </FormControl>
-                  <FormDescription className="text-red-400 text-xs min-h-4">
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.useLimit?.message}
                   </FormDescription>
                 </FormItem>
@@ -209,7 +209,7 @@ export const CouponDetailsSheet: React.FC<Props> = ({ coupon }) => {
                       className="w-full"
                     />
                   </FormControl>
-                  <FormDescription className="text-red-400 text-xs min-h-4">
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.startDate?.message}
                   </FormDescription>
                 </FormItem>
@@ -230,7 +230,7 @@ export const CouponDetailsSheet: React.FC<Props> = ({ coupon }) => {
                       className="w-full"
                     />
                   </FormControl>
-                  <FormDescription className="text-red-400 text-xs min-h-4">
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.expireDate?.message}
                   </FormDescription>
                 </FormItem>
@@ -243,7 +243,7 @@ export const CouponDetailsSheet: React.FC<Props> = ({ coupon }) => {
                 <div className="flex items-end gap-2 w-full">
                   <FormItem className="flex-1">
                     <FormLabel>
-                      Coupon Type <b className="text-red-500">*</b>
+                      Coupon Type <b className="text-[#52687f]">*</b>
                     </FormLabel>
                     <FormControl>
                       <Select
@@ -262,7 +262,7 @@ export const CouponDetailsSheet: React.FC<Props> = ({ coupon }) => {
                         </SelectContent>
                       </Select>
                     </FormControl>
-                    <FormDescription className="text-red-400 text-xs min-h-4">
+                    <FormDescription className="text-[#52687f] text-xs min-h-4">
                       {form.formState.errors.discountType?.message}
                     </FormDescription>
                   </FormItem>
@@ -294,7 +294,7 @@ export const CouponDetailsSheet: React.FC<Props> = ({ coupon }) => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormDescription className="text-red-400 text-xs min-h-4">
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
                         {form.formState.errors.categoryRef?.message}
                       </FormDescription>
                     </FormItem>
@@ -328,7 +328,7 @@ export const CouponDetailsSheet: React.FC<Props> = ({ coupon }) => {
                           </SelectContent>
                         </Select>
                       </FormControl>
-                      <FormDescription className="text-red-400 text-xs min-h-4">
+                      <FormDescription className="text-[#52687f] text-xs min-h-4">
                         {form.formState.errors.subCategoryRef?.message}
                       </FormDescription>
                     </FormItem>
