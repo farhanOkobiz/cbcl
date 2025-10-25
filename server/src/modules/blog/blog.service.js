@@ -28,22 +28,30 @@ class BlogService extends BaseService {
   }
 
   async getAllBlog(payload) {
-    const { tagRef, category, subCategory } = payload;
+    const { tagRef, blogCategoryRef, blogSubCategoryRef } = payload;
+    console.log(blogCategoryRef, blogSubCategoryRef, "ok");
+    const filter = {}; // filter object
 
+    if (tagRef) filter.tagRef = tagRef;
+    if (blogCategoryRef) filter.blogCategoryRef = blogCategoryRef;
+    if (blogSubCategoryRef) filter.blogSubCategoryRef = blogSubCategoryRef;
+
+    return await this.#repository.findAll(filter);
+  }
+
+  async getAllLatestBlog(payload) {
+    const { tagRef } = payload;
     const filter = {
-      status: true,
-      $or: [
-        { youtubeUrl: { $exists: false } },
-        { youtubeUrl: null },
-        { youtubeUrl: "" },
+      $and: [
+        { $or: [{ youtubeUrl: { $exists: false } }, { youtubeUrl: "" }] },
+        { $or: [{ facebookUrl: { $exists: false } }, { facebookUrl: "" }] },
       ],
     };
 
     if (tagRef) filter.tagRef = tagRef;
-    if (category) filter["blogCategoryRef"] = category;
-    if (subCategory) filter["blogSubCategoryRef"] = subCategory;
 
-    return await this.#repository.findAll(filter);
+    // Fetch items sorted by createdAt descending (latest first)
+    return await this.#repository.findAll(filter, { sort: { createdAt: -1 } });
   }
 
   async getAllVideoBlog(payload) {

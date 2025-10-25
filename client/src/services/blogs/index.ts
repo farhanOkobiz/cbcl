@@ -15,6 +15,11 @@ export const getAllBlogs = async (filters?: {
   return res.json();
 };
 
+export const getAllLatestBlogs = async () => {
+  const res = await fetch(`${apiBaseUrl}/blog/latestBlogs`);
+  return res.json();
+};
+
 export const getAllVideoBlogs = async () => {
   const res = await fetch(`${apiBaseUrl}/blog/videoblog`);
   return res.json();

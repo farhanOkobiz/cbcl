@@ -334,6 +334,40 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
                 )}
               />
 
+              {/* Facebook Video Link */}
+              <FormField
+                control={form.control}
+                name="facebookUrl"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>YouTube Video Link</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter Facebook URL" {...field} />
+                    </FormControl>
+                    <FormDescription className="text-[#52687f] text-xs min-h-4">
+                      {form.formState.errors.facebookUrl?.message}
+                    </FormDescription>
+                  </FormItem>
+                )}
+              />
+
+              {/* YouTube Video Link */}
+              <FormField
+                control={form.control}
+                name="youtubeUrl"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>YouTube Video Link</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter YouTube video URL" {...field} />
+                    </FormControl>
+                    <FormDescription className="text-[#52687f] text-xs min-h-4">
+                      {form.formState.errors.youtubeUrl?.message}
+                    </FormDescription>
+                  </FormItem>
+                )}
+              />
+
               {/* Tags */}
               <Controller
                 control={control}

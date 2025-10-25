@@ -18,6 +18,7 @@ BlogRoute.route("/:id")
   .put(upload.any(), controller.updateBlog)
   .delete(controller.deleteBlog);
 
+BlogRoute.get("/latestBlogs", controller.getAllLatestBlog);
 BlogRoute.get("/videoBlog", controller.getAllVideoBlog);
 BlogRoute.get("/facebookBlogs", controller.getAllFacebookBlog);
 

@@ -1,7 +1,7 @@
 import React from "react";
 import BlogCard from "../BlogCard/BlogCard";
 import Link from "next/link";
-import { getAllBlogs } from "@/services/blogs";
+import { getAllLatestBlogs } from "@/services/blogs";
 type Blog = {
   id: string;
   title: string;
@@ -14,7 +14,7 @@ type Blog = {
 };
 
 const Blogs = async () => {
-  const allBlogs = await getAllBlogs();
+  const allBlogs = await getAllLatestBlogs();
 
   return (
     <div className="">

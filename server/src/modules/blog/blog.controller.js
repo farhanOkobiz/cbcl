@@ -2,6 +2,8 @@ const catchError = require("../../middleware/errors/catchError.js");
 const responseHandler = require("../../utils/responseHandler.js");
 const withTransaction = require("../../middleware/transactions/withTransaction.js");
 const BlogService = require("./blog.service.js");
+const { BlogCategorySchema } = require("../../models/index.js");
+const { BlogSubCategorySchema } = require("../../models/index.js");
 
 class BlogController {
   createBlog = withTransaction(async (req, res, next, session) => {
@@ -36,16 +38,43 @@ class BlogController {
   });
 
   getAllBlog = catchError(async (req, res, next) => {
-    const { tags, category, subCategory } = req.query;
-
-    const payload = {
+     const {
+      category: categorySlug,
+      subCategory: subCategorySlug,
       tags,
-      category,
-      subCategory,
+    } = req.query;
+
+    let categoryId;
+    if (categorySlug) {
+      const category = await BlogCategorySchema.findOne({ slug: categorySlug });
+      categoryId = category?._id;
+    }
+
+    let subCategoryId;
+    if (subCategorySlug) {
+      const subCategory = await BlogSubCategorySchema.findOne({
+        slug: subCategorySlug,
+      });
+      subCategoryId = subCategory?._id;
+    }
+
+    const filter = {};
+    if (tags) filter.tagRef = tags;
+    if (categoryId) filter.blogCategoryRef = categoryId;
+    if (subCategoryId) filter.blogSubCategoryRef = subCategoryId;
+
+    const blogResult = await BlogService.getAllBlog(filter);
+    const resDoc = responseHandler(200, "Get All Blogs", blogResult);
+    res.status(resDoc.statusCode).json(resDoc);
+  });
+  
+  getAllLatestBlog = catchError(async (req, res, next) => {
+    const payload = {
+      tags: req.query.tags,
     };
 
-    const blogResult = await BlogService.getAllBlog(payload);
-    const resDoc = responseHandler(200, "Get All Blogs", blogResult);
+    const blogResult = await BlogService.getAllLatestBlog(payload);
+    const resDoc = responseHandler(200, "Get All Video Blogs", blogResult);
     res.status(resDoc.statusCode).json(resDoc);
   });
 
