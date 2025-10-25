@@ -59,6 +59,16 @@ class BlogController {
     res.status(resDoc.statusCode).json(resDoc);
   });
 
+  getAllFacebookBlog = catchError(async (req, res, next) => {
+    const payload = {
+      tags: req.query.tags,
+    };
+
+    const blogResult = await BlogService.getAllFacebookBlog(payload);
+    const resDoc = responseHandler(200, "Get All Facebook Blogs", blogResult);
+    res.status(resDoc.statusCode).json(resDoc);
+  });
+
   getBlogWithPagination = catchError(async (req, res, next) => {
     let payload = {
       page: req.query.page,
