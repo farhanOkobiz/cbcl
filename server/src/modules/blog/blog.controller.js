@@ -38,7 +38,7 @@ class BlogController {
   });
 
   getAllBlog = catchError(async (req, res, next) => {
-     const {
+    const {
       category: categorySlug,
       subCategory: subCategorySlug,
       tags,
@@ -67,7 +67,7 @@ class BlogController {
     const resDoc = responseHandler(200, "Get All Blogs", blogResult);
     res.status(resDoc.statusCode).json(resDoc);
   });
-  
+
   getAllLatestBlog = catchError(async (req, res, next) => {
     const payload = {
       tags: req.query.tags,
@@ -130,7 +130,7 @@ class BlogController {
       facebookUrl: req?.body?.facebookUrl,
       author: req?.body?.author,
       tags: req?.body?.tags,
-      status: req?.body?.status,
+      featured: req?.body?.featured ?? false,
     };
     const blogResult = await BlogService.updateBlog(id, payload, payloadFiles);
     const resDoc = responseHandler(201, "Blog Update successfully", blogResult);

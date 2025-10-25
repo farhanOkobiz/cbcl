@@ -79,6 +79,9 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
       author: blog.author,
       tags: blog.tags,
       image: [],
+      facebookUrl: blog.facebookUrl,
+      youtubeUrl: blog.youtubeUrl,
+      featured: blog.featured,
     },
   });
 
