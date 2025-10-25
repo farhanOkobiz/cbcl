@@ -13,7 +13,6 @@ interface ProductsProps {
 
 const BlogAndProduct: React.FC<ProductsProps> = ({ blogs }) => {
 
-  console.log("products?.data?.result?.products?", blogs);
 
   return (
     <div className="Container relative mt-16">

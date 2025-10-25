@@ -32,11 +32,17 @@ export const columns: ColumnDef<TBlog>[] = [
     },
   },
   {
+    header: "Facebook Url",
+    accessorKey: "facebookUrl",
+    cell: ({ row }) => (
+      <div className="w-[100px] truncate">{row.original.facebookUrl}</div>
+    ),
+  },
+  {
     header: "YoutTube Video",
     accessorKey: "youtubeUrl",
     cell: ({ row }) => {
-
-      const url = row.original.youtubeUrl
+      const url = row.original.youtubeUrl;
       if (!url) return <span className="text-gray-400">No video</span>;
 
       const videoIdMatch = url.match(
@@ -45,28 +51,28 @@ export const columns: ColumnDef<TBlog>[] = [
       const videoId = videoIdMatch ? videoIdMatch[1] : null;
 
       return <YouTubeModal url={url} />;
-    }
+    },
   },
   {
     header: "Title",
     accessorKey: "title",
   },
-  {
-    header: "Blog Category",
-    accessorKey: "blogCategoryRef",
-    cell: ({ row }) =>
-      typeof row.original.blogCategoryRef === "object"
-        ? row.original.blogCategoryRef.name
-        : "N/A",
-  },
-  {
-    header: "Blog Subcategory",
-    accessorKey: "blogSubCategoryRef",
-    cell: ({ row }) =>
-      typeof row.original.blogSubCategoryRef === "object"
-        ? row.original.blogSubCategoryRef.name
-        : "N/A",
-  },
+  // {
+  //   header: "Blog Category",
+  //   accessorKey: "blogCategoryRef",
+  //   cell: ({ row }) =>
+  //     typeof row.original.blogCategoryRef === "object"
+  //       ? row.original.blogCategoryRef.name
+  //       : "N/A",
+  // },
+  // {
+  //   header: "Blog Subcategory",
+  //   accessorKey: "blogSubCategoryRef",
+  //   cell: ({ row }) =>
+  //     typeof row.original.blogSubCategoryRef === "object"
+  //       ? row.original.blogSubCategoryRef.name
+  //       : "N/A",
+  // },
   {
     header: "Tags",
     accessorKey: "tags",

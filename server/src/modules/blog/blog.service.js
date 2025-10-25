@@ -72,7 +72,6 @@ class BlogService extends BaseService {
 
   async updateBlog(id, payload, payloadFiles, session) {
     const { files } = payloadFiles;
-    const { title, details, tagRef, author, status } = payload;
 
     if (files?.length) {
       const images = await ImgUploader(files);

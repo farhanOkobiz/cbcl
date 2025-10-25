@@ -42,6 +42,7 @@ const defaultValues = {
   title: "",
   details: "",
   youtubeUrl: "",
+  facebookUrl: "",
   image: [],
   tags: [],
   author: "",
@@ -264,6 +265,23 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({
                   </FormControl>
                   <FormDescription className="text-[#52687f] text-xs min-h-4">
                     {form.formState.errors.youtubeUrl?.message}
+                  </FormDescription>
+                </FormItem>
+              )}
+            />
+
+            {/* facebook url  */}
+            <FormField
+              control={form.control}
+              name="facebookUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Facebook Link</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter Facebook URL" {...field} />
+                  </FormControl>
+                  <FormDescription className="text-[#52687f] text-xs min-h-4">
+                    {form.formState.errors.facebookUrl?.message}
                   </FormDescription>
                 </FormItem>
               )}
