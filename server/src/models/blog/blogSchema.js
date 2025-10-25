@@ -33,6 +33,10 @@ const Blogschema = new Schema(
       type: String,
       required: false,
     },
+    facebookUrl: {
+      type: String,
+      required: false,
+    },
     tags: [
       {
         type: String,
@@ -45,10 +49,6 @@ const Blogschema = new Schema(
     featured: {
       type: Boolean,
       default: false,
-    },
-    status: {
-      type: Boolean,
-      default: true,
     },
   },
   { timestamps: true }

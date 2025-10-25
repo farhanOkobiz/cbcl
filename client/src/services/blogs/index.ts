@@ -5,7 +5,6 @@ export const getAllBlogs = async (filters?: {
   categorySlug?: string;
   subCategorySlug?: string;
 }) => {
-  
   const params = new URLSearchParams();
 
   if (filters?.categorySlug) params.append("category", filters.categorySlug);
@@ -18,6 +17,11 @@ export const getAllBlogs = async (filters?: {
 
 export const getAllVideoBlogs = async () => {
   const res = await fetch(`${apiBaseUrl}/blog/videoblog`);
+  return res.json();
+};
+
+export const getAllFacebookBlogs = async () => {
+  const res = await fetch(`${apiBaseUrl}/blog/facebookBlogs`);
   return res.json();
 };
 

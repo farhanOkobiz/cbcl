@@ -17,6 +17,7 @@ class BlogController {
           : undefined,
       details: req?.body?.details,
       youtubeUrl: req?.body?.youtubeUrl,
+      facebookUrl: req?.body?.facebookUrl,
       author: req?.body?.author,
       tags: req?.body?.tags,
       status: req?.body?.status,
@@ -58,6 +59,16 @@ class BlogController {
     res.status(resDoc.statusCode).json(resDoc);
   });
 
+  getAllFacebookBlog = catchError(async (req, res, next) => {
+    const payload = {
+      tags: req.query.tags,
+    };
+
+    const blogResult = await BlogService.getAllFacebookBlog(payload);
+    const resDoc = responseHandler(200, "Get All Facebook Blogs", blogResult);
+    res.status(resDoc.statusCode).json(resDoc);
+  });
+
   getBlogWithPagination = catchError(async (req, res, next) => {
     let payload = {
       page: req.query.page,
@@ -86,6 +97,8 @@ class BlogController {
       blogCategoryRef: req.body.categoryRef,
       blogSubCategoryRef: req.body.subCategoryRef,
       details: req?.body?.details,
+      youtubeUrl: req?.body?.youtubeUrl,
+      facebookUrl: req?.body?.facebookUrl,
       author: req?.body?.author,
       tags: req?.body?.tags,
       status: req?.body?.status,

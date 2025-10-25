@@ -59,6 +59,22 @@ class BlogService extends BaseService {
     return await this.#repository.findAll(filter);
   }
 
+  async getAllFacebookBlog(payload) {
+    const { tagRef } = payload;
+
+    const filter = {
+      facebookUrl: {
+        $exists: true,
+        $ne: "",
+        $nin: ["undefined", null],
+      },
+    };
+
+    if (tagRef) filter.tagRef = tagRef;
+
+    return await this.#repository.findAll(filter);
+  }
+
   async getBlogWithPagination(payload) {
     const blog = await this.#repository.getBlogWithPagination(payload);
     return blog;
@@ -72,7 +88,6 @@ class BlogService extends BaseService {
 
   async updateBlog(id, payload, payloadFiles, session) {
     const { files } = payloadFiles;
-    const { title, details, tagRef, author, status } = payload;
 
     if (files && files.length > 0) {
       const images = await ImgUploader(files);

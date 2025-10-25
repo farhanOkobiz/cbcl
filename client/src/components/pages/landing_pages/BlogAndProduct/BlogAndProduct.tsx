@@ -1,4 +1,3 @@
-
 import { TProduct } from "@/types";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -6,15 +5,13 @@ import BlogAndProductCard from "../../products/BlogAndProductCard/BlogAndProduct
 import Blogs from "../Blogs/Blogs";
 import VideoBlogs from "../VideoBlogs/VideoBlogs";
 import Category from "../Category/Category";
+import FaceBookBlogs from "@/app/(withCommonLayout)/Facebookblog/FaceBookBlogs";
 
 interface ProductsProps {
   blogs: TProduct;
 }
 
 const BlogAndProduct: React.FC<ProductsProps> = ({ blogs }) => {
-
-  console.log("products?.data?.result?.products?", blogs);
-
   return (
     <div className="Container relative mt-16">
       {/* Grid container */}
@@ -37,10 +34,12 @@ const BlogAndProduct: React.FC<ProductsProps> = ({ blogs }) => {
         {/* Right Sidebar - Video Blogs */}
         <div className="col-span-1 md:hidden lg:block">
           <Category />
+          <FaceBookBlogs />
           <VideoBlogs />
         </div>
         <div className="hidden md:grid lg:hidden grid-cols-2 gap-2">
           <Category />
+          <FaceBookBlogs />
           <VideoBlogs />
         </div>
       </div>
