@@ -74,13 +74,12 @@ class BlogService extends BaseService {
     const { files } = payloadFiles;
     const { title, details, tagRef, author, status } = payload;
 
-    if (files?.length) {
+    if (files && files.length > 0) {
       const images = await ImgUploader(files);
       for (const key in images) {
         payload[key] = images[key];
       }
     }
-    console.log("blogData ---", payload);
 
     const blogData = await this.#repository.updateById(id, payload);
     console.log("blogData", blogData);
