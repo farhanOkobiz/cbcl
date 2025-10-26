@@ -68,13 +68,21 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
   const [options, setOptions] = useState<{ value: string }[]>([]);
   const [categoriesLoaded, setCategoriesLoaded] = useState(false);
 
+
+
   const blogFormSchema = getBlogFormSchema(true);
   const form = useForm<z.infer<typeof blogFormSchema>>({
     resolver: zodResolver(blogFormSchema),
     defaultValues: {
       title: blog.title,
-      categoryRef: blog.blogCategoryRef?._id,
-      subCategoryRef: blog.blogSubCategoryRef?._id,
+      categoryRef:
+        typeof blog.blogCategoryRef === "string"
+          ? blog.blogCategoryRef
+          : blog.blogCategoryRef?._id || "",
+      subCategoryRef:
+        typeof blog.blogSubCategoryRef === "string"
+          ? blog.blogSubCategoryRef
+          : blog.blogSubCategoryRef?._id || "",
       details: blog.details,
       author: blog.author,
       tags: blog.tags,
@@ -85,7 +93,9 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
     },
   });
 
+
   const { control, watch, setValue, formState } = form;
+
   const selectedCategoryId = watch("categoryRef");
 
   useEffect(() => {
@@ -114,7 +124,11 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
       blogSubCategories &&
       blogSubCategories.length > 0
     ) {
-      const categoryId = blog.blogCategoryRef?._id;
+
+      const categoryId =
+        typeof blog.blogCategoryRef === "string"
+          ? blog.blogCategoryRef
+          : blog.blogCategoryRef?._id || "";
 
       const filtered = blogSubCategories.filter((sc: any) => {
         const catId =
@@ -130,7 +144,11 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
 
       setValue("categoryRef", categoryId);
       if (blog.blogSubCategoryRef) {
-        setValue("subCategoryRef", blog.blogSubCategoryRef?._id);
+        const subCatId =
+          typeof blog.blogSubCategoryRef === "string"
+            ? blog.blogSubCategoryRef
+            : blog.blogSubCategoryRef._id || "";
+        setValue("subCategoryRef", subCatId);
       }
     }
   }, [
@@ -343,7 +361,7 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
                 name="facebookUrl"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>YouTube Video Link</FormLabel>
+                    <FormLabel>Facebook Link</FormLabel>
                     <FormControl>
                       <Input placeholder="Enter Facebook URL" {...field} />
                     </FormControl>

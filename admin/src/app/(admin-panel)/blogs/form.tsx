@@ -58,12 +58,13 @@ type TBlogCategory = {
   status: boolean;
 };
 
-type TBlogSubCategory = {
+export type TBlogSubCategory = {
   _id: string;
   name: string;
   slug: string;
-  blogCategoryRef: string;
+  blogCategoryRef?: string | { _id: string; name: string } | undefined;
 };
+
 
 type CreateBlogFormProps = {
   blogCategoryData: {
@@ -81,6 +82,7 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({
   blogSubCategoryData,
 }) => {
   const { toast } = useToast();
+
 
   const [thumbnailFileList, setThumbnailFileList] = React.useState([]);
 
@@ -109,9 +111,14 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({
   // filtered subcategories
   const filteredSubCategories = React.useMemo(() => {
     if (!selectedCategoryId) return [];
-    return blogSubCategoryData?.result.filter(
-      (subCat) => subCat.categoryRef?._id === selectedCategoryId
-    );
+    return blogSubCategoryData?.result.filter((subCat) => {
+      const catId =
+        typeof subCat.blogCategoryRef === "string"
+          ? subCat.blogCategoryRef
+          : subCat.blogCategoryRef?._id || "";
+
+      return catId === selectedCategoryId;
+    });
   }, [selectedCategoryId, blogSubCategoryData]);
 
   const onSubmit = async (values: z.infer<typeof blogFormSchema>) => {
