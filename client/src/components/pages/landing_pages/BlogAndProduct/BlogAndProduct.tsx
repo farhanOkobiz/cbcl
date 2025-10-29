@@ -1,4 +1,4 @@
-import { TProduct } from "@/types";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import BlogAndProductCard from "../../products/BlogAndProductCard/BlogAndProductCard";
@@ -6,12 +6,16 @@ import Blogs from "../Blogs/Blogs";
 import VideoBlogs from "../VideoBlogs/VideoBlogs";
 import Category from "../Category/Category";
 import FaceBookBlogs from "@/app/(withCommonLayout)/Facebookblog/FaceBookBlogs";
+import { Blog } from "@/types/blog";
 
-interface ProductsProps {
-  blogs: TProduct;
+interface BlogProps {
+  blogs: {
+    data: Blog[];
+  };
 }
 
-const BlogAndProduct: React.FC<ProductsProps> = ({ blogs }) => {
+
+const BlogAndProduct: React.FC<BlogProps> = ({ blogs }) => {
   return (
     <div className="Container relative mt-16">
       {/* Grid container */}
@@ -27,7 +31,7 @@ const BlogAndProduct: React.FC<ProductsProps> = ({ blogs }) => {
               Our Featured Blogs
             </h2>
           </div>
-          {blogs?.data?.slice(0, 3).map((blog: TProduct) => (
+          {blogs?.data?.slice(0, 3).map((blog: Blog) => (
             <BlogAndProductCard key={blog._id} blog={blog} />
           ))}
         </div>

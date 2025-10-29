@@ -132,6 +132,11 @@ class BlogController {
       tags: req?.body?.tags,
       featured: req?.body?.featured ?? false,
     };
+
+    if (!payload.blogSubCategoryRef) {
+      delete payload.blogSubCategoryRef;
+    }
+
     const blogResult = await BlogService.updateBlog(id, payload, payloadFiles);
     const resDoc = responseHandler(201, "Blog Update successfully", blogResult);
     res.status(resDoc.statusCode).json(resDoc);

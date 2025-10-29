@@ -1,11 +1,12 @@
 import React from "react";
-import Link from "next/link";
 import { getAllFacebookBlogs } from "@/services/blogs";
 import FaceBookBlogCard from "../FaceBookBlogCard/FaceBookBlogCard";
 type Blog = {
   id: string;
   title: string;
+  facebookUrl: string;
   youtubeUrl: string;
+  image: string;
   tags: string[];
   createdAt: string;
   author: string;
@@ -31,11 +32,8 @@ const FaceBookBlogs = async () => {
             .map((blog: Blog) => (
               <FaceBookBlogCard
                 key={blog.id}
-                image={blog.image}
+                image={blog.image ?? ""}
                 title={blog.title}
-                tags={blog.tags}
-                date={blog.createdAt}
-                author={blog.author}
                 slug={blog.slug}
                 facebookUrl={blog.facebookUrl}
               />

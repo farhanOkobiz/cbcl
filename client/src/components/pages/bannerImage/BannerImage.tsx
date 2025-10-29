@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 interface BannerImageProps {
-  image: string;
+  image: string | StaticImageData
 }
 
 const BannerImage: React.FC<BannerImageProps> = ({ image }) => {

@@ -1,20 +1,10 @@
 "use client";
 import Image from "next/image";
 import { apiBaseUrl } from "@/config/config";
-import Link from "next/link";
-import { TProduct } from "@/types";
-import ProductDialog from "../ProductDialog/ProductDialog";
 import { motion } from "framer-motion";
+import { Blog } from "@/types/blog";
 
-type Blog = {
-  _id: string;
-  title: string;
-  author: string;
-  createdAt: string;
-  details: string;
-  tags: string[];
-  image: string;
-};
+
 
 type Props = {
   blog: Blog;
@@ -23,7 +13,7 @@ type Props = {
 
 
 const BlogAndProductCard: React.FC<Props> = ({ blog }) => {
-  const { _id, title, details, image } = blog;
+  const {  title, details, image } = blog;
 
   const formattedDate = new Date(blog.createdAt).toLocaleDateString("bn-BD", {
     day: "numeric",
@@ -66,16 +56,16 @@ const BlogAndProductCard: React.FC<Props> = ({ blog }) => {
               </span>
             </div>
 
-            <div  className="text-lg text-gray-600 leading-relaxed">
+            <div className="text-lg text-gray-600 leading-relaxed">
               <div className="">
-                <div dangerouslySetInnerHTML={{ __html: details }} />
+                <div dangerouslySetInnerHTML={{ __html: details ?? "" }} />
               </div>
             </div>
           </div>
 
-          <div  className="flex justify-start">
+          <div className="flex justify-start">
             <div className="flex gap-2 mb-4">
-              {blog.tags.map((tag) => (
+              {blog.tags.map((tag: string) => (
                 <span
                   key={tag}
                   className="bg-[#52687f] text-white text-xs px-4 py-2 rounded"

@@ -58,7 +58,6 @@ class BlogService extends BaseService {
     const { tagRef } = payload;
 
     const filter = {
-      status: true,
       youtubeUrl: { $exists: true, $ne: "" },
     };
 

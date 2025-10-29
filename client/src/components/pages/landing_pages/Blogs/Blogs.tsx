@@ -2,6 +2,7 @@ import React from "react";
 import BlogCard from "../BlogCard/BlogCard";
 import Link from "next/link";
 import { getAllLatestBlogs } from "@/services/blogs";
+
 type Blog = {
   id: string;
   title: string;

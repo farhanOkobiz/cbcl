@@ -1,12 +1,10 @@
 import NavBar from "@/components/pages/header/NavBar/NavBar";
 import VideoBlogCard from "@/components/pages/landing_pages/VideoBlogCard/VideoBlogCard";
 import { getUser } from "@/services/auth";
-import { getAllBlogs, getAllVideoBlogs } from "@/services/blogs";
+import { getAllBlogs } from "@/services/blogs";
 import { getCartProducts } from "@/services/cart";
-import { getShopSidebar } from "@/services/shopSidebar";
 import React from "react";
 import BlogCategories from "./BlogCategories";
-import BlogCategoryCardSlider from "@/slider/BlogCategoryCardSlider/CategoryCardSlider";
 import { getAllBlogCategorys } from "@/services/categorys";
 import AllBlogCard from "@/components/pages/blog/AllBlogCart";
 import BannerImage from "@/components/pages/bannerImage/BannerImage";
@@ -14,6 +12,21 @@ import B1 from "../../../assets/blog/b1.jpg"
 import FaceBookBlogCard from "../FaceBookBlogCard/FaceBookBlogCard";
 
 export const revalidate = 0;
+
+// Add this type here
+type Blog = {
+  _id: string;
+  id?: string;
+  title: string;
+  details?: string;
+  image?: string;
+  tags?: string[];
+  createdAt?: string;
+  author?: string;
+  slug: string;
+  youtubeUrl?: string;
+  facebookUrl?: string;
+};
 
 export default async function BlogPage({
   searchParams,
@@ -47,17 +60,17 @@ export default async function BlogPage({
   );
 
   const youtubeBlogs = allBlogs.filter(
-    (blog: Blog) => (blog as any).youtubeUrl && (blog as any).youtubeUrl !== ""
+    (blog: Blog) => (blog).youtubeUrl && (blog).youtubeUrl !== ""
   );
 
   const facebookBlogs = allBlogs.filter(
-    (blog: any) =>
+    (blog: Blog) =>
       blog.facebookUrl &&
       blog.facebookUrl !== "" &&
       blog.facebookUrl !== "undefined"
   );
 
-  const normalBlogs = allBlogs.filter((blog: any) => {
+  const normalBlogs = allBlogs.filter((blog: Blog) => {
     const hasYoutube =
       blog.youtubeUrl &&
       blog.youtubeUrl !== "" &&
@@ -95,11 +108,8 @@ export default async function BlogPage({
                 {facebookBlogs?.map((blog: Blog) => (
                   <FaceBookBlogCard
                     key={blog.id}
-                    image={blog.image}
+                    image={blog.image ?? ""}
                     title={blog.title}
-                    tags={blog.tags}
-                    date={blog.createdAt}
-                    author={blog.author}
                     slug={blog.slug}
                     facebookUrl={blog.facebookUrl}
                   />
@@ -118,10 +128,6 @@ export default async function BlogPage({
                     key={blog._id}
                     title={blog.title}
                     youtubeUrl={blog.youtubeUrl}
-                    tags={blog.tags}
-                    date={blog.createdAt}
-                    author={blog.author}
-                    slug={blog.slug}
                   />
                 ))}
               </div>

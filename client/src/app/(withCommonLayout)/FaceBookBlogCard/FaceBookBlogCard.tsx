@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { BsArrowRight, BsFacebook } from "react-icons/bs";
 import { apiBaseUrl } from "@/config/config";
 
 export type FaceBookBlogCardProps = {
   title: string;
-  image: string;
+  image?: string | StaticImageData;
   slug: string;
   facebookUrl?: string;
 };

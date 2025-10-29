@@ -1,27 +1,23 @@
 import Banner from "@/components/pages/landing_pages/Banner/Banner";
-import Category from "@/components/pages/landing_pages/Category/Category";
+// import Category from "@/components/pages/landing_pages/Category/Category";
 
 import React from "react";
 
-import { getAllBestSellProduct, getAllProducts } from "@/services/products";
+// import { getAllBestSellProduct, getAllProducts } from "@/services/products";
+// import Brand from "@/components/pages/landing_pages/Brand/Brand";
+// import BestSelling from "@/components/pages/landing_pages/BestSelling/BestSelling";
+// import Campaign from "@/components/pages/landing_pages/Campaign/Campaign";
+// import { getAllBrands } from "@/services/brand";
+// import { getCampaign } from "@/services/campaign";
 
 import { getCartProducts } from "@/services/cart";
 import NavBar from "@/components/pages/header/NavBar/NavBar";
-
 import { getUser } from "@/services/auth";
-
-import Brand from "@/components/pages/landing_pages/Brand/Brand";
-import BestSelling from "@/components/pages/landing_pages/BestSelling/BestSelling";
-import { getAllBrands } from "@/services/brand";
-import Campaign from "@/components/pages/landing_pages/Campaign/Campaign";
-import { getCampaign } from "@/services/campaign";
 import { Metadata } from "next";
 import CartSideBar from "@/components/pages/cartSideBar/CartSideBar";
-import Blogs from "@/components/pages/landing_pages/Blogs/Blogs";
 import BlogAndProduct from "@/components/pages/landing_pages/BlogAndProduct/BlogAndProduct";
-import VideoBlogs from "@/components/pages/landing_pages/VideoBlogs/VideoBlogs";
 import { getAllBlogs } from "@/services/blogs";
-import BlogAndProductTwo from "@/components/pages/landing_pages/BlogAndProduct copy/BlogAndProduct";
+
 
 export const metadata: Metadata = {
   title: "CBCL",
@@ -32,19 +28,17 @@ export const metadata: Metadata = {
 const page = async () => {
   // ------for campaign----
 
-  const { data: campaign } = await getCampaign();
+  // const { data: campaign } = await getCampaign();
 
   const user = await getUser();
   const userId = user?.id;
   const coupon = "";
   const products = await getCartProducts(userId, coupon);
-
-  // const allproducts = await getAllProducts();
-
   const allBlogs = await getAllBlogs();
 
-  const bestSelling = await getAllBestSellProduct();
-  const brands = await getAllBrands();
+  // const allproducts = await getAllProducts();
+  // const bestSelling = await getAllBestSellProduct();
+  // const brands = await getAllBrands();
 
   return (
     <div className="bg-[#f4f7fa]">

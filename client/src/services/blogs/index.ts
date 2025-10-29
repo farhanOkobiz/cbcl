@@ -21,7 +21,7 @@ export const getAllLatestBlogs = async () => {
 };
 
 export const getAllVideoBlogs = async () => {
-  const res = await fetch(`${apiBaseUrl}/blog/videoblog`);
+  const res = await fetch(`${apiBaseUrl}/blog/videoBlog`);
   return res.json();
 };
 

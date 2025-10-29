@@ -14,6 +14,7 @@ type Blog = {
 
 const VideoBlogs = async () => {
   const allVideoBlogs = await getAllVideoBlogs();
+  
 
   return (
     <div className="mt-6">
@@ -26,10 +27,6 @@ const VideoBlogs = async () => {
                 key={blog.id}
                 title={blog.title}
                 youtubeUrl={blog.youtubeUrl}
-                tags={blog.tags}
-                date={blog.createdAt}
-                author={blog.author}
-                slug={blog.slug}
               />
             ))}
       </div>
