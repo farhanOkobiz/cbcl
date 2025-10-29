@@ -1,6 +1,6 @@
-const fs = require('fs/promises');
-const path = require('path');
-const config = require('../../config/config.js');
+const fs = require("fs/promises");
+const path = require("path");
+const config = require("../../config/config.js");
 
 exports.removeUploadFile = async (fileUrl) => {
   const fileName = path.basename(fileUrl);
@@ -8,7 +8,10 @@ exports.removeUploadFile = async (fileUrl) => {
   try {
     await fs.unlink(removeFile);
   } catch (err) {
-    console.error('Error removing file:', err);
-    throw new Error('File removal failed');
+    if (err.code === "ENOENT") {
+      console.log(`File not found (already deleted): ${removeFile}`);
+      return;
+    }
+    console.error("Error removing file:", err);
   }
 };

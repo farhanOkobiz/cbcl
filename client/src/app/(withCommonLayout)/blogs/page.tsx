@@ -104,14 +104,13 @@ export default async function BlogPage({
               <h2 className="text-gray-900 text-2xl font-bold mb-4">
                 Facebook Blogs
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4    gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3    gap-4">
                 {facebookBlogs?.map((blog: Blog) => (
                   <FaceBookBlogCard
                     key={blog.id}
                     image={blog.image ?? ""}
                     title={blog.title}
-                    slug={blog.slug}
-                    facebookUrl={blog.facebookUrl}
+                    facebookUrl={blog.facebookUrl ?? ""}
                   />
                 ))}
               </div>
@@ -122,7 +121,7 @@ export default async function BlogPage({
           {youtubeBlogs.length > 0 && (
             <div className="mt-8 lg:ml-4">
               <h2 className="text-gray-900 text-2xl font-bold mb-4">Video Blogs</h2>
-              <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
+              <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-4">
                 {youtubeBlogs.map((blog: any) => (
                   <VideoBlogCard
                     key={blog._id}
@@ -138,7 +137,7 @@ export default async function BlogPage({
           {normalBlogs.length > 0 && (
             <div className="mt-8 lg:ml-4">
               <h2 className="text-gray-900 text-2xl font-bold mb-4">All Blogs</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                 {normalBlogs.map((blog: any) => (
                   <AllBlogCard
                     key={blog._id}

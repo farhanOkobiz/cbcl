@@ -1,63 +1,88 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
-import Image, { StaticImageData } from "next/image";
-import { BsArrowRight, BsFacebook } from "react-icons/bs";
-import { apiBaseUrl } from "@/config/config";
+import React, { useEffect, useRef } from "react";
 
 export type FaceBookBlogCardProps = {
-  title: string;
-  image?: string | StaticImageData;
-  slug: string;
-  facebookUrl?: string;
+  facebookUrl: string;
+  title?: string;
+  image?: string;
 };
 
 const FaceBookBlogCard: React.FC<FaceBookBlogCardProps> = ({
-  title,
-  image,
   facebookUrl,
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  let actualUrl = facebookUrl;
+  let isVideo = false;
+
+  // 🧩 Detect iframe or video URL
+  if (facebookUrl.includes("<iframe")) {
+    isVideo = facebookUrl.includes("plugins/video.php");
+    const hrefMatch = facebookUrl.match(/href=([^&\s"]+)/);
+    if (hrefMatch && hrefMatch[1]) {
+      actualUrl = decodeURIComponent(hrefMatch[1]);
+    }
+  } else {
+    isVideo = actualUrl.includes("/videos/");
+  }
+
+  // 🧠 Load Facebook SDK dynamically
+  useEffect(() => {
+    if (!(window as any).FB) {
+      const script = document.createElement("script");
+      script.src =
+        "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0";
+      script.async = true;
+      script.defer = true;
+      script.crossOrigin = "anonymous";
+      document.body.appendChild(script);
+
+      script.onload = () => {
+        if ((window as any).FB) {
+          (window as any).FB.XFBML.parse();
+        }
+      };
+    } else {
+      (window as any).FB.XFBML.parse();
+    }
+  }, [actualUrl]);
+
+  if (!facebookUrl) return null;
+
   return (
-    <a href={facebookUrl} target="_blank" rel="noopener noreferrer">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="group cursor-pointer border border-[#CCD5AE] rounded overflow-hidden"
+    <div className=" rounded-md overflow-hidden">
+      <div
+        ref={containerRef}
+        className="
+          rounded 
+          w-full 
+          sm:max-w-[340px] 
+          md:max-w-[360px] 
+          lg:max-w-[410px]
+          xl:max-w-[500px]
+          mx-auto
+        "
+        style={{
+          maxWidth: "100%",
+        }}
       >
-        {/* Image */}
-        <div className="relative w-full h-56 md:h-36 lg:h-64 xl:h-72 overflow-hidden">
-          <Image
-            src={apiBaseUrl + image}
-            alt={title}
-            fill
-            className="object-cover group-hover:scale-105 duration-500"
-          />
-          {/* Facebook icon badge */}
-          {facebookUrl && (
-            <div className="absolute top-2 right-2 bg-white p-2 rounded-full shadow-md hover:bg-blue-100 transition">
-              <BsFacebook className="text-blue-600 w-5 h-5" />
-            </div>
-          )}
-        </div>
-
-        {/* Content */}
-        <div className="px-3 py-3">
-          <h2 className="lg:text-lg text-base font-semibold line-clamp-1 ">
-            {title}
-          </h2>
-
-          {/* Read More */}
-          <div className="flex items-center gap-1 mt-2 font-semibold ">
-            <span>Read More</span>
-            <span className="mt-1">
-              <BsArrowRight />
-            </span>
-          </div>
-        </div>
-      </motion.div>
-    </a>
+        {isVideo ? (
+          <div
+            className="fb-video"
+            data-href={actualUrl}
+            data-width="100%"
+            data-show-text="true"
+          ></div>
+        ) : (
+          <div
+            className="fb-post"
+            data-href={actualUrl}
+            data-width="100%"
+            data-show-text="true"
+          ></div>
+        )}
+      </div>
+    </div>
   );
 };
 

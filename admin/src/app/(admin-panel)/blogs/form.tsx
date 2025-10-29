@@ -47,6 +47,8 @@ const defaultValues = {
   tags: [],
   author: "",
   featured: false,
+  categoryRef: "",
+  subCategoryRef: "",
 };
 
 type TBlogCategory = {
@@ -62,7 +64,7 @@ export type TBlogSubCategory = {
   _id: string;
   name: string;
   slug: string;
-  blogCategoryRef?: string | { _id: string; name: string } | undefined;
+  categoryRef?: string | { _id: string; name: string } | undefined;
 };
 
 
@@ -82,10 +84,7 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({
   blogSubCategoryData,
 }) => {
   const { toast } = useToast();
-
-
   const [thumbnailFileList, setThumbnailFileList] = React.useState([]);
-
   const [loading, setLoading] = React.useState(false);
   const blogFormSchema = getBlogFormSchema(false);
 
@@ -96,6 +95,7 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({
 
   const { control, register, watch, formState } = form;
   const selectedCategoryId = watch("categoryRef");
+  
 
   const handleThumbnailFileChange = ({ fileList }: any) => {
     setThumbnailFileList(fileList);
@@ -109,17 +109,18 @@ export const CreateBlogForm: React.FC<CreateBlogFormProps> = ({
   };
 
   // filtered subcategories
-  const filteredSubCategories = React.useMemo(() => {
-    if (!selectedCategoryId) return [];
-    return blogSubCategoryData?.result.filter((subCat) => {
-      const catId =
-        typeof subCat.blogCategoryRef === "string"
-          ? subCat.blogCategoryRef
-          : subCat.blogCategoryRef?._id || "";
+const filteredSubCategories = React.useMemo(() => {
+  if (!selectedCategoryId) return [];
+  return blogSubCategoryData?.result.filter((subCat) => {
+    const catId =
+      typeof subCat.categoryRef === "string"
+        ? subCat.categoryRef
+        : subCat.categoryRef?._id || "";
 
-      return catId === selectedCategoryId;
-    });
-  }, [selectedCategoryId, blogSubCategoryData]);
+    return catId === selectedCategoryId;
+  });
+}, [selectedCategoryId, blogSubCategoryData]);
+
 
   const onSubmit = async (values: z.infer<typeof blogFormSchema>) => {
     setLoading(true);

@@ -4,7 +4,7 @@ export const menuList = [
     link: "/",
   },
   {
-    title: "আমাদের সম্পর্কে জানুন",
+    title: "আমাদের সম্পর্কে",
     link: "/about",
   },
   {

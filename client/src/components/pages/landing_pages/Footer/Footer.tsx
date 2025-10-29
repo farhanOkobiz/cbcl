@@ -53,8 +53,8 @@ const Footer: React.FC<FooterProps> = ({ userCartProducts }) => {
 
   return (
     <div className="relative bg-[#52687f]">
-      <div className=" container mx-auto  text-white pt-10 lg:pt-16">
-        <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row justify-between space-y-5">
+      <div className=" mx-auto  text-white pt-10 lg:pt-16">
+        <div className=" Container mx-auto flex flex-col lg:flex-row justify-between space-y-5">
           <div>
             <div className="font-semibold mb-[20px] text-xl">
               যোগাযোগের তথ্য

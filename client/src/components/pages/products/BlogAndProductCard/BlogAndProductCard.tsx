@@ -37,12 +37,12 @@ const BlogAndProductCard: React.FC<Props> = ({ blog }) => {
               src={apiBaseUrl + image}
               alt={title}
               fill
-              className="object-cover rounded"
+              className="object-contain rounded"
             />
           </div>
           {/* Text */}
           <div className="text-justify">
-            <h2 className="font-bold text-xl md:text-2xl lg:text-3xl py-4 text-blue-950">
+            <h2 className="font-bold text-xl md:text-xl 2xl:text-3xl py-4 text-blue-950">
               {title}
             </h2>
             <div className="flex flex-wrap items-center text-gray-500 text-sm mb-4 gap-2">

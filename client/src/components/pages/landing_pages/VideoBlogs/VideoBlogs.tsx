@@ -17,7 +17,7 @@ const VideoBlogs = async () => {
   
 
   return (
-    <div className="mt-6">
+    <div className="mt-6 md:mt-5 lg:mt-6">
       <div className="grid grid-cols-1 gap-4 mt-4">
         {Array.isArray(allVideoBlogs?.data) &&
           allVideoBlogs.data

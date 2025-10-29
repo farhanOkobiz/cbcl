@@ -29,7 +29,7 @@ const VideoBlogCard: React.FC<VideoBlogCardProps> = ({ title, youtubeUrl }) => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="group cursor-pointer"
+        className="group cursor-pointer border border-gray-300 rounded-md"
         onClick={() => videoId && setOpen(true)}
       >
         <div className="p-2 border border-[#CCD5AE] rounded overflow-hidden h-[350px] lg:h-[260px] xl:h-[350px] relative">

@@ -8,13 +8,16 @@ import { getShopSidebar } from "@/services/shopSidebar";
 import ShopPageSidebar from "./ShopPageSidebar";
 import AllPageSidebar from "./AllPageSidebar";
 import { getAllProductsForShop } from "@/services/products";
+import Link from "next/link";
 
 type ResponsiveNavSidBarProps = {
   onClose: () => void;
+  menuList: { title: string; link: string }[];
 };
 
 const ResponsiveNavSidBar: React.FC<ResponsiveNavSidBarProps> = ({
   onClose,
+  menuList,
 }) => {
   const pathname = usePathname();
   const [shopSideBar, setShopSideBar] = useState<TShopSideBar[]>([]);
@@ -53,36 +56,27 @@ const ResponsiveNavSidBar: React.FC<ResponsiveNavSidBarProps> = ({
   };
 
   return (
-    <div className=" ">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.2 }}
-        className="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden"
+    <div className="fixed top-0 left-0 w-[80%] h-full bg-white shadow-lg z-50 overflow-y-auto p-4">
+      <button
+        className="absolute top-3 right-3 text-2xl"
         onClick={onClose}
-      />
-
-      <motion.div
-        initial={{ x: "-100%" }}
-        animate={{ x: 0 }}
-        exit={{ x: "-100%" }}
-        transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}
-        className="w-[70%] lg:w-[20%] bg-[#fff] top-[80px] h-screen fixed  left-0 z-30 pt-12 lg:hidden"
       >
-        {isShopPage ? (
-          // <ShopPageSidebar
-          // shopSideBar={shopSideBar}
-          // products={products ? products.filterOptions : []}
-          // />
-          <ShopPageSidebar
-            shopSideBar={shopSideBar}
-            products={products || defaultProducts}
-          />
-        ) : (
-          <AllPageSidebar shopSideBar={shopSideBar} />
-        )}
-      </motion.div>
+        ×
+      </button>
+
+      <ul className="mt-10 space-y-3 ml-6">
+        {menuList.map((menu, index) => (
+          <li key={index}>
+            <Link
+              href={menu.link}
+              className="block text-lg font-medium text-gray-700 hover:text-blue-600 transition"
+              onClick={onClose}
+            >
+              {menu.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

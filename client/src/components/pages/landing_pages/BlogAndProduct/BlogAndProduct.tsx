@@ -41,11 +41,23 @@ const BlogAndProduct: React.FC<BlogProps> = ({ blogs }) => {
           <FaceBookBlogs />
           <VideoBlogs />
         </div>
-        <div className="hidden md:grid lg:hidden grid-cols-2 gap-2">
-          <Category />
-          <FaceBookBlogs />
-          <VideoBlogs />
+        {/* For md screens (2-column layout) */}
+        <div className="hidden md:grid lg:hidden grid-cols-2 gap-4 items-start">
+          {/* Column 1 - Category */}
+          <div className="space-y-4">
+            <Category />
+            <FaceBookBlogs />
+          </div>
+
+          {/* Column 2 - Video blogs */}
+          <div className="">
+            <h2 className="lg:text-3xl md:text-2xl text-blue-950 text-xl font-semibold uppercase">
+              Video Blogs
+            </h2>
+            <VideoBlogs />
+          </div>
         </div>
+
       </div>
     </div>
   );

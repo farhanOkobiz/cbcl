@@ -34,7 +34,6 @@ const FaceBookBlogs = async () => {
                 key={blog.id}
                 image={blog.image ?? ""}
                 title={blog.title}
-                slug={blog.slug}
                 facebookUrl={blog.facebookUrl}
               />
             ))}

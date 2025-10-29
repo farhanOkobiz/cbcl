@@ -34,8 +34,7 @@ app.use(globalErrorHandler);
 
 mongoose
   .connect(config.databaseUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+   useUnifiedTopology: true
   })
   .then(() => console.log("Database connection successful! --------------"))
   .catch((err) => {
@@ -46,9 +45,3 @@ mongoose
 app.listen(config.port, () => {
   console.log(`app listening to port `, config.port);
 });
-// app.listen(config.port, '192.168.0.117', () => {
-//   console.log(`App listening at http://192.168.0.117:${config.port}`);
-// });
-// app.listen(config.port, '192.168.0.106', () => {
-//   console.log(`App listening at http://192.168.0.106:${config.port}`);
-// });

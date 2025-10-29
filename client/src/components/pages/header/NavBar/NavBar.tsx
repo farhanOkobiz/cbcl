@@ -100,9 +100,8 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
   return (
     <>
       <div
-        className={`hidden lg:block w-full py-4 z-40  text-blue-950 bg-white transition-all duration-300 fixed top-0 ${
-          isScrolled ? "shadow" : " relative "
-        }`}
+        className={`hidden lg:block w-full py-4 z-40  text-blue-950 bg-white transition-all duration-300 fixed top-0 ${isScrolled ? "shadow" : " relative "
+          }`}
       >
         <div className="Container">
           <div className="flex items-center justify-between relative">
@@ -119,7 +118,7 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
                     />
                   </Link>
                 </div>
-                <p className="text-white font-medium">
+                <p className="text-blue-900 font-medium lg:ml-4">
                   Community Business Company Ltd
                 </p>
               </div>
@@ -140,9 +139,8 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
                     </Link> */}
                     <Link href={menu.link}>
                       <li
-                        className={`list-none text-xl lg:text-xl xl:text-2xl absolute hover:text-[#1E3E96] tracking-wider duration-300 menuTitle xl:px-6 px-4 ${
-                          index === menuList.length - 1 ? "" : ""
-                        }`}
+                        className={`list-none text-xl lg:text-xl xl:text-2xl absolute hover:text-[#1E3E96] tracking-wider duration-300 menuTitle xl:px-6 px-4 ${index === menuList.length - 1 ? "" : ""
+                          }`}
                       >
                         {menu.title}
                       </li>
@@ -206,12 +204,11 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
       >
         <div className="">
           <div className="flex items-center justify-between relative">
-            <div className="flex space-x-3 lg:gap-0 gap-2">
+            <div className="flex space-x-3 lg:gap-0">
               <div
                 onClick={() => setShowSideMenu(!showSideMenu)}
-                className={`pr-3  border-gray-300 cursor-pointer mt-6 ${
-                  isShopPage ? "lg:hidden" : "lg:block"
-                }`}
+                className={`  border-gray-300 cursor-pointer mt-3 ${isShopPage ? "lg:hidden" : "lg:block"
+                  }`}
               >
                 {showSideMenu ? (
                   <RiCloseFill className="text-2xl" />
@@ -269,17 +266,20 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
           </div>
         </div>
       </div>
-
+      
       {/* <AnimatePresence>
-        {showSearch && (
-          <ResponsiveSearchForm onClose={() => setShowSearch(false)} />
+        {showSideMenu && (
+          <ResponsiveNavSidBar
+            menuList={menuList}
+            onClose={() => setShowSideMenu(false)}
+          />
         )}
       </AnimatePresence> */}
 
       <AnimatePresence>
         {showSideMenu && (
           <ResponsiveNavSidBar
-            // menuList={menuList}
+            menuList={menuList}
             onClose={() => setShowSideMenu(false)}
           />
         )}

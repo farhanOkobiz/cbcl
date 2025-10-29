@@ -22,7 +22,7 @@ const Blogs = async () => {
       <div className="flex md:items-center md:flex-row flex-col md:justify-between md:gap-0 gap-2">
         <div className="flex flex-col gap-2">
           <h2 className="lg:text-2xl text-xl font-semibold uppercase text-blue-950">
-            Our Latest Blogs
+            Latest Blogs
           </h2>
         </div>
       </div>
