@@ -1,114 +1,63 @@
 "use client";
-import { Button } from "@/components/ui/button";
+
 import {
   Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@radix-ui/react-label";
 import {
-  Boxes,
-  ClipboardCheck,
-  Download,
+
   ScrollText,
   ShoppingBag,
-  Users,
-  UsersRound,
+
 } from "lucide-react";
 import React, { useState } from "react";
-import { useReactToPrint } from "react-to-print";
-import { useStore } from "zustand";
-import { Menubar, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar";
 import { useRouter } from "next/navigation";
-import { makeBDPrice } from "@/utils/helpers";
 import { DashboardMetrics } from "@/types/shared";
-import RadialsChart from "@/components/widget/chart/radials";
-import { getOrderReportsByDuration } from "@/services/reports";
-import SelectDuration from "../../../components/widget/SelectDuration";
-
 interface SalesDashboardProps {
   counts: DashboardMetrics;
 }
 
 export default function AdminDashboard({ counts }: SalesDashboardProps) {
-  const [selectRadialsChart, setSelectRadialsChart] = useState("this-year");
-  const [selectChartLabel, setSelectChartLabel] = useState("This Year");
-  const router = useRouter();
+
 
   return (
-    <div>
-      <div className="flex flex-col   mb-4">
-      <div className="p-4 flex flex-col items-center justify-between gap-5">
-        
-        <div className="flex items-center justify-between w-full gap-3">
-        <Card className="bg-gradient-to-tr bg-primary flex  justify-between w-full h-36">
-          <div className="flex items-center justify-start pl-6 ">
-            <div className="bg-white rounded-sm h-8 w-8 flex justify-center items-center">
-              <ScrollText size={20} />
-            </div>
-            <CardHeader className="">
-              <CardDescription className="text-white">
-                Total Sales
-              </CardDescription>
-              <CardTitle className="text-white">
-                {makeBDPrice(counts.totalSales)}
-              </CardTitle>
-            </CardHeader>
-          </div>
+    <div className="flex flex-col items-center justify-center w-full py-10">
+      <Card
+        className="w-full bg-gradient-to-tr from-[#dfe6ec] to-[#f2f5f8] text-[#52687f] p-8 text-center rounded-2xl shadow-sm border border-[#c9d3dc]"
+      >
+        <h1 className="text-3xl font-bold mb-4" style={{ color: "#52687f" }}>
+          Community Business Company Ltd
+        </h1>
+        <p className="text-lg leading-relaxed max-w-2xl mx-auto text-[#5a6f86]">
+          Welcome to <span className="font-semibold text-[#52687f]">Community Business Company Ltd</span> —
+          a modern platform that combines <span className="underline">e-commerce</span> and
+          <span className="underline"> blogging</span> to empower communities, entrepreneurs, and readers alike.
+          Our mission is to connect people through business insights and quality products.
+        </p>
+      </Card>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 w-full">
+        <Card className="p-6 flex flex-col items-center text-center bg-[#f6f8fa] border border-[#d4dee7] hover:shadow-md transition">
+          <ShoppingBag size={32} className="mb-3" color="#52687f" />
+          <h2 className="text-xl font-semibold mb-2" style={{ color: "#52687f" }}>
+            E-Commerce Platform
+          </h2>
+          <p className="text-[#5a6f86]">
+            Discover, shop, and grow your business with our trusted marketplace
+            built for both buyers and sellers.
+          </p>
         </Card>
 
-        <Card className="flex  justify-between w-full h-36">
-          <div className="flex items-center justify-start pl-6 ">
-            <div className="bg-[#DDFFE2] rounded-sm h-8 w-8 flex justify-center items-center">
-              <ShoppingBag size={20} color="#29CC6A" />
-            </div>
-            <CardHeader className="">
-              <CardDescription className="">Total Orders</CardDescription>
-              <CardTitle className="">{counts.totalOrders}</CardTitle>
-            </CardHeader>
-          </div>
+        <Card className="p-6 flex flex-col items-center text-center bg-[#f6f8fa] border border-[#d4dee7] hover:shadow-md transition">
+          <ScrollText size={32} className="mb-3" color="#52687f" />
+          <h2 className="text-xl font-semibold mb-2" style={{ color: "#52687f" }}>
+            Business Blog
+          </h2>
+          <p className="text-[#5a6f86]">
+            Stay informed with the latest community stories, business trends,
+            and insights from industry professionals.
+          </p>
         </Card>
-        </div>
-        <div className="flex items-center justify-between w-full gap-3">
-        <Card className="flex i justify-between w-full h-36">
-          <div className="flex items-center justify-start pl-6 ">
-            <div className="bg-[#FFF3DBEE] rounded-sm h-8 w-8 flex justify-center items-center">
-              <ClipboardCheck size={20} color="#FFAA00" />
-            </div>
-            <CardHeader className="">
-              <CardDescription className="">Total Stock</CardDescription>
-              <CardTitle className="">{counts.totalStock}</CardTitle>
-            </CardHeader>
-          </div>
-        </Card>
-
-        <Card className="flex items-center justify-start pl-6 w-full h-36">
-          <div className="bg-[#FFDCF7] rounded-sm h-8 w-8 flex justify-center items-center">
-            <Boxes size={20} color="#FF1BCD" />
-          </div>
-          <CardHeader>
-            <CardDescription>Stock Value</CardDescription>
-            <CardTitle>{makeBDPrice(counts.totalStockValue)}</CardTitle>
-          </CardHeader>
-        </Card>
-        </div>
-        </div>
-        {/* <div>
-          <div className="flex items-center justify-between">
-            <Label className="text-lg font-semibold text-slate-900 dark:text-slate-200">
-              {selectChartLabel}
-            </Label>
-            <div className="">
-                <SelectDuration  setSelectChartFilter= {setSelectRadialsChart}  setSelectChartFilterLabel={setSelectChartLabel}/>
-            </div>
-           
-          </div>
-        
-        <RadialsChart  selectChartDuration={selectRadialsChart}/>
-        </div> */}
-      
       </div>
     </div>
   );
