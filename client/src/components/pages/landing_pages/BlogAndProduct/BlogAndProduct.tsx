@@ -1,4 +1,3 @@
-
 import "swiper/css";
 import "swiper/css/navigation";
 import BlogAndProductCard from "../../products/BlogAndProductCard/BlogAndProductCard";
@@ -14,18 +13,17 @@ interface BlogProps {
   };
 }
 
-
 const BlogAndProduct: React.FC<BlogProps> = ({ blogs }) => {
   return (
     <div className="Container relative mt-16">
       {/* Grid container */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-8 mt-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-2 2xl:gap-8 mt-8">
         {/* Left Sidebar - Blogs */}
-        <div className="col-span-1">
+        <div className="col-span-3">
           <Blogs />
         </div>
         {/* Middle Section - Blog Cards */}
-        <div className="col-span-2 space-y-6">
+        <div className="col-span-5 space-y-6">
           <div className="flex flex-col gap-2">
             <h2 className="lg:text-2xl text-blue-950 text-xl font-semibold uppercase">
               Our Featured Blogs
@@ -36,7 +34,7 @@ const BlogAndProduct: React.FC<BlogProps> = ({ blogs }) => {
           ))}
         </div>
         {/* Right Sidebar - Video Blogs */}
-        <div className="col-span-1 md:hidden lg:block">
+        <div className="col-span-4 md:hidden lg:block mt-1">
           <Category />
           <FaceBookBlogs />
           <VideoBlogs />
@@ -57,7 +55,6 @@ const BlogAndProduct: React.FC<BlogProps> = ({ blogs }) => {
             <VideoBlogs />
           </div>
         </div>
-
       </div>
     </div>
   );

@@ -7,9 +7,7 @@ export type FaceBookBlogCardProps = {
   image?: string;
 };
 
-const FaceBookBlogCard: React.FC<FaceBookBlogCardProps> = ({
-  facebookUrl,
-}) => {
+const FaceBookBlogCard: React.FC<FaceBookBlogCardProps> = ({ facebookUrl }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState<number>(500);
   const [key, setKey] = useState(0);
@@ -35,7 +33,7 @@ const FaceBookBlogCard: React.FC<FaceBookBlogCardProps> = ({
         const width = containerRef.current.offsetWidth;
         setContainerWidth(width);
         // Force re-render when width changes significantly
-        setKey(prev => prev + 1);
+        setKey((prev) => prev + 1);
       }
     };
 
