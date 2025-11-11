@@ -18,7 +18,7 @@ interface CategoryProps {
 const BlogCategoryCardSlider: React.FC<CategoryProps> = ({ blogCategoriesList }) => {
 
   return (
-     <div className="grid grid-cols-1 relative w-full gap-6 border p-4 border-gray-500 rounded">
+     <div className="grid grid-cols-1 relative w-full gap-6 border p-4 border-gray-500 rounded mt-1">
       {blogCategoriesList.map((category) => (
         <Link
           key={category._id}

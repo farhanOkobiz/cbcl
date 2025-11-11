@@ -26,7 +26,7 @@ const Blogs = async () => {
           </h2>
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-4 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4 mt-6">
         {Array.isArray(allBlogs?.data) &&
           allBlogs.data
             .slice(0, 10)

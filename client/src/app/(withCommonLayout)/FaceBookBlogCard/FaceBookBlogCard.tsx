@@ -15,7 +15,7 @@ const FaceBookBlogCard: React.FC<FaceBookBlogCardProps> = ({ facebookUrl }) => {
   let actualUrl = facebookUrl;
   let isVideo = false;
 
-  // 🧩 Detect iframe or video URL
+  // Detect iframe or video URL
   if (facebookUrl.includes("<iframe")) {
     isVideo = facebookUrl.includes("plugins/video.php");
     const hrefMatch = facebookUrl.match(/href=([^&\s"]+)/);
@@ -26,7 +26,7 @@ const FaceBookBlogCard: React.FC<FaceBookBlogCardProps> = ({ facebookUrl }) => {
     isVideo = actualUrl.includes("/videos/");
   }
 
-  // 📏 Monitor container width changes
+  // Monitor container width changes
   useEffect(() => {
     const updateWidth = () => {
       if (containerRef.current) {
@@ -58,7 +58,7 @@ const FaceBookBlogCard: React.FC<FaceBookBlogCardProps> = ({ facebookUrl }) => {
     };
   }, []);
 
-  // 🧠 Load Facebook SDK dynamically
+  // Load Facebook SDK dynamically
   useEffect(() => {
     if (!(window as any).FB) {
       const script = document.createElement("script");
