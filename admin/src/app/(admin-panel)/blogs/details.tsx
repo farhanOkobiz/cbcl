@@ -437,6 +437,24 @@ export const BlogDetailsSheet: React.FC<Props> = ({ blog }) => {
                 )}
               />
             </div>
+            {/* Featured */}
+            <FormField
+              control={control}
+              name="featured"
+              render={({ field }) => (
+                <FormItem className="flex items-center gap-2 my-2">
+                  <FormControl>
+                    <input
+                      type="checkbox"
+                      checked={field.value}
+                      onChange={(e) => field.onChange(e.target.checked)}
+                      className="w-4 h-4 cursor-pointer mt-1.5"
+                    />
+                  </FormControl>
+                  <FormLabel className="cursor-pointer">Mark as Featured</FormLabel>
+                </FormItem>
+              )}
+            />
 
             {/* Image Upload */}
             <div className="">

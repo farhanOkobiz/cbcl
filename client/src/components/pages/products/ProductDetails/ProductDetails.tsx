@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import { getUser } from "@/services/auth";
 import { useRouter } from "next/navigation";
 import { useAnimation } from "framer-motion";
+import Link from "next/link";
 
 interface Props {
   product: TProduct;
@@ -140,7 +141,7 @@ const ProductDetails: React.FC<Props> = ({ product }: Props) => {
             {name}
           </h2>
 
-          <div className="flex gap-2 mt-2">
+          {/* <div className="flex gap-2 mt-2">
             <p className="flex items-center gap-1 font-semibold text-xl">
               <span>৳</span>{" "}
               <span>
@@ -197,46 +198,45 @@ const ProductDetails: React.FC<Props> = ({ product }: Props) => {
                 })()}
               </span>
             </p>
-          </div>
+          </div> */}
 
           <div className="mt-3">
             {(inventoryType === "levelInventory" ||
               inventoryType === "colorLevelInventory") && (
-              <div className="flex flex-col">
-                <h3 className={`text-base font-semibold ${rajdhani.className}`}>
-                  Select Size:
-                </h3>
-                <div className="flex items-center gap-2 text-sm font-semibold text-[#262626]/60 mt-1 cursor-pointer">
-                  {Array.isArray(inventoryRef) &&
-                    inventoryRef.map((size) => (
-                      <p
-                        key={size._id}
-                        onClick={() => {
-                          setLevel(size.level);
-                          setSelectedLevel(size._id);
-                          setSelectedColor(null);
-                          setLevelError(false);
-                        }}
-                        className={`p-1 border border-[#262626]/60 hover:bg-[#52687f] hover:text-[#fff] duration-300 cursor-pointer rounded text-center flex items-center justify-center uppercase ${
-                          level === size.level ? "bg-[#52687f] text-white" : ""
-                        }`}
-                      >
-                        {size.level}
-                      </p>
-                    ))}
+                <div className="flex flex-col">
+                  <h3 className={`text-base font-semibold ${rajdhani.className}`}>
+                    Select Size:
+                  </h3>
+                  <div className="flex items-center gap-2 text-sm font-semibold text-[#262626]/60 mt-1 cursor-pointer">
+                    {Array.isArray(inventoryRef) &&
+                      inventoryRef.map((size) => (
+                        <p
+                          key={size._id}
+                          onClick={() => {
+                            setLevel(size.level);
+                            setSelectedLevel(size._id);
+                            setSelectedColor(null);
+                            setLevelError(false);
+                          }}
+                          className={`p-1 border border-[#262626]/60 hover:bg-[#52687f] hover:text-[#fff] duration-300 cursor-pointer rounded text-center flex items-center justify-center uppercase ${level === size.level ? "bg-[#52687f] text-white" : ""
+                            }`}
+                        >
+                          {size.level}
+                        </p>
+                      ))}
+                  </div>
+                  {levelError && (
+                    <p className="text-[#52687f] text-sm mt-1">
+                      Please select a size.
+                    </p>
+                  )}
                 </div>
-                {levelError && (
-                  <p className="text-[#52687f] text-sm mt-1">
-                    Please select a size.
-                  </p>
-                )}
-              </div>
-            )}
+              )}
           </div>
 
           <div className="mt-3">
             {(inventoryType === "colorLevelInventory" && selectedLevel) ||
-            inventoryType === "colorInventory" ? (
+              inventoryType === "colorInventory" ? (
               <div className="flex flex-col">
                 <h3
                   className={`text-base font-semibold text-[#262626] ${rajdhani.className}`}
@@ -253,11 +253,10 @@ const ProductDetails: React.FC<Props> = ({ product }: Props) => {
                             setSelectedColor(colorItem._id);
                             setColorError(false);
                           }}
-                          className={`border ${
-                            selectedColor === colorItem._id
+                          className={`border ${selectedColor === colorItem._id
                               ? "border-[#52687f] border-2 w-[20px] h-[20px]"
                               : "border-[#262626] w-[25px] h-[25px]"
-                          } rounded-full cursor-pointer`}
+                            } rounded-full cursor-pointer`}
                           style={{ backgroundColor: colorItem.color }}
                         />
                       )
@@ -274,7 +273,7 @@ const ProductDetails: React.FC<Props> = ({ product }: Props) => {
 
           <div className="border-b pb-4">
             <div className="mt-4 flex items-center gap-2">
-              <div className="flex items-center justify-between border rounded px-3 py-[7px] md:w-[25%] w-[30%]">
+              {/* <div className="flex items-center justify-between border rounded px-3 py-[7px] md:w-[25%] w-[30%]">
                 <p onClick={handleDecrement} className="cursor-pointer">
                   <FiMinus />
                 </p>
@@ -294,6 +293,17 @@ const ProductDetails: React.FC<Props> = ({ product }: Props) => {
                   </span>
                   <span>{loading ? "Sending..." : "Add To Cart"}</span>
                 </button>
+              </div> */}
+              <div className="w-full cursor-pointer">
+                <Link
+                  href="/contact"
+                  className="w-[170px] bg-[#52687f] hover:bg-[#395069] duration-300 flex items-center gap-1 px-6 py-2.5 font-semibold text-sm rounded text-[#fff] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span>
+                    <FiPlus />
+                  </span>
+                  <span>মূল্য জানতে চান ?</span>
+                </Link>
               </div>
             </div>
           </div>

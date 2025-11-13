@@ -10,9 +10,11 @@ const BlogCategoryschema = new Schema(
     },
     image: {
       type: String,
+      required: false,
     },
     vectorImage: {
       type: String,
+      required: false,
     },
     slug: {
       type: String,

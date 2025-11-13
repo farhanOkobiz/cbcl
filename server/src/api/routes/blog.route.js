@@ -19,6 +19,7 @@ BlogRoute.route("/:id")
   .delete(controller.deleteBlog);
 
 BlogRoute.get("/latestBlogs", controller.getAllLatestBlog);
+BlogRoute.get("/allBlogForHome", controller.getAllBlogForHome);
 BlogRoute.get("/videoBlog", controller.getAllVideoBlog);
 BlogRoute.get("/facebookBlogs", controller.getAllFacebookBlog);
 

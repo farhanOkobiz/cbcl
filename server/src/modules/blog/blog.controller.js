@@ -78,6 +78,17 @@ class BlogController {
     res.status(resDoc.statusCode).json(resDoc);
   });
 
+  getAllBlogForHome = catchError(async (req, res, next) => {
+    const { tags } = req.query;
+
+    const payload = {
+      tags,
+    };
+    const blogResult = await BlogService.getAllBlogForHome(payload);
+    const resDoc = responseHandler(200, "Get All Blogs", blogResult);
+    res.status(resDoc.statusCode).json(resDoc);
+  });
+
   getAllVideoBlog = catchError(async (req, res, next) => {
     const payload = {
       tags: req.query.tags,

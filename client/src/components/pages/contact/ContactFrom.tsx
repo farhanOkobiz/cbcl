@@ -26,14 +26,14 @@ const ContactForm = () => {
     try {
       const result = await ContactPosting(data);
       if (result) {
-        toast.success("আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে!");
+        toast.success("Your message has been sent successfully!");
         reset();
       } else {
-        toast.error("কিছু ভুল হয়েছে, অনুগ্রহ করে আবার চেষ্টা করুন।");
+        toast.error("Something went wrong. Please try again.");
       }
     } catch (error) {
       console.error("Error submitting contact form:", error);
-      toast.error("একটি ত্রুটি ঘটেছে। দয়া করে পরে আবার চেষ্টা করুন।");
+      toast.error("An error occurred. Please try again later.");
     }
   };
 
@@ -42,91 +42,74 @@ const ContactForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Name */}
         <div className="mb-4">
-          <label
-            className="block text-gray-700 font-medium mb-2"
-            htmlFor="name"
-          >
-            নাম
+          <label className="block text-gray-700 font-medium mb-2" htmlFor="name">
+            Name
           </label>
           <input
             type="text"
             id="name"
             {...register("name")}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="আপনার নাম লিখুন"
+            placeholder="Enter your name"
           />
         </div>
 
         {/* Email */}
         <div className="mb-4">
-          <label
-            className="block text-gray-700 font-medium mb-2"
-            htmlFor="email"
-          >
-            ইমেইল
+          <label className="block text-gray-700 font-medium mb-2" htmlFor="email">
+            Email
           </label>
           <input
             type="email"
             id="email"
             {...register("email")}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="আপনার ইমেইল লিখুন"
+            placeholder="Enter your email"
           />
         </div>
 
         {/* Phone */}
         <div className="mb-4">
-          <label
-            className="block text-gray-700 font-medium mb-2"
-            htmlFor="phone"
-          >
-            মোবাইল নম্বর
+          <label className="block text-gray-700 font-medium mb-2" htmlFor="phone">
+            Phone Number
           </label>
           <input
             type="tel"
             id="phone"
-            {...register("phone", { required: "মোবাইল নম্বর প্রয়োজন" })}
+            {...register("phone", { required: "Phone number is required" })}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="আপনার মোবাইল নম্বর লিখুন"
+            placeholder="Enter your phone number"
           />
           {errors.phone && (
-            <p className="text-[#52687f] text-sm mt-1">
-              {errors.phone.message}
-            </p>
+            <p className="text-[#52687f] text-sm mt-1">{errors.phone.message}</p>
           )}
         </div>
 
         {/* Subject */}
         <div className="mb-4">
-          <label
-            className="block text-gray-700 font-medium mb-2"
-            htmlFor="subject"
-          >
-            বিষয়
+          <label className="block text-gray-700 font-medium mb-2" htmlFor="subject">
+            Subject
           </label>
           <input
             type="text"
             id="subject"
             {...register("subject")}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="বিষয় লিখুন"
+            placeholder="Enter the subject"
           />
         </div>
 
         {/* Message */}
         <div className="mb-4">
-          <label
-            className="block text-gray-700 font-medium mb-2"
-            htmlFor="message"
-          >
-            বার্তা
+          <label className="block text-gray-700 font-medium mb-2" htmlFor="message">
+            Message
           </label>
           <textarea
             id="message"
             rows={3}
             {...register("message")}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="এখানে আপনার বার্তাটি লিখুন..."
+            placeholder="Write your message here..."
           ></textarea>
         </div>
 
@@ -136,7 +119,7 @@ const ContactForm = () => {
           disabled={isSubmitting}
           className="bg-[#52687f] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#3e546b] transition duration-300 w-full cursor-pointer"
         >
-          {isSubmitting ? "পাঠানো হচ্ছে..." : "বার্তা পাঠান"}
+          {isSubmitting ? "Sending..." : "Send Message"}
         </button>
       </form>
       <ToastContainer position="top-right" autoClose={3000} />

@@ -118,7 +118,7 @@ export const CreateForm: React.FC = () => {
               render={() => (
                 <FormItem className="flex-1">
                   <FormLabel>
-                    Image <b className="text-[#52687f]">*</b>
+                    Image <b className="text-[#52687f]"></b>
                   </FormLabel>
                   <Upload
                     listType="picture-card"
@@ -145,7 +145,7 @@ export const CreateForm: React.FC = () => {
               render={() => (
                 <FormItem className="flex-1">
                   <FormLabel>
-                    Vector Image <b className="text-[#52687f]">*</b>
+                    Vector Image <b className="text-red-500"></b>
                   </FormLabel>
                   <Upload
                     listType="picture-card"

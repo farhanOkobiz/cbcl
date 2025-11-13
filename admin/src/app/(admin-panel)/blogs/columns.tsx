@@ -64,16 +64,16 @@ export const columns: ColumnDef<TBlog>[] = [
     header: "Blog Category",
     accessorKey: "blogCategoryRef",
     cell: ({ row }) =>
-      typeof row.original.blogCategoryRef === "object"
-        ? row.original.blogCategoryRef.name
+      typeof row?.original?.blogCategoryRef === "object"
+        ? row?.original?.blogCategoryRef?.name
         : "N/A",
   },
   {
     header: "Blog Subcategory",
     accessorKey: "blogSubCategoryRef",
     cell: ({ row }) =>
-      typeof row.original.blogSubCategoryRef === "object"
-        ? row.original.blogSubCategoryRef.name
+      typeof row?.original?.blogSubCategoryRef === "object"
+        ? row?.original?.blogSubCategoryRef?.name
         : "N/A",
   },
   {

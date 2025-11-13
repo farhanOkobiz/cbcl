@@ -79,7 +79,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="w-full h-screen grid grid-cols-2 p-10 relative bg-green-100">
+    <div className="w-full h-screen grid grid-cols-2 p-10 relative bg-gradient-to-tr from-[#dfe6ec] to-[#f2f5f8]">
       <div className="m-auto grid w-[400px] h-[500px] gap-6 bg-white/30 backdrop-blur-lg shadow-xl p-8 rounded-xl">
         <div className="grid gap-2 text-center">
           <h1 className="text-3xl font-bold">Login</h1>

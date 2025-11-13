@@ -139,7 +139,7 @@ const NavBar: React.FC<NavBarProps> = ({ userCartProducts }) => {
                     </Link> */}
                     <Link href={menu.link}>
                       <li
-                        className={`list-none text-xl lg:text-xl xl:text-2xl absolute hover:text-[#1E3E96] tracking-wider duration-300 menuTitle xl:px-6 px-4 ${index === menuList.length - 1 ? "" : ""
+                        className={`list-none text-xl lg:text-xl xl:text-xl absolute hover:text-[#1E3E96] tracking-wider duration-300 menuTitle xl:px-6 px-4 ${index === menuList.length - 1 ? "" : ""
                           }`}
                       >
                         {menu.title}

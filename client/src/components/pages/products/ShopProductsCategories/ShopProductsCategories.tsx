@@ -114,7 +114,7 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
 
   return (
     <div className="px-4 pt-2 sticky top-0 h-screen overflow-y-scroll custom-scroll flex flex-col gap-4 pb-12">
-      <div>
+      {/* <div>
         <div className="space-y-2 border border-[#52687f] rounded px-3 py-4 h-[220px]">
           <h2 className="pb-2 text-base font-semibold uppercase">
             Price range
@@ -154,7 +154,7 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
                 />
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Slider */}
           {/* <div className="py-2">
@@ -204,15 +204,15 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
             />
           </div> */}
 
-          <div className="flex justify-between text-sm text-gray-500 pb-2">
+          {/* <div className="flex justify-between text-sm text-gray-500 pb-2">
             <span>৳{values[0]}</span>
             <span>৳{values[1]}</span>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div>
-        <ul className="space-y-2 border border-[#52687f] rounded px-3 py-4 h-[258px] overflow-y-scroll">
+        <ul className="space-y-2 border border-[#52687f] rounded px-3 py-4 h-[300px] overflow-y-scroll">
           <h2 className="pb-2 text-base font-semibold">CATEGORY</h2>
           {shopSideBar?.map((cat) => (
             <li key={cat._id}>
@@ -275,7 +275,7 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
         </ul>
       </div>
 
-      <div>
+      {/* <div>
         <div className="space-y-2 border border-[#52687f] rounded px-3 py-4 h-[250px] overflow-y-scroll">
           <h2 className="pb-2 text-base font-semibold uppercase">Brands</h2>
           <div>
@@ -296,7 +296,7 @@ const ShopProductsCategories: React.FC<ShopProductsCategoriesProps> = ({
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* <div>
         <div className="space-y-2 border border-[#52687f] rounded px-3 py-4 h-[160px]">

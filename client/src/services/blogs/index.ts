@@ -20,6 +20,29 @@ export const getAllLatestBlogs = async () => {
   return res.json();
 };
 
+export const getAllBlogForHome = async () => {
+  const res = await fetch(`${apiBaseUrl}/blog/allBlogForHome`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(
+      `Failed to fetch blogs for home: ${res.status} ${res.statusText} - ${text}`
+    );
+  }
+
+  const contentType = res.headers.get("content-type") || "";
+  if (!contentType.includes("application/json")) {
+    const text = await res.text().catch(() => "");
+    throw new Error(
+      `Expected JSON response but received ${contentType}: ${text}`
+    );
+  }
+
+  return res.json();
+};
+
 export const getAllVideoBlogs = async () => {
   const res = await fetch(`${apiBaseUrl}/blog/videoBlog`);
   return res.json();

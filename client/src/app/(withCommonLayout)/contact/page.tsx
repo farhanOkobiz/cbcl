@@ -19,11 +19,10 @@ const Contact = async () => {
           {/* Heading Section */}
           <div className="text-center mb-12 md:mt-14 mt-28 lg:mt-0">
             <h2 className="text-3xl lg:text-5xl font-bold text-[#262626] mb-3">
-              আমাদের সাথে <span className="text-[#52687f]">যোগাযোগ করুন</span>
+              Get in <span className="text-[#52687f]">Touch With Us</span>
             </h2>
             <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
-              আমরা আপনার কাছ থেকে শুনতে আগ্রহী। আমাদের একটি বার্তা পাঠান, আমরা
-              যত দ্রুত সম্ভব উত্তর দেব।
+              We’d love to hear from you! Send us a message, and we’ll respond as soon as possible.
             </p>
             <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#52687f] to-transparent mx-auto mt-4"></div>
           </div>
@@ -42,13 +41,12 @@ const Contact = async () => {
               {/* Header */}
               <div>
                 <h3 className="text-2xl md:text-3xl font-bold text-[#262626] mb-2">
-                  আমাদের তথ্য
+                   Our Information
                 </h3>
                 <p className="text-gray-600">
-                  নিচের ঠিকানায় আমাদের খুঁজে পাবেন
+                  You can find us at the address below.
                 </p>
               </div>
-
               {/* Info Cards */}
               <div className="space-y-6">
                 {/* Address Card */}
@@ -77,9 +75,9 @@ const Contact = async () => {
                     </div>
                     <div className="flex-1">
                       <div className="font-bold text-[#52687f] text-lg mb-1">
-                        ঠিকানা
+                        Address
                       </div>
-                      <div className="text-gray-700">ঢাকা, বাংলাদেশ</div>
+                      <div className="text-gray-700">Dhaka, Bangladesh</div>
                     </div>
                   </div>
                 </div>
@@ -121,7 +119,7 @@ const Contact = async () => {
               </div>
 
               {/* Additional Info Box */}
-              <div className="bg-gradient-to-br from-[#52687f] to-[#3d5168] text-white rounded-xl p-8 shadow-lg">
+              {/* <div className="bg-gradient-to-br from-[#52687f] to-[#3d5168] text-white rounded-xl p-8 shadow-lg">
                 <h4 className="text-xl font-bold mb-3">ব্যবসার সময়সূচি</h4>
                 <div className="space-y-2 text-gray-100">
                   <div className="flex justify-between">
@@ -133,7 +131,7 @@ const Contact = async () => {
                     <span className="font-semibold">বন্ধ</span>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

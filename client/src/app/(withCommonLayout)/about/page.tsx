@@ -24,7 +24,7 @@ const page = async () => {
             {/* Heading with Accent */}
             <div className="relative">
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#262626] leading-tight">
-                স্বাগতম{" "}
+                Welcome to{" "}
                 <span className="relative inline-block">
                   <span className="uppercase text-[#52687f] relative z-10">
                     Community Business Company Ltd
@@ -33,58 +33,59 @@ const page = async () => {
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-gray-600 mt-3 font-light">
-                একটি প্ল্যাটফর্ম যেখানে ব্লগ ও ই-কমার্স মিলে তৈরি করে একটি
-                পূর্ণাঙ্গ ডিজিটাল অভিজ্ঞতা।
+                A platform that blends blogs and e-commerce to create a complete digital experience.
               </p>
             </div>
 
-            {/* About Us Content (replaced) */}
+            {/* About Us Content */}
             <div className="prose prose-lg text-gray-700">
               <p>
-                <strong>Community Business Company Ltd</strong> একটি উদ্ভাবনী
-                অনলাইন প্ল্যাটফর্ম, যেখানে ব্লগ ও ই-কমার্স একসাথে নতুন এক
-                অভিজ্ঞতা নিয়ে এসেছে। আমরা বিশ্বাস করি যে জ্ঞান ও ব্যবসার সমন্বয়
-                সমাজকে এগিয়ে নিয়ে যেতে পারে। আমাদের লক্ষ্য হলো এমন একটি ডিজিটাল
-                কমিউনিটি তৈরি করা যেখানে মানুষ পড়বে, শিখবে এবং একই সঙ্গে
-                উচ্চমানের পণ্য কেনাকাটা করতে পারবে — সব এক জায়গাই।
+                <strong>Community Business Company Ltd</strong> is a Bangladesh-focused information
+                platform designed to help people explore and understand the country in every possible way.
+                From the taste of local street food to the beauty of heritage sites, from the latest
+                business updates to traditional clothing trends — our website is a complete source of
+                knowledge about Bangladesh.
               </p>
 
               <p>
-                আমাদের ব্লগ সেকশনে আপনি পাবেন তথ্যবহুল ও অনুপ্রেরণাদায়ক
-                কনটেন্ট—ব্যবসা, প্রযুক্তি, জীবনধারা, শিক্ষা ও কমিউনিটি উন্নয়ন
-                বিষয়ে। ই-কমার্স সেকশনে রয়েছে যাচাইকৃত ও বিশ্বস্ত পণ্যের সংগ্রহ,
-                যাতে প্রতিটি ক্রেতা পায় নিশ্চিন্ত ও সহজ- অনলাইন শপিং অভিজ্ঞতা।
+                We bring together stories, facts, and insights from reliable sources so readers can easily
+                discover the depth and diversity of our nation. Whether you’re a traveler, student,
+                entrepreneur, or simply someone who loves Bangladesh, this is your space to learn, connect,
+                and explore.
               </p>
 
               <div className="bg-gradient-to-r from-[#52687f]/5 to-transparent border-l-4 border-[#52687f] p-6 rounded-r-lg mt-4">
                 <p className="mb-0">
-                  <span className="font-semibold text-[#52687f]">
-                    আমাদের মিশন:
-                  </span>{" "}
-                  জ্ঞান ছড়ানো, সুযোগ তৈরি করা, এবং কমিউনিটির বিকাশে অবদান রাখা।
+                  <span className="font-semibold text-[#52687f]">Our Mission:</span>{" "}
+                  To showcase the true essence of Bangladesh by gathering and sharing information from all
+                  sectors — food, tourism, business, lifestyle, and culture. We aim to make authentic,
+                  organized, and useful content available to everyone, creating a platform that reflects
+                  the voice and spirit of Bangladesh.
                 </p>
               </div>
 
               <div className="mt-4">
                 <p>
-                  <span className="font-semibold">আমাদের ভিশন:</span> একটি
-                  স্মার্ট, সৃজনশীল ও সংযুক্ত বাংলাদেশ গড়ে তোলা, যেখানে প্রত্যেকে
-                  তার জ্ঞান ও উদ্যোগের মাধ্যমে সমাজে ইতিবাচক পরিবর্তন আনতে পারে।
+                  <span className="font-semibold">Our Vision:</span> To become Bangladesh’s largest and
+                  most trusted online information hub, where people from all backgrounds can discover,
+                  contribute, and celebrate everything that defines our country. We want to inspire
+                  curiosity, promote cultural pride, and connect communities through open access to
+                  knowledge.
                 </p>
               </div>
 
               <p>
-                আমরা ক্রেতাদের কাছে ১০০% আসল পণ্য পৌঁছে দেওয়ার বিষয়ে
-                প্রতিশ্রুতিবদ্ধ — মান, আসলত্ব ও টেকসই ব্যবহার আমাদের মূল
-                মানদণ্ড। প্রতিটি পণ্য মনোযোগের সাথে নির্বাচিত হয়, সরবরাহকারীর
-                বিশ্বাসযোগ্যতা যাচাই করা হয় এবং গ্রাহক সেবা দিয়ে আমরা সেই
-                প্রতিশ্রুতি ধরে রাখি।
+                <span className="font-semibold">How the Website Works:</span> Community Business Company
+                Ltd functions as a digital knowledge center. Our team and contributors collect verified
+                information, stories, and visuals from across Bangladesh. The content is categorized under
+                topics like food, tourism, monuments, business, fashion, and lifestyle, allowing visitors
+                to explore easily.
               </p>
 
               <p>
-                আমাদের টিম গ্রাহক-ফোকাসড: আপনার প্রয়োজন, মতামত ও প্রতিক্রিয়া
-                আমাদের কাছে মূল্যবান। যদি কোনো প্রশ্ন বা পরামর্শ থাকে — আমাদের
-                সাথে যোগাযোগ করতে দ্বিধা করবেন না।
+                Each post is carefully curated and updated to ensure accuracy and relevance. The website
+                also encourages user participation, so anyone can share their experience or information
+                about Bangladesh — turning it into a truly community-driven platform.
               </p>
 
               <div className="mt-8 p-8 bg-gradient-to-br from-[#52687f]/10 via-[#52687f]/5 to-transparent rounded-xl border border-[#52687f]/20 text-center">
@@ -92,21 +93,16 @@ const page = async () => {
                   Community Business Company Ltd
                 </p>
                 <div className="flex items-center justify-center gap-3 mt-2 text-gray-700 flex-wrap">
-                  <span className="font-medium">আসলত্ব</span>
+                  <span className="font-medium">Authenticity</span>
                   <span className="text-[#52687f]">•</span>
-                  <span className="font-medium">সত্যতা</span>
+                  <span className="font-medium">Integrity</span>
                   <span className="text-[#52687f]">•</span>
-                  <span className="font-medium">গুণগত মানের প্রতিশ্রুতি</span>
+                  <span className="font-medium">Commitment to Quality</span>
                 </div>
               </div>
-
-              <p className="mt-4">
-                চাইলে আমি এই টেক্সটকে ইংরেজিতে অনুবাদ করে বা ওয়েবসাইটের টোন
-                অনুযায়ী (formal, friendly, অথবা SEO-ফ্রেন্ডলি) রিরাইট করে দিতে
-                পারি।
-              </p>
             </div>
           </div>
+
         </div>
       </div>
     </div>

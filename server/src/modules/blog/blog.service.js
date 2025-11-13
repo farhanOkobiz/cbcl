@@ -29,7 +29,6 @@ class BlogService extends BaseService {
 
   async getAllBlog(payload) {
     const { tagRef, blogCategoryRef, blogSubCategoryRef } = payload;
-    console.log(blogCategoryRef, blogSubCategoryRef, "ok");
     const filter = {}; // filter object
 
     if (tagRef) filter.tagRef = tagRef;
@@ -52,6 +51,29 @@ class BlogService extends BaseService {
 
     // Fetch items sorted by createdAt descending (latest first)
     return await this.#repository.findAll(filter, { sort: { createdAt: -1 } });
+  }
+
+  async getAllBlogForHome() {
+    const filter = {
+      $and: [
+        {
+          $or: [
+            { youtubeUrl: { $exists: false } },
+            { youtubeUrl: null },
+            { youtubeUrl: "" },
+          ],
+        },
+        {
+          $or: [
+            { facebookUrl: { $exists: false } },
+            { facebookUrl: null },
+            { facebookUrl: "" },
+          ],
+        },
+      ],
+    };
+
+    return await this.#repository.findAll(filter);
   }
 
   async getAllVideoBlog(payload) {

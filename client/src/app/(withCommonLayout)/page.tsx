@@ -16,7 +16,7 @@ import { getUser } from "@/services/auth";
 import { Metadata } from "next";
 import CartSideBar from "@/components/pages/cartSideBar/CartSideBar";
 import BlogAndProduct from "@/components/pages/landing_pages/BlogAndProduct/BlogAndProduct";
-import { getAllBlogs } from "@/services/blogs";
+import { getAllBlogForHome, getAllBlogs } from "@/services/blogs";
 
 
 export const metadata: Metadata = {
@@ -34,11 +34,15 @@ const page = async () => {
   const userId = user?.id;
   const coupon = "";
   const products = await getCartProducts(userId, coupon);
-  const allBlogs = await getAllBlogs();
+  // const allBlogs = await getAllBlogs();
 
   // const allproducts = await getAllProducts();
   // const bestSelling = await getAllBestSellProduct();
   // const brands = await getAllBrands();
+    const allBlogs = await getAllBlogForHome();
+
+     console.log(allBlogs, "ok");
+     
 
   return (
     <div className="bg-[#f4f7fa]">
